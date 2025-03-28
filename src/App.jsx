@@ -3,6 +3,8 @@ import MainLayout from "./layout/MainLayout.jsx";
 import Home from "./pages/Home.jsx";
 import Category from "./pages/Category.jsx";
 import Product from "./pages/Product.jsx";
+import Products from "./pages/Products.jsx";
+import Login from "./pages/Login.jsx";
 import Cart from "./pages/Cart.jsx";
 
 const App = () => {
@@ -11,9 +13,11 @@ const App = () => {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
-          <Route path="category/:name" element={<Category />} />
-          <Route path="products/:name" element={<Product />} />
-          <Route path="cart" element={<Cart />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:productId" element={<Product />} />
+          <Route path="/category/:category" element={<Category />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/cart" element={<Cart />} />
         </Route>
       </Routes>
     </BrowserRouter>

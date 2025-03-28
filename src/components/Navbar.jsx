@@ -6,6 +6,7 @@ import cartIcon from "../assets/shopping-cart-icon.png";
 // This component simply renders a navigation bar
 const Navbar = () => {
   return (
+        <div>
     <nav className="bg-blue-900 p-2 flex flex-row sticky top-0 z-20 shadow-md">
       <Link to="/">
         <div className="pt-0.5 mx-3 flex flex-row">
@@ -24,7 +25,7 @@ const Navbar = () => {
             id="searchInput"
             className="pl-4 bg-base-100 border-none focus:outline-none focus:ring-0 focus:border-transparent h-[30px] rounded-bl-full rounded-tl-full self-center text-base-content flex-grow"
             type="text"
-            placeholder="Find your next great deal!"
+            placeholder="Find your next great tech deal!"
           />
           <button
             id="searchButton"
@@ -65,6 +66,18 @@ const Navbar = () => {
         </div>
       </Link>
     </nav>
+          <nav className="bg-blue-600 p-2 mb-4 flex flex-row z-20 shadow-md w-full">
+          <button className="btn">Appliances</button> 
+          <button className="btn">TV</button>
+          <button className="btn">Audio</button>
+          <button className="btn">Mobile</button>
+          <button className="btn">Laptop</button>
+          <button className="btn">Gaming</button>
+          <button className="btn">Our deals</button>
+          <button className="btn">All products</button>
+        </nav>
+
+        </div>
   );
 };
 
