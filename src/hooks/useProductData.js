@@ -13,7 +13,9 @@ export const useProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("https://fakestoreapi.in/api/products");
+        const response = await fetch(
+          "https://fakestoreapi.in/api/products?limit=150"
+        );
         const data = await response.json();
         setProducts(data.products);
       } catch (error) {
@@ -26,7 +28,7 @@ export const useProducts = () => {
     fetchProducts();
   }, []);
 
-  return products;
+  return { products, loading, error };
 };
 
 export const useProduct = (productId) => {

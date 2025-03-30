@@ -85,7 +85,7 @@ const Navbar = () => {
         <Link to="/category/gaming">
           <button className="btn">Gaming</button>
         </Link>
-        <Link to="/category/deals">
+        <Link to="/deals">
           <button className="btn">Our deals</button>
         </Link>
         <Link to="/products">
