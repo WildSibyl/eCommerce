@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams, Link } from "react-router";
 import { useProduct } from "../hooks/useProductData";
+// import { Counter } from "../components/Counter.jsx";
 
 const Product = () => {
   const { productId } = useParams();
@@ -15,6 +16,20 @@ const Product = () => {
 
   console.log(product);
 
+  // const handleQuantityChange = (newQuantity) => {
+  //   setQuantity(newQuantity);
+  // };
+
+  // const handleAddToCart = () => {
+  //   // Add the product to the cart with the selected quantity
+  //   console.log(`Added ${quantity} of ${product.title} to the cart.`);
+  // };
+
+  // const handleBuyNow = () => {
+  //   // Handle the buy now action
+  //   console.log(`Buying ${quantity} of ${product.title} now.`);
+  // };
+
   return (
     <div
       id="product-container"
@@ -27,7 +42,7 @@ const Product = () => {
           <img
             src={product.image}
             alt={product.title}
-            className="w-[40%] object-cover p-4 bg-white rounded-lg"
+            className="w-[40%] object-cover p-4 bg-white rounded-lg shadow-md"
           />
           <div className="flex flex-col m-4">
             {product.popular ? (
@@ -88,9 +103,10 @@ const Product = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col w-[80%] border border-base-200 font-bold justify-center items-center rounded-lg h-[400px] m-4 bg-base-100 shadow-md gap-4">
-        <p>In stock</p>
-        <p>Quantity dropdown</p>
+      <div className="flex flex-col w-[500px] border border-base-200 font-bold justify-center items-center rounded-lg h-[400px] m-4 bg-base-200 shadow-md gap-4">
+        <p className="text-sm">In stock</p>
+        <p className="text-sm">Quantity</p>
+        {/* <Counter initialValue={1} maxValue={30} /> */}
         <button className="btn">Add to cart</button>
         <button className="btn">Buy now</button>
       </div>
