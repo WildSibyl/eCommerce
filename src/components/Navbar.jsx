@@ -2,9 +2,12 @@ import { Link } from "react-router";
 import ThemeToggle from "./ThemeToggle";
 import websiteLogo from "../assets/shopping-bag-icon.png";
 import cartIcon from "../assets/shopping-cart-icon.png";
+// import { useAddToCart } from "../hooks/useAddToCart";
 
 // This component simply renders a navigation bar
 const Navbar = () => {
+  // const { cartItems } = useAddToCart();
+
   return (
     <div>
       <nav className="bg-blue-900 p-2 flex flex-wrap sticky top-0 z-20 shadow-md justify-around">
@@ -58,11 +61,10 @@ const Navbar = () => {
         <Link to="/cart">
           <div className="pt-0.5 mx-4 flex flex-row">
             <div className=" self-center text-white font-bold ">Cart</div>
-            <img
-              src={cartIcon}
-              alt="Favorites icon"
-              className="h-[30px] ml-2"
-            />
+            <img src={cartIcon} alt="Cart icon" className="h-[30px] ml-2" />
+            {/* <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              {cartItems}
+            </span> */}
           </div>
         </Link>
       </nav>

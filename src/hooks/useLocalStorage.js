@@ -53,11 +53,25 @@ export const useAddToCart = () => {
     console.log("cartProducts array updated: ", updatedCart);
   };
 
-  return { cart, addProduct };
+  const decreaseQuantity = (productId) => {
+    let updatedCart = cart.map((item) =>
+      item.id === productId
+        ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 1 }
+        : item
+    );
 
-  // const removeProduct = (productId) => {
-  //     const updatedCart = cart.filter((item) => item.id !== productId);
-  //     localStorage.setItem("cartProducts", JSON.stringify(updatedCart));
-  //     setCart(updatedCart); // Update state of the cart
-  // };
+    localStorage.setItem("cartProducts", JSON.stringify(updatedCart));
+    setCart(updatedCart);
+  };
+
+  const removeProduct = (productId) => {
+    const updatedCart = cart.filter((item) => item.id !== productId);
+    localStorage.setItem("cartProducts", JSON.stringify(updatedCart));
+    setCart(updatedCart); // Update state of the cart
+  };
+
+  // Calculate total number of items in cart
+  const cartItems = cart.reduce((acc, product) => acc + product.quantity, 0);
+
+  return { cart, addProduct, decreaseQuantity, removeProduct, cartItems };
 };
