@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams, Link } from "react-router";
 import { useProduct } from "../hooks/useProductData";
+import { useAddToCart } from "../hooks/useLocalStorage";
 // import { Counter } from "../components/Counter.jsx";
 
 const Product = () => {
@@ -9,6 +10,7 @@ const Product = () => {
   console.log(` Product ID: ${productId}`);
 
   const { product, loading, error } = useProduct(productId);
+  const { addProduct } = useAddToCart();
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -107,7 +109,9 @@ const Product = () => {
         <p className="text-sm">In stock</p>
         <p className="text-sm">Quantity</p>
         {/* <Counter initialValue={1} maxValue={30} /> */}
-        <button className="btn">Add to cart</button>
+        <button onClick={() => addProduct(product)} className="btn">
+          Add to Cart
+        </button>
         <button className="btn">Buy now</button>
       </div>
     </div>

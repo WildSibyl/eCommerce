@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import { Link } from "react-router";
 import { useProducts } from "../hooks/useProductData";
 
-
 const Products = () => {
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(null);
 
-  // if (loading) return <div>Loading...</div>;
-  // if (error) return <div>Error: {error.message}</div>;
+  const { products, loading, error } = useProducts();
 
-  const products = useProducts();
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
   console.log(products);
 
@@ -32,7 +31,6 @@ const Products = () => {
           </Link>
         </div>
       ))}
-
     </div>
   );
 };
