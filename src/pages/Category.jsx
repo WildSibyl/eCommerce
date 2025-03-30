@@ -28,7 +28,7 @@ const Category = () => {
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-48 object-cover"
+              className="w-full h-48 object-contain bg-white"
             />
             <h2>{product.title}</h2>
             <p className="font-bold">€ {product.price}</p>

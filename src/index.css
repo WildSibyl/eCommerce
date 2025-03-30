@@ -72,14 +72,18 @@
   --noise: 0;
 }
 
-@utility counter-btn {
-  @apply rounded-full mx-3;
+@utility counterBtn {
+  @apply rounded-full hover:bg-blue-500 bg-blue-700 border-transparent text-white shadow-lg cursor-pointer p-1 m-2;
 }
 
 @utility btn {
   @apply rounded-full hover:bg-blue-500 bg-blue-700 border-transparent text-white shadow-lg m-2;
 }
 
+@utility longbox {
+  @apply border border-base-200 bg-base-100 h-[200px] m-2 rounded-lg;
+}
+
 @utility box {
-  @apply border border-accent-content bg-base-100 h-[300px];
+  @apply border border-base-200 bg-base-100 h-[300px] rounded-lg;
 }

@@ -44,7 +44,7 @@ const Product = () => {
           <img
             src={product.image}
             alt={product.title}
-            className="w-[40%] object-cover p-4 bg-white rounded-lg shadow-md"
+            className="w-[40%] object-contain p-4 bg-white rounded-lg shadow-md"
           />
           <div className="flex flex-col m-4">
             {product.popular ? (
