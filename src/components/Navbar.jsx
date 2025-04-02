@@ -5,8 +5,21 @@ import cartIcon from "../assets/shopping-cart-icon.png";
 // import { useAddToCart } from "../hooks/useAddToCart";
 
 // This component simply renders a navigation bar
-const Navbar = () => {
+const Navbar = ({ signedIn, setSignedIn }) => {
   // const { cartItems } = useAddToCart();
+
+  const handleAuthClick = () => {
+    setSignedIn((prev) => !prev);
+  };
+
+  // const handleSearch = () => {
+  //   const searchInput = document.getElementById("searchInput").value;
+  //   const searchButton = document.getElementById("searchButton");
+  //   searchButton.addEventListener("click", () => {
+  //     console.log(searchInput);
+  //     // Implement search functionality here
+  //   });
+  // };
 
   return (
     <div>
@@ -53,11 +66,41 @@ const Navbar = () => {
           </div>
         </div>
         <ThemeToggle />
-        <Link to="/login">
-          <div className="pt-1 mx-4 flex flex-row">
-            <div className=" self-center text-white font-bold ">Login</div>
+        {signedIn ? (
+          <div className="flex flex-row">
+            <Link to="/profile">
+              <div className="pt-1 mx-4 flex flex-row">
+                <div className=" self-center text-white font-bold ">
+                  Profile
+                </div>
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                  alt="Profile icon"
+                  className="h-[30px] ml-2"
+                />
+              </div>
+            </Link>
+            <div className="pt-1 mx-4 flex flex-row">
+              <button
+                onClick={handleAuthClick}
+                className=" self-center text-white font-bold "
+              >
+                {signedIn ? "Log out" : "Login"}
+              </button>
+            </div>
           </div>
-        </Link>
+        ) : (
+          <Link to="/login">
+            <div className="pt-1 mx-4 flex flex-row">
+              <button
+                onClick={handleAuthClick}
+                className=" self-center text-white font-bold "
+              >
+                {signedIn ? "Log out" : "Login"}
+              </button>
+            </div>
+          </Link>
+        )}
         <Link to="/cart">
           <div className="pt-0.5 mx-4 flex flex-row">
             <div className=" self-center text-white font-bold ">Cart</div>
