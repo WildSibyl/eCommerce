@@ -85,5 +85,5 @@
 }
 
 @utility box {
-  @apply border border-base-200 bg-base-100 h-[300px] rounded-lg;
+  @apply border border-base-200 bg-base-100 rounded-lg;
 }
