@@ -8,8 +8,16 @@ const Cart = () => {
   // Check if cart is empty
   if (cart.length === 0) {
     return (
-      <div className="flex items-center justify-center h-full">
-        <h2 className="text-xl">Your cart is empty</h2>
+      <div className="flex items-center justify-center h-full lg:py-[5%]">
+        <div className="flex flex-col items-center">
+          <div className="max-w-[300px] mx-auto m-4">
+            <img
+              src="src/assets/empty_cart.png"
+              alt="a stylized illustration of a confused cat in an empty cart"
+            />
+          </div>
+          <h2 className="text-xl">Your cart is empty.</h2>
+        </div>
       </div>
     );
   }
