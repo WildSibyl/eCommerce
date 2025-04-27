@@ -1,40 +1,35 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
-import { useCategory } from "../hooks/useProductData";
-import { useParams } from "react-router";
+import { useProducts } from "../hooks/useProductData";
 import { useOutletContext } from "react-router";
 import ProductCardMedium from "../card-components/ProductCardMedium";
 
-const Category = () => {
-  const { productCategory } = useParams();
-  console.log(` Category: ${productCategory}`);
+const AllProducts = () => {
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
 
   const { addProduct } = useOutletContext();
 
-  const { category, loading, error } = useCategory(productCategory);
-
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
+  const { products, loading, error } = useProducts();
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
-  console.log(category);
+  console.log(products);
 
   return (
     <div
       id="cart-container"
       className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-4"
     >
-      {category.map((product) => (
+      {products.map((product) => (
         <ProductCardMedium
           key={product.id}
           product={product}
           addProduct={addProduct}
-        /> // Use ProductCardMedium for larger cards
+        />
       ))}
     </div>
   );
 };
 
-export default Category;
+export default AllProducts;
