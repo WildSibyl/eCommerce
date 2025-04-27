@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams, Link } from "react-router";
 import { useProduct } from "../hooks/useProductData";
-import { useAddToCart } from "../hooks/useLocalStorage";
+import { useOutletContext } from "react-router";
 // import { Counter } from "../components/Counter.jsx";
 import ProductImage from "../card-components/ProductImage.jsx";
 
@@ -11,7 +11,7 @@ const Product = () => {
   console.log(` Product ID: ${productId}`);
 
   const { product, loading, error } = useProduct(productId);
-  const { addProduct } = useAddToCart();
+  const { addProduct } = useOutletContext();
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;

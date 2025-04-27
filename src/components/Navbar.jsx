@@ -1,12 +1,12 @@
-import { Link } from "react-router";
+import { Link, useOutletContext } from "react-router";
 import ThemeToggle from "./ThemeToggle";
 import websiteLogo from "../assets/shopping-bag-icon.png";
 import cartIcon from "../assets/shopping-cart-icon.png";
-// import { useAddToCart } from "../hooks/useAddToCart";
+//import { useOutletContext } from "react-router";
 
 // This component simply renders a navigation bar
-const Navbar = ({ signedIn, setSignedIn }) => {
-  // const { cartItems } = useAddToCart();
+const Navbar = ({ signedIn, setSignedIn, cartItems }) => {
+  //const { cartItems } = useOutletContext();
 
   const handleAuthClick = () => {
     setSignedIn((prev) => !prev);
@@ -105,9 +105,13 @@ const Navbar = ({ signedIn, setSignedIn }) => {
           <div className="pt-0.5 mx-4 flex flex-row">
             <div className=" self-center text-white font-bold ">Cart</div>
             <img src={cartIcon} alt="Cart icon" className="h-[30px] ml-2" />
-            {/* <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-              {cartItems}
-            </span> */}
+            <span className="absolute top-1.5 right-4 text-white text-center rounded-full w-10.5 h-6 flex items-center justify-center">
+              {cartItems > 99 ? (
+                <div className="text-[10px]">99+</div>
+              ) : (
+                <span className="font-semibold text-xs">{cartItems}</span>
+              )}
+            </span>
           </div>
         </Link>
       </nav>

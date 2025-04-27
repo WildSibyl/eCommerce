@@ -10,9 +10,15 @@ const MainLayout = () => {
   const { cart, addProduct, decreaseQuantity, removeProduct, cartItems } =
     useAddToCart();
 
+  console.log(cartItems); // Log the cartItems to see if they are being passed correctly
+
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar signedIn={signedIn} setSignedIn={setSignedIn} />
+      <Navbar
+        signedIn={signedIn}
+        setSignedIn={setSignedIn}
+        cartItems={cartItems}
+      />
       <div className="flex-grow">
         {/* The Outlet component is a placeholder for children components under this route */}
         <Outlet
