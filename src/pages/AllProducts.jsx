@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router";
 import { useProducts } from "../hooks/useProductData";
 
-const Products = () => {
+const AllProducts = () => {
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(null);
 
@@ -59,4 +59,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default AllProducts;

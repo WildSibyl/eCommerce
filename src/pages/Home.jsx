@@ -51,13 +51,18 @@ const Home = () => {
             className="grid grid-cols-2 grid-rows-2 gap-2"
           >
             {products.slice(0, 4).map((product) => (
-              <div key={product.id} className="bg-white rounded-lg shadow-sm">
+              <div
+                key={product.id}
+                className="rounded-lg shadow-sm bg-base-100 border border-base-200"
+              >
                 <Link to={`/products/${product.id}`} className="relative">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-48 object-contain rounded-lg p-2"
-                  />
+                  <div className="bg-white rounded-tl-lg rounded-tr-lg">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-48 object-contain rounded-lg p-2"
+                    />
+                  </div>
                   <div className="flex flex-col items-center justify-center my-4 gap-2">
                     {product.discount > 0 ? (
                       <>
@@ -97,13 +102,18 @@ const Home = () => {
             className="grid grid-cols-2 grid-rows-2 gap-2"
           >
             {appliances.map((product) => (
-              <div key={product.id} className="bg-white rounded-lg shadow-sm">
+              <div
+                key={product.id}
+                className="rounded-lg shadow-sm bg-base-100 border border-base-200"
+              >
                 <Link to={`/products/${product.id}`} className="relative">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-48 object-contain rounded-lg p-2"
-                  />
+                  <div className="bg-white rounded-tl-lg rounded-tr-lg">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-48 object-contain rounded-lg p-2"
+                    />
+                  </div>
                   <div className="flex flex-col items-center justify-center my-4 gap-2">
                     {product.discount > 0 ? (
                       <>
@@ -143,13 +153,18 @@ const Home = () => {
             className="grid grid-cols-2 grid-rows-2 gap-2"
           >
             {tv.map((product) => (
-              <div key={product.id} className="bg-white rounded-lg shadow-sm">
+              <div
+                key={product.id}
+                className="rounded-lg shadow-sm bg-base-100 border border-base-200"
+              >
                 <Link to={`/products/${product.id}`} className="relative">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-48 object-contain rounded-lg p-2"
-                  />
+                  <div className="bg-white rounded-tl-lg rounded-tr-lg">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-48 object-contain rounded-lg p-2"
+                    />
+                  </div>
                   <div className="flex flex-col items-center justify-center my-4 gap-2">
                     {product.discount > 0 ? (
                       <>
@@ -189,13 +204,18 @@ const Home = () => {
             className="grid grid-cols-2 grid-rows-2 gap-2"
           >
             {deals.map((product) => (
-              <div key={product.id} className="bg-white rounded-lg shadow-sm">
+              <div
+                key={product.id}
+                className="rounded-lg shadow-sm bg-base-100 border border-base-200"
+              >
                 <Link to={`/products/${product.id}`} className="relative">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-48 object-contain rounded-lg p-2"
-                  />
+                  <div className="bg-white rounded-tl-lg rounded-tr-lg">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-48 object-contain rounded-lg p-2"
+                    />
+                  </div>
                   <div className="flex flex-col items-center justify-center my-4 gap-2">
                     {product.discount > 0 ? (
                       <>
@@ -235,13 +255,18 @@ const Home = () => {
             className="grid grid-cols-2 grid-rows-2 gap-2"
           >
             {audio.map((product) => (
-              <div key={product.id} className="bg-white rounded-lg shadow-sm">
+              <div
+                key={product.id}
+                className="rounded-lg shadow-sm bg-base-100 border border-base-200"
+              >
                 <Link to={`/products/${product.id}`} className="relative">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-48 object-contain rounded-lg p-2"
-                  />
+                  <div className="bg-white rounded-tl-lg rounded-tr-lg">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-48 object-contain rounded-lg p-2"
+                    />
+                  </div>
                   <div className="flex flex-col items-center justify-center my-4 gap-2">
                     {product.discount > 0 ? (
                       <>
@@ -281,13 +306,18 @@ const Home = () => {
             className="grid grid-cols-2 grid-rows-2 gap-2"
           >
             {mobile.map((product) => (
-              <div key={product.id} className="bg-white rounded-lg shadow-sm">
+              <div
+                key={product.id}
+                className="rounded-lg shadow-sm bg-base-100 border border-base-200"
+              >
                 <Link to={`/products/${product.id}`} className="relative">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-48 object-contain rounded-lg p-2"
-                  />
+                  <div className="bg-white rounded-tl-lg rounded-tr-lg">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-48 object-contain rounded-lg p-2"
+                    />
+                  </div>
                   <div className="flex flex-col items-center justify-center my-4 gap-2">
                     {product.discount > 0 ? (
                       <>
@@ -327,13 +357,18 @@ const Home = () => {
             className="grid grid-cols-2 grid-rows-2 gap-2"
           >
             {laptop.map((product) => (
-              <div key={product.id} className="bg-white rounded-lg shadow-sm">
+              <div
+                key={product.id}
+                className="rounded-lg shadow-sm bg-base-100 border border-base-200"
+              >
                 <Link to={`/products/${product.id}`} className="relative">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-48 object-contain rounded-lg p-2"
-                  />
+                  <div className="bg-white rounded-tl-lg rounded-tr-lg">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-48 object-contain rounded-lg p-2"
+                    />
+                  </div>
                   <div className="flex flex-col items-center justify-center my-4 gap-2">
                     {product.discount > 0 ? (
                       <>
@@ -373,13 +408,18 @@ const Home = () => {
             className="grid grid-cols-2 grid-rows-2 gap-2"
           >
             {gaming.map((product) => (
-              <div key={product.id} className="bg-white rounded-lg shadow-sm">
+              <div
+                key={product.id}
+                className="rounded-lg shadow-sm bg-base-100 border border-base-200"
+              >
                 <Link to={`/products/${product.id}`} className="relative">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-48 object-contain rounded-lg p-2"
-                  />
+                  <div className="bg-white rounded-tl-lg rounded-tr-lg">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-48 object-contain rounded-lg p-2"
+                    />
+                  </div>
                   <div className="flex flex-col items-center justify-center my-4 gap-2">
                     {product.discount > 0 ? (
                       <>

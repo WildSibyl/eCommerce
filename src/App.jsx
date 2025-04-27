@@ -3,7 +3,7 @@ import MainLayout from "./layout/MainLayout.jsx";
 import Home from "./pages/Home.jsx";
 import Category from "./pages/Category.jsx";
 import Product from "./pages/Product.jsx";
-import Products from "./pages/Products.jsx";
+import AllProducts from "./pages/AllProducts.jsx";
 import Deals from "./pages/Deals.jsx";
 import Login from "./pages/Login.jsx";
 import Cart from "./pages/Cart.jsx";
@@ -14,7 +14,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
-          <Route path="/products" element={<Products />} />
+          <Route path="/products" element={<AllProducts />} />
           <Route path="/products/:productId" element={<Product />} />
           <Route path="/category/:productCategory" element={<Category />} />
           <Route path="/deals" element={<Deals />} />
