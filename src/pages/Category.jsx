@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import { Link } from "react-router";
 import { useCategory } from "../hooks/useProductData";
 import { useParams } from "react-router";
+import { useOutletContext } from "react-router";
+import ProductCardMedium from "../card-components/ProductCardMedium";
 
 const Category = () => {
   const { productCategory } = useParams();
   console.log(` Category: ${productCategory}`);
+
+  const { addProduct } = useOutletContext();
 
   const { category, loading, error } = useCategory(productCategory);
 
@@ -23,17 +27,11 @@ const Category = () => {
       className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-4"
     >
       {category.map((product) => (
-        <div key={product.id} className="box">
-          <Link to={`/products/${product.id}`}>
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-48 object-contain bg-white"
-            />
-            <h2>{product.title}</h2>
-            <p className="font-bold">€ {product.price}</p>
-          </Link>
-        </div>
+        <ProductCardMedium
+          key={product.id}
+          product={product}
+          addProduct={addProduct}
+        /> // Use ProductCardMedium for larger cards
       ))}
     </div>
   );

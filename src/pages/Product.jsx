@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router";
 import { useProduct } from "../hooks/useProductData";
 import { useAddToCart } from "../hooks/useLocalStorage";
 // import { Counter } from "../components/Counter.jsx";
+import ProductImage from "../card-components/ProductImage.jsx";
 
 const Product = () => {
   const { productId } = useParams();
@@ -40,12 +41,10 @@ const Product = () => {
       <div className="flex flex-col">
         <h2 className="text-3xl font-bold m-4">{product.title}</h2>
 
-        <div key={product.id} className="flex">
-          <img
-            src={product.image}
-            alt={product.title}
-            className="w-[40%] object-contain p-4 bg-white rounded-lg shadow-md"
-          />
+        <div key={product.id} className="flex w-full">
+          <div className="w-[250%] object-contain p-4 bg-white rounded-lg shadow-md">
+            <ProductImage product={product} />
+          </div>
           <div className="flex flex-col m-4">
             {product.popular ? (
               <p className="font-bold bg-accent p-1 rounded-br-full w-[160px]">

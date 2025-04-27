@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router";
 import { useProducts } from "../hooks/useProductData";
+import { useOutletContext } from "react-router";
+import ProductCardMedium from "../card-components/ProductCardMedium";
 
 const Deals = () => {
   //   const [loading, setLoading] = useState(true);
   //   const [error, setError] = useState(null);
+  const { addProduct } = useOutletContext();
 
   const { products, loading, error } = useProducts();
 
@@ -21,17 +24,11 @@ const Deals = () => {
       {products
         .filter((product) => product.discount > 0) // Filter products with a discount
         .map((product) => (
-          <div key={product.id} className="box">
-            <Link to={`/products/${product.id}`}>
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-48 object-contain bg-white"
-              />
-              <h2>{product.title}</h2>
-              <p className="font-bold">€ {product.price}</p>
-            </Link>
-          </div>
+          <ProductCardMedium
+            key={product.id}
+            product={product}
+            addProduct={addProduct}
+          /> // Use ProductCardMedium for larger cards
         ))}
     </div>
   );
