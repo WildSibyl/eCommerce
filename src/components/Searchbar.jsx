@@ -1,24 +1,42 @@
-const Searchbar = () => {
-  // const handleSearch = () => {
-  //   const searchInput = document.getElementById("searchInput").value;
-  //   const searchButton = document.getElementById("searchButton");
-  //   searchButton.addEventListener("click", () => {
-  //     console.log(searchInput);
-  //     // Implement search functionality here
-  //   });
-  // };
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
+
+const Searchbar = ({ onSearch }) => {
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setQuery(e.target.value);
+  };
+
+  const handleSearch = () => {
+    console.log("Button clicked!");
+    console.log(query);
+    onSearch(query); // Pass the query up to the parent component
+    navigate("/search");
+  };
 
   return (
     <div className="flex flex-grow border-2 border-gray-500 rounded-full focus-within:border-gray-400">
       <input
-        id="searchInput"
-        className="pl-4 bg-base-100 border-none focus:outline-none focus:ring-0 focus:border-transparent h-[30px] rounded-bl-full rounded-tl-full self-center text-base-content flex-grow"
         type="text"
+        value={query}
+        onChange={handleChange}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleSearch();
+          }
+        }}
+        autoComplete="off"
+        autoCorrect="off"
+        spellCheck="false"
+        autoCapitalize="none"
+        autoSave="off"
+        className="pl-4 bg-base-100 border-none focus:outline-none focus:ring-0 focus:border-transparent h-[30px] rounded-bl-full rounded-tl-full self-center text-base-content flex-grow"
         placeholder="Find your next great tech deal!"
       />
       <button
-        id="searchButton"
-        type="submit"
+        onClick={handleSearch}
         className="bg-gray-600 rounded-br-full rounded-tr-full text-white  hover:border-gray-600 hover:border-l-gray-500 hover:bg-gray-500"
       >
         <svg

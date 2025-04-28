@@ -1,4 +1,5 @@
-import { Link, useOutletContext } from "react-router";
+import React from "react";
+import { Link } from "react-router";
 import ThemeToggle from "./ThemeToggle";
 import websiteLogo from "../assets/shopping-bag-icon.png";
 import cartIcon from "../assets/shopping-cart-icon.png";
@@ -6,7 +7,7 @@ import Searchbar from "./Searchbar";
 //import { useOutletContext } from "react-router";
 
 // This component simply renders a navigation bar
-const Navbar = ({ signedIn, setSignedIn, cartItems }) => {
+const Navbar = ({ signedIn, setSignedIn, cartItems, onSearch }) => {
   //const { cartItems } = useOutletContext();
 
   const handleAuthClick = () => {
@@ -28,7 +29,7 @@ const Navbar = ({ signedIn, setSignedIn, cartItems }) => {
         </Link>
 
         <div className="flex flex-grow px-2">
-          <Searchbar />
+          <Searchbar onSearch={onSearch} />
         </div>
 
         <ThemeToggle />

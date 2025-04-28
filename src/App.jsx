@@ -7,6 +7,7 @@ import AllProducts from "./pages/AllProducts.jsx";
 import Deals from "./pages/Deals.jsx";
 import Login from "./pages/Login.jsx";
 import Cart from "./pages/Cart.jsx";
+import FreeSearch from "./pages/FreeSearch.jsx";
 
 const App = () => {
   return (
@@ -20,6 +21,8 @@ const App = () => {
           <Route path="/deals" element={<Deals />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/search" element={<FreeSearch />} />
+          <Route path="*" element={<div>404 Not Found</div>} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -10,7 +10,11 @@ const MainLayout = () => {
   const { cart, addProduct, decreaseQuantity, removeProduct, cartItems } =
     useAddToCart();
 
-  console.log(cartItems); // Log the cartItems to see if they are being passed correctly
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (query) => {
+    setSearchQuery(query); // Update the search query in the state
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -18,6 +22,7 @@ const MainLayout = () => {
         signedIn={signedIn}
         setSignedIn={setSignedIn}
         cartItems={cartItems}
+        onSearch={handleSearch}
       />
       <div className="flex-grow">
         {/* The Outlet component is a placeholder for children components under this route */}
@@ -30,6 +35,7 @@ const MainLayout = () => {
             decreaseQuantity,
             removeProduct,
             cartItems,
+            searchQuery,
           }}
         />
       </div>
