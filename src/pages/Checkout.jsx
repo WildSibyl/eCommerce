@@ -1,9 +1,9 @@
-import ProductCardLong from "../card-components/ProductCardLong";
 import { useOutletContext, useNavigate } from "react-router";
+import AddressForm from "../checkout-components/AddressForm";
+import PaymentForm from "../checkout-components/PaymentForm";
 
-const Cart = () => {
-  const { cart, addProduct, decreaseQuantity, removeProduct, cartItems } =
-    useOutletContext();
+const Checkout = () => {
+  const { cart, cartItems } = useOutletContext();
 
   const navigate = useNavigate();
 
@@ -42,19 +42,15 @@ const Cart = () => {
 
   return (
     <div className="flex flex-col h-full lg:px-[10%]">
-      <h2 className="text-3xl font-semibold mb-4">Your cart</h2>
+      <h2 className="text-3xl font-semibold mb-4">Your Details</h2>
       <div className="flex flex-row mx-auto">
-        <div className="flex flex-col w-[70%]">
-          {cart.map((product) => (
-            <ProductCardLong
-              key={product.id}
-              product={product}
-              cartItems={cartItems}
-              addProduct={addProduct}
-              decreaseQuantity={decreaseQuantity}
-              removeProduct={removeProduct}
-            />
-          ))}
+        <div className="flex gap-4 w-[70%]">
+          <div className="w-[50%]">
+            <AddressForm onSubmit={(data) => console.log("Submitted:", data)} />
+          </div>
+          <div className="w-[50%]">
+            <PaymentForm onSubmit={(data) => console.log("Submitted:", data)} />
+          </div>
         </div>
         <div className="flex flex-col w-[30%] h-[50vh] bg-base-200 rounded-lg shadow-md p-4 ml-4">
           <div className="flex flex-row justify-between mb-2">
@@ -71,7 +67,7 @@ const Cart = () => {
           </div>
 
           <button onClick={handleCheckout} className="btn">
-            Checkout
+            Order and Pay now
           </button>
         </div>
       </div>
@@ -79,4 +75,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default Checkout;
