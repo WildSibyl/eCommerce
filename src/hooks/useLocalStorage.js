@@ -32,7 +32,7 @@ export const useAddToCart = () => {
       quantity: 1,
     };
 
-    console.log("pokemonData Fav:", cartProductData);
+    console.log("Cart products:", cartProductData);
 
     // Check if product already exists in cart
     const exists = updatedCart.some((item) => item.id === product.id);

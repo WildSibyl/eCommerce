@@ -37,7 +37,7 @@ const Home = () => {
   const deals = products.filter((product) => product.discount > 24).slice(0, 4);
 
   return (
-    <div className=" mx-[5%]">
+    <div className=" mx-[5%] ">
       <div className="h-[400px] mx-[5%] mb-4 rounded-lg shadow-md">
         <HeroCarousel />
       </div>

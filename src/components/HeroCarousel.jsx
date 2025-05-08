@@ -59,7 +59,7 @@ const HeroCarousel = () => {
 
   return (
     <div
-      className="carousel w-full relative overflow-hidden rounded-lg border border-base-200"
+      className="carousel w-full relative overflow-hidden rounded-lg border border-base-300"
       style={{ height: "400px" }}
     >
       {images.map((image, index) => (
@@ -86,13 +86,13 @@ const HeroCarousel = () => {
       <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
         <button
           onClick={goToPrevSlide}
-          className="btn btn-circle bg-gray-800 text-white"
+          className="btn btn-circle bg-base-300 text-base-content"
         >
           ❮
         </button>
         <button
           onClick={goToNextSlide}
-          className="btn btn-circle bg-gray-800 text-white"
+          className="btn btn-circle bg-base-300 text-base-content"
         >
           ❯
         </button>
