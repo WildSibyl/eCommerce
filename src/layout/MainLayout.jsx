@@ -16,6 +16,15 @@ const MainLayout = () => {
     setSearchQuery(query); // Update the search query in the state
   };
 
+  const [formData, setFormData] = useState({
+    fullName: "",
+    street: "",
+    city: "",
+    state: "",
+    postalCode: "",
+    country: "",
+  });
+
   return (
     <div className="flex flex-col min-h-screen bg-base-300">
       <Navbar
@@ -36,6 +45,8 @@ const MainLayout = () => {
             removeProduct,
             cartItems,
             searchQuery,
+            formData,
+            setFormData,
           }}
         />
       </div>
