@@ -2,25 +2,25 @@ import React, { useState } from "react";
 import { useOutletContext, useNavigate } from "react-router";
 
 const AddressForm = ({ onSubmit }) => {
-  const { formData, setFormData } = useOutletContext();
+  const { addressFormData, setAddressFormData } = useOutletContext();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setAddressFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Simple validation
-    for (let key in formData) {
-      if (!formData[key]) {
+    for (let key in addressFormData) {
+      if (!addressFormData[key]) {
         alert(`Please fill out the ${key}`);
         return;
       }
     }
 
-    if (onSubmit) onSubmit(formData);
+    if (onSubmit) onSubmit(addressFormData);
   };
 
   return (
@@ -29,7 +29,7 @@ const AddressForm = ({ onSubmit }) => {
         type="text"
         name="fullName"
         placeholder="Full Name"
-        value={formData.fullName}
+        value={addressFormData.fullName}
         onChange={handleChange}
         className="input input-bordered w-full"
       />
@@ -37,7 +37,7 @@ const AddressForm = ({ onSubmit }) => {
         type="text"
         name="street"
         placeholder="Street Address"
-        value={formData.street}
+        value={addressFormData.street}
         onChange={handleChange}
         className="input input-bordered w-full"
       />
@@ -45,7 +45,7 @@ const AddressForm = ({ onSubmit }) => {
         type="text"
         name="city"
         placeholder="City"
-        value={formData.city}
+        value={addressFormData.city}
         onChange={handleChange}
         className="input input-bordered w-full"
       />
@@ -53,7 +53,7 @@ const AddressForm = ({ onSubmit }) => {
         type="text"
         name="state"
         placeholder="State/Province"
-        value={formData.state}
+        value={addressFormData.state}
         onChange={handleChange}
         className="input input-bordered w-full"
       />
@@ -61,7 +61,7 @@ const AddressForm = ({ onSubmit }) => {
         type="text"
         name="postalCode"
         placeholder="Postal Code"
-        value={formData.postalCode}
+        value={addressFormData.postalCode}
         onChange={handleChange}
         className="input input-bordered w-full"
       />
@@ -69,7 +69,7 @@ const AddressForm = ({ onSubmit }) => {
         type="text"
         name="country"
         placeholder="Country"
-        value={formData.country}
+        value={addressFormData.country}
         onChange={handleChange}
         className="input input-bordered w-full"
       />

@@ -16,7 +16,7 @@ const MainLayout = () => {
     setSearchQuery(query); // Update the search query in the state
   };
 
-  const [formData, setFormData] = useState({
+  const [addressFormData, setAddressFormData] = useState({
     fullName: "",
     street: "",
     city: "",
@@ -33,6 +33,7 @@ const MainLayout = () => {
         cartItems={cartItems}
         onSearch={handleSearch}
       />
+
       <div className="flex-grow">
         {/* The Outlet component is a placeholder for children components under this route */}
         <Outlet
@@ -45,8 +46,8 @@ const MainLayout = () => {
             removeProduct,
             cartItems,
             searchQuery,
-            formData,
-            setFormData,
+            addressFormData,
+            setAddressFormData,
           }}
         />
       </div>

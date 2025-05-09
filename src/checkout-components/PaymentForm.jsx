@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const PaymentForm = ({ onSubmit }) => {
-  const [formData, setFormData] = useState({
+  const [paymentFormData, setPaymentFormData] = useState({
     cardholderName: "",
     cardNumber: "",
     expiry: "",
@@ -11,20 +11,20 @@ const PaymentForm = ({ onSubmit }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setPaymentFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    for (let key in formData) {
-      if (!formData[key]) {
+    for (let key in paymentFormData) {
+      if (!paymentFormData[key]) {
         alert(`Please fill out the ${key}`);
         return;
       }
     }
 
-    if (onSubmit) onSubmit(formData);
+    if (onSubmit) onSubmit(paymentFormData);
   };
 
   return (
@@ -33,7 +33,7 @@ const PaymentForm = ({ onSubmit }) => {
         type="text"
         name="cardholderName"
         placeholder="Cardholder Name"
-        value={formData.cardholderName}
+        value={paymentFormData.cardholderName}
         onChange={handleChange}
         className="input input-bordered w-full"
       />
@@ -42,7 +42,7 @@ const PaymentForm = ({ onSubmit }) => {
         name="cardNumber"
         placeholder="Card Number"
         maxLength={19}
-        value={formData.cardNumber}
+        value={paymentFormData.cardNumber}
         onChange={handleChange}
         className="input input-bordered w-full"
       />
@@ -52,7 +52,7 @@ const PaymentForm = ({ onSubmit }) => {
           name="expiry"
           placeholder="MM/YY"
           maxLength={5}
-          value={formData.expiry}
+          value={paymentFormData.expiry}
           onChange={handleChange}
           className="input input-bordered w-1/2"
         />
@@ -61,7 +61,7 @@ const PaymentForm = ({ onSubmit }) => {
           name="cvv"
           placeholder="CVV"
           maxLength={4}
-          value={formData.cvv}
+          value={paymentFormData.cvv}
           onChange={handleChange}
           className="input input-bordered w-1/2"
         />
@@ -70,7 +70,7 @@ const PaymentForm = ({ onSubmit }) => {
         type="text"
         name="zip"
         placeholder="Billing ZIP/Postal Code"
-        value={formData.zip}
+        value={paymentFormData.zip}
         onChange={handleChange}
         className="input input-bordered w-full"
       />

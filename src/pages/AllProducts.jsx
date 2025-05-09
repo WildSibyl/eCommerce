@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useProducts } from "../hooks/useProductData";
 import { useOutletContext } from "react-router";
 import ProductCardMedium from "../card-components/ProductCardMedium";
+import CategoryBar from "../components/CategoryBar";
 
 const AllProducts = () => {
   // const [loading, setLoading] = useState(true);
@@ -17,18 +18,21 @@ const AllProducts = () => {
   console.log(products);
 
   return (
-    <div
-      id="cart-container"
-      className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-4"
-    >
-      {products.map((product) => (
-        <ProductCardMedium
-          key={product.id}
-          product={product}
-          addProduct={addProduct}
-        />
-      ))}
-    </div>
+    <>
+      <CategoryBar />
+      <div
+        id="cart-container"
+        className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-4"
+      >
+        {products.map((product) => (
+          <ProductCardMedium
+            key={product.id}
+            product={product}
+            addProduct={addProduct}
+          />
+        ))}
+      </div>
+    </>
   );
 };
 

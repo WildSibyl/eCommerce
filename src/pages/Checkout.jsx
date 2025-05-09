@@ -8,7 +8,7 @@ const Checkout = () => {
   const navigate = useNavigate();
 
   const handleCheckout = () => {
-    navigate("/checkout");
+    navigate("/order-confirmation");
   };
 
   // Check if cart is empty

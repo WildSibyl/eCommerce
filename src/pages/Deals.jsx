@@ -17,20 +17,23 @@ const Deals = () => {
   console.log(products);
 
   return (
-    <div
-      id="cart-container"
-      className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-4"
-    >
-      {products
-        .filter((product) => product.discount > 0) // Filter products with a discount
-        .map((product) => (
-          <ProductCardMedium
-            key={product.id}
-            product={product}
-            addProduct={addProduct}
-          /> // Use ProductCardMedium for larger cards
-        ))}
-    </div>
+    <>
+      <CategoryBar />
+      <div
+        id="cart-container"
+        className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-4"
+      >
+        {products
+          .filter((product) => product.discount > 0) // Filter products with a discount
+          .map((product) => (
+            <ProductCardMedium
+              key={product.id}
+              product={product}
+              addProduct={addProduct}
+            /> // Use ProductCardMedium for larger cards
+          ))}
+      </div>
+    </>
   );
 };
 

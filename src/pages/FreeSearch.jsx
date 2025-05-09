@@ -34,31 +34,34 @@ const FreeSearch = () => {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div>
-      {filteredProducts.length > 0 ? (
-        <div className="flex flex-col px-[10%]">
-          {filteredProducts.map((product) => (
-            <ProductCardSearch
-              key={product.id}
-              product={product}
-              addProduct={addProduct}
-            />
-          ))}
-        </div>
-      ) : (
-        <div className="flex items-center justify-center h-full lg:py-[5%]">
-          <div className="flex flex-col items-center">
-            <div className="max-w-[300px] mx-auto m-4">
-              <img
-                src={notFound}
-                alt="a stylized illustration of a confused cat in an empty cart"
+    <>
+      <CategoryBar />
+      <div>
+        {filteredProducts.length > 0 ? (
+          <div className="flex flex-col px-[10%]">
+            {filteredProducts.map((product) => (
+              <ProductCardSearch
+                key={product.id}
+                product={product}
+                addProduct={addProduct}
               />
-            </div>
-            <h2>No results found for "{searchQuery}". Try something else!</h2>
+            ))}
           </div>
-        </div>
-      )}
-    </div>
+        ) : (
+          <div className="flex items-center justify-center h-full lg:py-[5%]">
+            <div className="flex flex-col items-center">
+              <div className="max-w-[300px] mx-auto m-4">
+                <img
+                  src={notFound}
+                  alt="a stylized illustration of a confused cat in an empty cart"
+                />
+              </div>
+              <h2>No results found for "{searchQuery}". Try something else!</h2>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
