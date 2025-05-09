@@ -48,7 +48,7 @@ const Searchbar = ({ onSearch }) => {
         {/* Button */}
         <button
           onClick={() => setIsOpen((prev) => !prev)}
-          className="text-white bg-gray-600 border border-gray-500 p-2 hover:bg-gray-500 rounded-full md:hidden"
+          className="text-white bg-blue-500 p-1.5 hover:bg-gray-500 rounded-full md:hidden"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +68,7 @@ const Searchbar = ({ onSearch }) => {
 
         {/* Absolutely positioned search */}
         {isOpen && (
-          <div className="absolute top-0 left-0 w-64 bg-white border border-gray-5001 rounded-full shadow-md pl-4 z-50 flex">
+          <div className="absolute top-0 left-0 w-55 bg-base-100 rounded-full shadow-md pl-3 z-50 flex">
             <input
               ref={inputRef}
               type="text"
@@ -80,7 +80,7 @@ const Searchbar = ({ onSearch }) => {
             />
             <button
               onClick={handleSearch}
-              className="text-white bg-gray-600 p-2 hover:bg-gray-500 rounded-full"
+              className="text-white bg-blue-500 p-1.5 rounded-full"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +102,7 @@ const Searchbar = ({ onSearch }) => {
       </div>
 
       {/* Open search bar above md */}
-      <div className="hidden md:flex items-center border border-gray-500 rounded-full bg-base-100 w-full max-w-md">
+      <div className="hidden md:flex items-center rounded-full bg-base-100 w-full max-w-md cursor-text">
         <input
           type="text"
           value={query}
@@ -122,7 +122,7 @@ const Searchbar = ({ onSearch }) => {
         />
         <button
           onClick={handleSearch}
-          className="text-white bg-gray-600 p-2 hover:bg-gray-500 rounded-full"
+          className="text-white bg-blue-500 p-1.5 hover:bg-blue-400 rounded-full cursor-pointer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
