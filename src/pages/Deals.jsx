@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { useProducts } from "../hooks/useProductData";
 import { useOutletContext } from "react-router";
 import ProductCardMedium from "../card-components/ProductCardMedium";
+import CategoryBar from "../components/CategoryBar";
 
 const Deals = () => {
   //   const [loading, setLoading] = useState(true);

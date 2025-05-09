@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 
-const Login = ({ setSignedIn }) => {
+const Signup = ({ setSignedIn }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +24,7 @@ const Login = ({ setSignedIn }) => {
         onSubmit={handleLogin}
         className=" bg-base-300 dark:bg-base-200 shadow-md rounded-lg px-8 pt-6 pb-8 w-full max-w-md flex flex-col gap-4"
       >
-        <h2 className="text-xl font-bold text-center">Welcome back!</h2>
+        <h2 className="text-xl font-bold text-center">Nice to meet you!</h2>
 
         <input
           type="email"
@@ -49,11 +49,11 @@ const Login = ({ setSignedIn }) => {
             type="submit"
             className="bg-blue-600 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full mb-4"
           >
-            Log In
+            Sign up
           </button>
-          <Link to="/signup">
+          <Link to="/login">
             <p className="font-bold  text-center cursor-pointer hover:underline">
-              Don't have an account yet? Sign up here!
+              Already have an account? Log in here!
             </p>
           </Link>
         </div>
@@ -62,4 +62,4 @@ const Login = ({ setSignedIn }) => {
   );
 };
 
-export default Login;
+export default Signup;
