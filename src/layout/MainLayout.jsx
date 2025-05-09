@@ -33,6 +33,7 @@ const MainLayout = () => {
         cartItems={cartItems}
         onSearch={handleSearch}
       />
+
       <div className="flex-grow">
         {/* The Outlet component is a placeholder for children components under this route */}
         <Outlet
