@@ -8,29 +8,29 @@ const ProfileDropdown = ({ handleAuthClick, signedIn, setSignedIn }) => {
 
   return (
     <div className="relative inline-block text-left">
-      {/* <div className="pt-1 mx-4 flex flex-row">
-              </div> */}
-
-      <button onClick={() => setOpen((prev) => !prev)} className="rounded">
+      <button
+        onClick={() => setOpen((prev) => !prev)}
+        className="rounded w-[74px] h-[27px] flex items-center justify-center text-white font-semibold cursor-pointer"
+      >
         <img
           src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
           alt="Profile icon"
-          className="h-[30px] ml-2"
+          className="h-full"
         />
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-40 bg-blue-500 border border-gray-300 rounded shadow-lg z-50">
+        <div className="absolute -right-6 top-10 w-30 bg-blue-500 rounded-lg shadow-lg z-50">
           <button
             onClick={() => navigate("/profile")}
-            className="block w-full text-left px-4 py-2 hover:bg-gray-100 self-center text-white font-bold "
+            className="block w-full text-left px-4 py-2 hover:bg-blue-400 rounded-lg self-center text-white font-bold cursor-pointer"
           >
             My Profile
           </button>
 
           <button
             onClick={handleAuthClick}
-            className="block w-full text-left px-4 py-2 hover:bg-gray-100 self-center text-white font-bold "
+            className="block w-full text-left px-4 py-2 hover:bg-blue-400 rounded-lg self-center text-white font-bold cursor-pointer"
           >
             {signedIn ? "Log out" : "Login"}
           </button>
