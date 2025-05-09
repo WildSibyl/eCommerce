@@ -16,7 +16,7 @@ const MainLayout = () => {
     setSearchQuery(query); // Update the search query in the state
   };
 
-  const [formData, setFormData] = useState({
+  const [addressFormData, setAddressFormData] = useState({
     fullName: "",
     street: "",
     city: "",
@@ -45,8 +45,8 @@ const MainLayout = () => {
             removeProduct,
             cartItems,
             searchQuery,
-            formData,
-            setFormData,
+            addressFormData,
+            setAddressFormData,
           }}
         />
       </div>

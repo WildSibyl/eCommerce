@@ -9,6 +9,7 @@ import Login from "./pages/Login.jsx";
 import Cart from "./pages/Cart.jsx";
 import FreeSearch from "./pages/FreeSearch.jsx";
 import Checkout from "./pages/Checkout.jsx";
+import OrderConfirmation from "./pages/OrderConfirmation.jsx";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/search" element={<FreeSearch />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/order-confirmation" element={<OrderConfirmation />} />
           {/* 404 Not Found Route */}
           <Route path="*" element={<div>404 Not Found</div>} />
         </Route>

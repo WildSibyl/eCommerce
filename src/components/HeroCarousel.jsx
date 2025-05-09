@@ -10,22 +10,47 @@ const HeroCarousel = () => {
       link: "/deals",
     },
     {
-      src: "https://images.pexels.com/photos/1599791/pexels-photo-1599791.jpeg",
-      alt: "A sunny picture of a functional kitchen",
-      text: "All you need for your home",
-      link: "/category/appliances",
-    },
-    {
       src: "https://images.pexels.com/photos/2047905/pexels-photo-2047905.jpeg",
       alt: "A moody shot of a laptop shining in the dark",
       text: "Innovation and elegance in every detail",
       link: "/category/laptop",
     },
     {
+      src: "https://images.pexels.com/photos/5269759/pexels-photo-5269759.jpeg",
+      alt: "Close-up of modern wireless headphones on a wooden table",
+      text: "Crystal-clear sound for every moment",
+      link: "/category/audio",
+    },
+    {
       src: "https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg",
       alt: "Gaming accessories on a table with some candy on it",
       text: "Get the latest gaming gear",
-      link: "/products", // Carousel goes here every time
+      link: "/category/gaming",
+    },
+    {
+      src: "https://images.pexels.com/photos/15479495/pexels-photo-15479495/free-photo-of-man-holding-a-smartphone-in-his-hand.jpeg",
+      alt: "A person holding a smartphone outdoors",
+      text: "Stay connected wherever you go",
+      link: "/category/mobile",
+      className: "filter grayscale",
+    },
+    {
+      src: "https://images.pexels.com/photos/6557551/pexels-photo-6557551.jpeg",
+      alt: "Two people watching a game on a large flat-screen TV",
+      text: "Experience entertainment like never before",
+      link: "/category/tv",
+    },
+    {
+      src: "https://images.pexels.com/photos/4044792/pexels-photo-4044792.jpeg",
+      alt: "A sunny picture of a functional kitchen",
+      text: "All you need for your home",
+      link: "/category/appliances",
+    },
+    {
+      src: "https://images.pexels.com/photos/1105379/pexels-photo-1105379.jpeg",
+      alt: "A green circuit board",
+      text: "Explore all our top tech picks",
+      link: "/products",
     },
   ];
 
@@ -66,7 +91,9 @@ const HeroCarousel = () => {
         <div
           key={index}
           className={`carousel-item absolute w-full h-full transition-opacity duration-500 ${
-            index === currentIndex ? "opacity-100" : "opacity-0"
+            index === currentIndex
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
           }`}
           style={{ top: 0, left: 0 }}
         >
