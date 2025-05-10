@@ -17,7 +17,7 @@ const ProductCardSmall = ({ product }) => {
         <div className="flex flex-col items-center justify-center my-4 gap-2">
           {product.discount > 0 ? (
             <>
-              <div className="flex items-center justify-center">
+              <div className="flex items-center justify-center xl:flex-row flex-col">
                 <p className="relative font-semibold mr-2 self-center">
                   € {product.price.toFixed(2)}
                   <span className="absolute left-0 top-1/2 w-full h-[1.5px] bg-base-content rotate-[-10deg]"></span>

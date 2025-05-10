@@ -43,8 +43,8 @@
   prefersdark: false;
   color-scheme: "dark";
   --color-base-100: oklch(44% 0.043 257.281);
-  --color-base-200: oklch(27% 0.041 260.031);
-  --color-base-300: oklch(12% 0.042 264.695);
+  --color-base-200: oklch(37% 0.041 260.031);
+  --color-base-300: oklch(27% 0.041 260.031);
   --color-base-content: oklch(96% 0.007 247.896);
   --color-primary: oklch(48% 0.243 264.376);
   --color-primary-content: oklch(93% 0.034 272.788);
@@ -81,7 +81,7 @@
 }
 
 @utility longbox {
-  @apply border border-base-200 bg-base-100 h-[200px] m-2 rounded-lg;
+  @apply border border-base-200 bg-base-100 h-[200px] rounded-lg;
 }
 
 @utility box {

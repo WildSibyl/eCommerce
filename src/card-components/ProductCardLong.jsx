@@ -13,15 +13,15 @@ const ProductCardLong = ({
   cartItems,
 }) => {
   return (
-    <div key={product.id} className="longbox">
-      <div className="flex flex-row">
-        <div className="w-[182px] h-[182px] object-contain bg-white m-2 rounded-lg">
+    <div key={product.id} className="box md:longbox">
+      <div className="flex flex-col md:flex-row items-center justify-center h-full">
+        <div className="w-[50px] md:w-[182px] md:h-[182px] object-contain bg-white m-2 rounded-lg ">
           <ProductImage product={product} />
         </div>
-        <div className="flex flex-row py-2 justify-between w-full">
+        <div className="flex flex-row py-2 justify-between md:h-[182px] w-full">
           <div className="flex flex-col flex-grow">
             <Link to={`/products/${product.id}`}>
-              <h2 className="font-semibold hover:underline mb-1">
+              <h2 className="font-semibold hover:underline mb-1 overflow-hidden text-ellipsis line-clamp-2 md:ml-0 ml-4">
                 {product.title}
               </h2>
             </Link>

@@ -17,7 +17,7 @@ const ProductCardMedium = ({ product, addProduct }) => {
           <div className="flex flex-col justify-between">
             {product.discount > 0 ? (
               <>
-                <div className="flex my-2 mx-auto">
+                <div className="flex my-2 mx-auto flex-col md:flex-row">
                   <p className="relative font-bold mr-4 self-center">
                     € {product.price.toFixed(2)}
                     <span className="absolute left-0 top-1/2 w-full h-[1.5px] bg-base-content rotate-[-10deg]"></span>

@@ -74,7 +74,7 @@ const PaymentForm = ({ onSubmit }) => {
         onChange={handleChange}
         className="input input-bordered w-full"
       />
-      <button type="submit" className="btn btn-primary w-full">
+      <button type="submit" className="btn w-full m-0">
         Confirm Payment Details
       </button>
     </form>

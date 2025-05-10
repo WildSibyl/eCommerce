@@ -38,7 +38,7 @@ const FreeSearch = () => {
       <CategoryBar />
       <div>
         {filteredProducts.length > 0 ? (
-          <div className="flex flex-col px-[10%]">
+          <div className="flex flex-col gap-4 px-4 md:px-[10%]">
             {filteredProducts.map((product) => (
               <ProductCardSearch
                 key={product.id}

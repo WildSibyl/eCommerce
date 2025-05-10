@@ -37,14 +37,11 @@ const Cart = () => {
     return acc + productPrice * product.quantity;
   }, 0);
 
-  const shippingPrice = 5.0; // Flat shipping price
-  const totalPrice = subtotalPrice + shippingPrice;
-
   return (
-    <div className="flex flex-col h-full lg:px-[10%]">
+    <div className="flex flex-col h-full p-4 pb-0 lg:px-[10%]">
       <h2 className="text-3xl font-semibold mb-4">Your cart</h2>
-      <div className="flex flex-row mx-auto">
-        <div className="flex flex-col w-[70%]">
+      <div className="flex flex-col-reverse md:flex-row mx-auto">
+        <div className="flex flex-col md:w-[70%] gap-4">
           {cart.map((product) => (
             <ProductCardLong
               key={product.id}
@@ -56,22 +53,14 @@ const Cart = () => {
             />
           ))}
         </div>
-        <div className="flex flex-col w-[30%] h-[50vh] bg-base-200 rounded-lg shadow-md p-4 ml-4">
+        <div className="flex flex-col md:w-[30%] bg-base-200 rounded-lg shadow-md p-4 mb-4 md:mb-0 md:ml-4">
           <div className="flex flex-row justify-between mb-2">
             <p>Subtotal ({cartItems} Items):</p>
             <p className="text-xl">€ {subtotalPrice.toFixed(2)}</p>
           </div>
-          <div className="flex flex-row justify-between mb-2 border-b border-base-content pb-2">
-            <p>Shipping:</p>
-            <p className="text-xl">€ {shippingPrice.toFixed(2)}</p>
-          </div>
-          <div className="flex flex-row justify-between mb-4">
-            <p>Total:</p>
-            <p className="text-xl font-semibold">€ {totalPrice.toFixed(2)}</p>
-          </div>
 
           <button onClick={handleCheckout} className="btn">
-            Checkout
+            Go to checkout
           </button>
         </div>
       </div>
