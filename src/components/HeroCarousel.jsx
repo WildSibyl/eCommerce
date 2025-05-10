@@ -103,7 +103,7 @@ const HeroCarousel = () => {
               className="w-full h-full object-cover"
               alt={image.alt}
             />
-            <div className="absolute inset-0 flex items-center justify-center text-white text-6xl font-bold [text-shadow:_0_2px_4px_rgba(0,0,0,0.9)]">
+            <div className="absolute inset-0 flex md:items-center m-4 md:m-20 lg:m-15 justify-center text-center text-white text-[2.5rem] leading-tight md:text-6xl lg:leading-normal font-bold [text-shadow:_0_2px_4px_rgba(0,0,0,0.9)]">
               {image.text}
             </div>
           </Link>

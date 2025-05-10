@@ -4,7 +4,7 @@ const CategoryBar = () => {
   return (
     <>
       {/* lower navbar */}
-      <nav className="bg-blue-600 mb-4 flex flex-wrap z-20 shadow-md w-full md:justify-around">
+      <nav className="bg-blue-600 mb-4 flex flex-wrap z-20 shadow-md w-full justify-center md:justify-around">
         <Link to="/category/appliances">
           <button className="btn">Appliances</button>
         </Link>

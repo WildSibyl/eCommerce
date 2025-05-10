@@ -22,7 +22,7 @@ const AllProducts = () => {
       <CategoryBar />
       <div
         id="cart-container"
-        className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-4"
+        className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 px-4"
       >
         {products.map((product) => (
           <ProductCardMedium

@@ -42,17 +42,17 @@ const Checkout = () => {
 
   return (
     <div className="flex flex-col h-full lg:px-[10%]">
-      <h2 className="text-3xl font-semibold mb-4">Your Details</h2>
-      <div className="flex flex-row mx-auto">
-        <div className="flex gap-4 w-[70%]">
-          <div className="w-[50%]">
+      <h2 className="text-3xl font-semibold m-4">Your Details</h2>
+      <div className="flex flex-col md:flex-row mx-auto items-center gap-4">
+        <div className="flex flex-col md:flex-row gap-4 w-[70%]">
+          <div className="md:w-[50%]">
             <AddressForm onSubmit={(data) => console.log("Submitted:", data)} />
           </div>
-          <div className="w-[50%]">
+          <div className="md:w-[50%]">
             <PaymentForm onSubmit={(data) => console.log("Submitted:", data)} />
           </div>
         </div>
-        <div className="flex flex-col w-[30%] h-[50vh] bg-base-200 rounded-lg shadow-md p-4 ml-4">
+        <div className="flex flex-col md:w-[30%] md:h-[50vh] bg-base-200 rounded-lg shadow-md p-4 md:ml-4">
           <div className="flex flex-row justify-between mb-2">
             <p>Subtotal ({cartItems} Items):</p>
             <p className="text-xl">€ {subtotalPrice.toFixed(2)}</p>

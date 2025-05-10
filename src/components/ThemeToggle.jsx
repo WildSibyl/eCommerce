@@ -10,7 +10,7 @@ const ThemeToggle = () => {
   }, [theme]);
 
   return (
-    <label className="cursor-pointer relative inline-block w-14 h-8 md:mr-4">
+    <label className="cursor-pointer relative inline-block w-14 h-8 md:mx-4">
       <input
         type="checkbox"
         checked={isDark}
