@@ -5,7 +5,7 @@ import ProductImage from "./ProductImage";
 
 const ProductCardMedium = ({ product, addProduct }) => {
   return (
-    <div key={product.id} className="box relative">
+    <div key={product.id} className="box relative max-h-[374px]">
       <Link to={`/products/${product.id}`}>
         <div className="w-full h-48 object-contain bg-white rounded-lg">
           <ProductImage product={product} />
