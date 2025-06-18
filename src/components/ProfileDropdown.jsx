@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
-const ProfileDropdown = ({ handleAuthClick, signedIn, setSignedIn }) => {
+const ProfileDropdown = ({ handleAuthClick, signedIn }) => {
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();

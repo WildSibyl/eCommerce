@@ -38,7 +38,10 @@ const Navbar = ({ signedIn, setSignedIn, cartItems, onSearch }) => {
         <ThemeToggle />
         {signedIn ? (
           <div className="flex flex-row">
-            <ProfileDropdown handleAuthClick={handleAuthClick} />
+            <ProfileDropdown
+              handleAuthClick={handleAuthClick}
+              signedIn={signedIn}
+            />
           </div>
         ) : (
           <Link to="/login">

@@ -51,11 +51,16 @@ const Login = ({ setSignedIn }) => {
           >
             Log In
           </button>
-          <Link to="/signup">
-            <p className="font-bold  text-center cursor-pointer hover:underline">
-              Don't have an account yet? Sign up here!
-            </p>
-          </Link>
+
+          <p className="font-bold text-center">
+            Don't have an account yet? Sign up{" "}
+            <Link
+              to="/signup"
+              className="cursor-pointer hover:underline text-blue-500 hover:text-blue-400"
+            >
+              here!
+            </Link>
+          </p>
         </div>
       </form>
     </div>
