@@ -3,6 +3,8 @@ import Footer from "../components/Footer.jsx";
 import { Outlet } from "react-router";
 import { useState } from "react";
 import { useAddToCart } from "../hooks/useLocalStorage.js";
+import AuthContextProvider from "../context/AuthContextProvider.jsx";
+import { ToastContainer } from "react-toastify";
 
 // This is a Layout component, using React's composable nature
 const MainLayout = () => {
@@ -27,31 +29,45 @@ const MainLayout = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-base-300">
-      <Navbar
-        signedIn={signedIn}
-        setSignedIn={setSignedIn}
-        cartItems={cartItems}
-        onSearch={handleSearch}
-      />
-
-      <div className="flex-grow">
-        {/* The Outlet component is a placeholder for children components under this route */}
-        <Outlet
-          context={{
-            signedIn,
-            setSignedIn,
-            cart,
-            addProduct,
-            decreaseQuantity,
-            removeProduct,
-            cartItems,
-            searchQuery,
-            addressFormData,
-            setAddressFormData,
-          }}
+      <AuthContextProvider>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
         />
-      </div>
-      <Footer />
+        <Navbar
+          signedIn={signedIn}
+          setSignedIn={setSignedIn}
+          cartItems={cartItems}
+          onSearch={handleSearch}
+        />
+
+        <div className="flex-grow">
+          {/* The Outlet component is a placeholder for children components under this route */}
+          <Outlet
+            context={{
+              signedIn,
+              setSignedIn,
+              cart,
+              addProduct,
+              decreaseQuantity,
+              removeProduct,
+              cartItems,
+              searchQuery,
+              addressFormData,
+              setAddressFormData,
+            }}
+          />
+        </div>
+        <Footer />
+      </AuthContextProvider>
     </div>
   );
 };
