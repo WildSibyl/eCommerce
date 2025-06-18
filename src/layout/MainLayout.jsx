@@ -1,9 +1,9 @@
-import Navbar from "../components/Navbar.jsx";
-import Footer from "../components/Footer.jsx";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { Outlet } from "react-router";
 import { useState } from "react";
-import { useAddToCart } from "../hooks/useLocalStorage.js";
-import AuthContextProvider from "../context/AuthContextProvider.jsx";
+import { useAddToCart } from "../hooks/useLocalStorage";
+import { AuthContextProvider } from "../context/AuthContextProvider";
 import { ToastContainer } from "react-toastify";
 
 // This is a Layout component, using React's composable nature
