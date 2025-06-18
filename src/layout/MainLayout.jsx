@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useAddToCart } from "../hooks/useLocalStorage";
 import { AuthContextProvider } from "../context/AuthContextProvider";
 import { ToastContainer } from "react-toastify";
+import WelcomeModal from "../components/reg-comp/WelcomeModal";
+import { WelcomeModalContextProvider } from "../context/WelcomeModalContextProvider";
 
 // This is a Layout component, using React's composable nature
 const MainLayout = () => {
@@ -42,31 +44,34 @@ const MainLayout = () => {
           pauseOnHover
           theme="light"
         />
-        <Navbar
-          signedIn={signedIn}
-          setSignedIn={setSignedIn}
-          cartItems={cartItems}
-          onSearch={handleSearch}
-        />
-
-        <div className="flex-grow">
-          {/* The Outlet component is a placeholder for children components under this route */}
-          <Outlet
-            context={{
-              signedIn,
-              setSignedIn,
-              cart,
-              addProduct,
-              decreaseQuantity,
-              removeProduct,
-              cartItems,
-              searchQuery,
-              addressFormData,
-              setAddressFormData,
-            }}
+        <WelcomeModalContextProvider>
+          <WelcomeModal />
+          <Navbar
+            signedIn={signedIn}
+            setSignedIn={setSignedIn}
+            cartItems={cartItems}
+            onSearch={handleSearch}
           />
-        </div>
-        <Footer />
+
+          <div className="flex-grow">
+            {/* The Outlet component is a placeholder for children components under this route */}
+            <Outlet
+              context={{
+                signedIn,
+                setSignedIn,
+                cart,
+                addProduct,
+                decreaseQuantity,
+                removeProduct,
+                cartItems,
+                searchQuery,
+                addressFormData,
+                setAddressFormData,
+              }}
+            />
+          </div>
+          <Footer />
+        </WelcomeModalContextProvider>
       </AuthContextProvider>
     </div>
   );
