@@ -10,7 +10,7 @@ const WelcomeModal = () => {
   useEffect(() => {
     if (isWelcomeModalOpen) {
       // Make sure confetti will be mounted when modal is opened
-      setConfettiKey((prev) => prev + 1);
+      //setConfettiKey((prev) => prev + 1);
     }
   }, [isWelcomeModalOpen]);
 

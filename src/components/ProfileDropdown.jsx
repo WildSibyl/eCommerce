@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
-const ProfileDropdown = ({ handleAuthClick, user }) => {
+const ProfileDropdown = ({ user, logOut }) => {
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -17,6 +17,7 @@ const ProfileDropdown = ({ handleAuthClick, user }) => {
           alt="Profile icon"
           className="h-full"
         />
+        <span className="ml-2">{user.userName}</span>
       </button>
 
       {open && (
@@ -29,7 +30,10 @@ const ProfileDropdown = ({ handleAuthClick, user }) => {
           </button>
 
           <button
-            onClick={handleAuthClick}
+            onClick={() => {
+              logOut();
+              navigate("/");
+            }}
             className="block w-full text-left px-4 py-2 hover:bg-blue-400 rounded-lg self-center text-white font-bold cursor-pointer"
           >
             {user ? "Log out" : "Login"}
