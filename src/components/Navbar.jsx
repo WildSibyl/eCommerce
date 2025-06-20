@@ -5,15 +5,13 @@ import websiteLogo from "../assets/shopping-bag-icon.png";
 import cartIcon from "../assets/shopping-cart-icon.png";
 import Searchbar from "./Searchbar";
 import ProfileDropdown from "./ProfileDropdown";
+import { useAuth } from "../hooks/useAuth";
 //import { useOutletContext } from "react-router";
 
 // This component simply renders a navigation bar
-const Navbar = ({ signedIn, setSignedIn, cartItems, onSearch }) => {
+const Navbar = ({ cartItems, onSearch }) => {
+  const { user, setUser, logOut } = useAuth();
   //const { cartItems } = useOutletContext();
-
-  const handleAuthClick = () => {
-    setSignedIn((prev) => !prev);
-  };
 
   return (
     <div className="sticky top-0 z-50">
@@ -36,18 +34,15 @@ const Navbar = ({ signedIn, setSignedIn, cartItems, onSearch }) => {
         </div>
 
         <ThemeToggle />
-        {signedIn ? (
+        {user ? (
           <div className="flex flex-row">
-            <ProfileDropdown handleAuthClick={handleAuthClick} />
+            <ProfileDropdown user={user} logOut={logOut} />
           </div>
         ) : (
           <Link to="/login">
             <div className="pt-1 mx-4 flex flex-row">
-              <button
-                onClick={handleAuthClick}
-                className=" self-center text-white font-bold "
-              >
-                {signedIn ? "Log out" : "Login"}
+              <button className=" self-center text-white font-bold ">
+                Login
               </button>
             </div>
           </Link>
