@@ -1,9 +1,9 @@
 import { useOutletContext } from "react-router";
 
 const Profile = () => {
-  const { signedIn } = useOutletContext();
+  const { user } = useOutletContext();
 
-  if (!signedIn) {
+  if (!user) {
     return (
       <div className="flex flex-col items-center justify-center ">
         <h1 className="text-3xl font-bold m-4">Profile</h1>
@@ -16,9 +16,7 @@ const Profile = () => {
     <div className="flex flex-col items-center justify-center ">
       <h1 className="text-3xl font-bold m-4">Profile</h1>
       <p className="text-lg">
-        {signedIn
-          ? "Welcome back, user!"
-          : "Please sign in to view your profile."}
+        {user ? "Welcome back, user!" : "Please sign in to view your profile."}
       </p>
     </div>
   );

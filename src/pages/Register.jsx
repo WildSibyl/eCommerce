@@ -6,11 +6,11 @@ import { useAuth } from "../hooks/useAuth";
 import { useWelcomeModal } from "../context/WelcomeModalContextProvider";
 import TermsModal from "../components/reg-comp/TermsModal";
 
-const Register = ({ setSignedIn }) => {
+const Register = ({ setUser }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [regForm, setRegForm] = useState({
-    name: "",
+    userName: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -35,14 +35,14 @@ const Register = ({ setSignedIn }) => {
   };
 
   const validateInput = () => {
-    if (!regForm.name) return "Please fill in your name.";
+    if (!regForm.userName) return "Please fill in your name.";
     if (!regForm.email) return "Please fill in your email.";
     if (!regForm.password || !regForm.confirmPassword)
       return "Please fill in both password fields.";
-    if (!regForm.terms === false)
-      return "Please agree to the terms and conditions to register.";
     if (regForm.password !== regForm.confirmPassword)
       return "The passwords do not match.";
+    if (!regForm.terms)
+      return "Please agree to the terms and conditions to register.";
 
     return null;
   };
@@ -86,23 +86,25 @@ const Register = ({ setSignedIn }) => {
     <div className="flex flex-grow items-center justify-center min-h-[calc(100vh-120px)]">
       <form
         onSubmit={handleSubmit}
-        className=" bg-base-300 dark:bg-base-200 shadow-md rounded-lg px-8 pt-6 pb-8 w-full max-w-md flex flex-col gap-4"
+        className=" bg-base-300 dark:bg-base-200 shadow-md rounded-lg px-8 pt-6 pb-8 w-full max-w-md flex flex-col gap-6"
       >
         <h2 className="text-xl font-bold text-center">Nice to meet you!</h2>
 
         <input
-          type="name"
+          type="text"
+          name="userName"
           placeholder="Name"
-          className="w-full px-3 py-2 border rounded-full shadow appearance-none focus:outline-none"
-          value={regForm.name}
+          className="w-full px-5 py-2 border rounded-full shadow appearance-none focus:outline-none"
+          value={regForm.userName}
           onChange={handleChange}
           required
         />
 
         <input
           type="email"
+          name="email"
           placeholder="Email"
-          className="w-full px-3 py-2 border rounded-full shadow appearance-none focus:outline-none"
+          className="w-full px-5 py-2 border rounded-full shadow appearance-none focus:outline-none"
           value={regForm.email}
           onChange={handleChange}
           required
@@ -110,8 +112,9 @@ const Register = ({ setSignedIn }) => {
 
         <input
           type="password"
+          name="password"
           placeholder="Password"
-          className="w-full px-3 py-2 border rounded-full shadow appearance-none focus:outline-none"
+          className="w-full px-5 py-2 border rounded-full shadow appearance-none focus:outline-none"
           value={regForm.password}
           onChange={handleChange}
           required
@@ -119,8 +122,9 @@ const Register = ({ setSignedIn }) => {
 
         <input
           type="password"
+          name="confirmPassword"
           placeholder="Confirm password"
-          className="w-full px-3 py-2 border rounded-full shadow appearance-none focus:outline-none"
+          className="w-full px-5 py-2 border rounded-full shadow appearance-none focus:outline-none"
           value={regForm.confirmPassword}
           onChange={handleChange}
           required
@@ -161,7 +165,7 @@ const Register = ({ setSignedIn }) => {
             Already have an account? Log in{" "}
             <Link
               to="/login"
-              className="cursor-pointer hover:underline text-blue-500 hover:text-blue-400"
+              className="cursor-pointer underline hover:text-blue-500"
             >
               here!
             </Link>

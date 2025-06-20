@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
-const ProfileDropdown = ({ handleAuthClick, signedIn }) => {
+const ProfileDropdown = ({ handleAuthClick, user }) => {
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ const ProfileDropdown = ({ handleAuthClick, signedIn }) => {
             onClick={handleAuthClick}
             className="block w-full text-left px-4 py-2 hover:bg-blue-400 rounded-lg self-center text-white font-bold cursor-pointer"
           >
-            {signedIn ? "Log out" : "Login"}
+            {user ? "Log out" : "Login"}
           </button>
         </div>
       )}

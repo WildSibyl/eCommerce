@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 
-const Login = ({ setSignedIn }) => {
+const Login = ({ setUser }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -11,7 +11,7 @@ const Login = ({ setSignedIn }) => {
 
     // Mock login validation
     if (email && password) {
-      setSignedIn(true); // update parent layout
+      setUser(true); // update parent layout
       navigate("/"); // redirect to homepage or dashboard
     } else {
       alert("Please enter valid credentials.");
@@ -22,14 +22,14 @@ const Login = ({ setSignedIn }) => {
     <div className="flex flex-grow items-center justify-center min-h-[calc(100vh-120px)]">
       <form
         onSubmit={handleLogin}
-        className=" bg-base-300 dark:bg-base-200 shadow-md rounded-lg px-8 pt-6 pb-8 w-full max-w-md flex flex-col gap-4"
+        className=" bg-base-300 dark:bg-base-200 shadow-md rounded-lg px-8 pt-6 pb-8 w-full max-w-md flex flex-col gap-6"
       >
         <h2 className="text-xl font-bold text-center">Welcome back!</h2>
 
         <input
           type="email"
           placeholder="Email"
-          className="w-full px-3 py-2 border rounded-full shadow appearance-none focus:outline-none"
+          className="w-full px-5 py-2 border rounded-full shadow appearance-none focus:outline-none"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -38,7 +38,7 @@ const Login = ({ setSignedIn }) => {
         <input
           type="password"
           placeholder="Password"
-          className="w-full px-3 py-2 border rounded-full shadow appearance-none focus:outline-none"
+          className="w-full px-5 py-2 border rounded-full shadow appearance-none focus:outline-none"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
@@ -56,7 +56,7 @@ const Login = ({ setSignedIn }) => {
             Don't have an account yet? Sign up{" "}
             <Link
               to="/signup"
-              className="cursor-pointer hover:underline text-blue-500 hover:text-blue-400"
+              className="cursor-pointer underline hover:text-blue-500"
             >
               here!
             </Link>

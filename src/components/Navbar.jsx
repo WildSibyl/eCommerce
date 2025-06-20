@@ -8,11 +8,11 @@ import ProfileDropdown from "./ProfileDropdown";
 //import { useOutletContext } from "react-router";
 
 // This component simply renders a navigation bar
-const Navbar = ({ signedIn, setSignedIn, cartItems, onSearch }) => {
+const Navbar = ({ user, setUser, cartItems, onSearch }) => {
   //const { cartItems } = useOutletContext();
 
   const handleAuthClick = () => {
-    setSignedIn((prev) => !prev);
+    setUser((prev) => !prev);
   };
 
   return (
@@ -36,12 +36,9 @@ const Navbar = ({ signedIn, setSignedIn, cartItems, onSearch }) => {
         </div>
 
         <ThemeToggle />
-        {signedIn ? (
+        {user ? (
           <div className="flex flex-row">
-            <ProfileDropdown
-              handleAuthClick={handleAuthClick}
-              signedIn={signedIn}
-            />
+            <ProfileDropdown handleAuthClick={handleAuthClick} user={user} />
           </div>
         ) : (
           <Link to="/login">
@@ -50,7 +47,7 @@ const Navbar = ({ signedIn, setSignedIn, cartItems, onSearch }) => {
                 onClick={handleAuthClick}
                 className=" self-center text-white font-bold "
               >
-                {signedIn ? "Log out" : "Login"}
+                {user ? "Log out" : "Login"}
               </button>
             </div>
           </Link>
