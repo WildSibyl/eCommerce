@@ -35,15 +35,14 @@ const Register = ({ setSignedIn }) => {
   };
 
   const validateInput = () => {
-    if (
-      !regForm.name ||
-      !regForm.email ||
-      !regForm.password ||
-      !regForm.confirmPassword
-    )
-      return "Please fill all required fields.";
+    if (!regForm.name) return "Please fill in your name.";
+    if (!regForm.email) return "Please fill in your email.";
+    if (!regForm.password || !regForm.confirmPassword)
+      return "Please fill in both password fields.";
+    if (!regForm.terms === false)
+      return "Please agree to the terms and conditions to register.";
     if (regForm.password !== regForm.confirmPassword)
-      return "Passwords do not match.";
+      return "The passwords do not match.";
 
     return null;
   };
@@ -92,6 +91,15 @@ const Register = ({ setSignedIn }) => {
         <h2 className="text-xl font-bold text-center">Nice to meet you!</h2>
 
         <input
+          type="name"
+          placeholder="Name"
+          className="w-full px-3 py-2 border rounded-full shadow appearance-none focus:outline-none"
+          value={regForm.name}
+          onChange={handleChange}
+          required
+        />
+
+        <input
           type="email"
           placeholder="Email"
           className="w-full px-3 py-2 border rounded-full shadow appearance-none focus:outline-none"
@@ -118,7 +126,7 @@ const Register = ({ setSignedIn }) => {
           required
         />
 
-        <div className="mt-6 space-y-2 text-sm">
+        <div className="space-y-2 text-sm">
           <label className="flex justify-center items-center space-x-2">
             <input
               type="checkbox"
@@ -141,7 +149,7 @@ const Register = ({ setSignedIn }) => {
           </label>
         </div>
 
-        <div className="flex items-center justify-around flex-col">
+        <div className="flex items-center justify-around flex-col m-2">
           <button
             type="submit"
             className="bg-blue-600 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full mb-4"

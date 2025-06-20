@@ -44,7 +44,7 @@ const Login = ({ setSignedIn }) => {
           required
         />
 
-        <div className="flex items-center justify-around flex-col">
+        <div className="flex items-center justify-around flex-col mt-2">
           <button
             type="submit"
             className="bg-blue-600 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full mb-4"
