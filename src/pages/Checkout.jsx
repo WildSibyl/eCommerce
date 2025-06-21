@@ -74,7 +74,7 @@ const Checkout = () => {
   return (
     <div className="flex flex-col h-full lg:px-[10%]">
       <h2 className="text-3xl font-semibold m-4">Your Details</h2>
-      <div className="flex flex-col md:flex-row mx-auto items-center gap-4">
+      <div className="flex flex-col md:flex-row mx-auto items-start justify-center gap-4">
         <div className="flex flex-col md:flex-row gap-4 w-[70%]">
           <div className="md:w-[50%]">
             <AddressForm
@@ -82,7 +82,7 @@ const Checkout = () => {
               handleChange={handleChange}
               onSubmit={(data) => console.log("Submitted:", data)}
             />
-            <div className="space-y-2 text-sm mt-4">
+            <div className="flex flex-col items-center justify-between mt-4 space-y-2 text-sm">
               <label className="flex justify-center items-center space-x-2">
                 <input
                   type="checkbox"
@@ -97,14 +97,14 @@ const Checkout = () => {
                 </span>
               </label>
             </div>
+            {checkoutForm.billingAddressIsSame === false && (
+              <BillingAddressForm
+                checkoutForm={checkoutForm}
+                handleChange={handleChange}
+                onSubmit={(data) => console.log("Submitted:", data)}
+              />
+            )}
           </div>
-          {checkoutForm.billingAddress === false && (
-            <BillingAddressForm
-              checkoutForm={checkoutForm}
-              handleChange={handleChange}
-              onSubmit={(data) => console.log("Submitted:", data)}
-            />
-          )}
           <div></div>
           <div className="md:w-[50%]">
             <PaymentForm
