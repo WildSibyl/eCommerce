@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useOutletContext, useNavigate } from "react-router";
 
-const AddressForm = ({ checkoutForm, handleChange, onSubmit }) => {
+const BillingAddressForm = ({ checkoutForm, handleChange, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Simple validation
     for (let key in checkoutForm) {
       if (!checkoutForm[key]) {
-        alert(`Please fill out the ${key}`);
+        alert(`Please fill out the ${key} field`);
         return;
       }
     }
@@ -20,57 +20,57 @@ const AddressForm = ({ checkoutForm, handleChange, onSubmit }) => {
     <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
       <input
         type="text"
-        name="fullName"
+        name="billingUserName"
         placeholder="Full Name"
-        value={checkoutForm.userName}
+        value={checkoutForm.billingUserName}
         onChange={handleChange}
         className="input input-bordered w-full"
       />
       <input
         type="text"
-        name="street"
+        name="billingStreet"
         placeholder="Street Address"
-        value={checkoutForm.street}
+        value={checkoutForm.billingStreet}
         onChange={handleChange}
         className="input input-bordered w-full"
       />
       <input
         type="text"
-        name="city"
+        name="billingCity"
         placeholder="City"
-        value={checkoutForm.city}
+        value={checkoutForm.billingCity}
         onChange={handleChange}
         className="input input-bordered w-full"
       />
       <input
         type="text"
-        name="state"
+        name="billingState"
         placeholder="State/Province"
-        value={checkoutForm.state}
+        value={checkoutForm.billingState}
         onChange={handleChange}
         className="input input-bordered w-full"
       />
       <input
         type="text"
-        name="zipCode"
-        placeholder="Zip Code"
-        value={checkoutForm.zipCode}
+        name="billingZipCode"
+        placeholder="Zip code"
+        value={checkoutForm.billingZipCode}
         onChange={handleChange}
         className="input input-bordered w-full"
       />
       <input
         type="text"
-        name="country"
+        name="billingCountry"
         placeholder="Country"
-        value={checkoutForm.country}
+        value={checkoutForm.billingCountry}
         onChange={handleChange}
         className="input input-bordered w-full"
       />
       <button type="submit" className="btn w-full m-0">
-        Confirm Address
+        Confirm Billing Address
       </button>
     </form>
   );
 };
 
-export default AddressForm;
+export default BillingAddressForm;

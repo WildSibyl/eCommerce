@@ -1,11 +1,42 @@
 import { useOutletContext, useNavigate } from "react-router";
 import AddressForm from "../checkout-components/AddressForm";
 import PaymentForm from "../checkout-components/PaymentForm";
+import BillingAddressForm from "../checkout-components/BillingAddressForm";
+import { useState } from "react";
 
 const Checkout = () => {
   const { cart, cartItems } = useOutletContext();
 
   const navigate = useNavigate();
+  const [checkoutForm, setCheckoutForm] = useState({
+    userName: "",
+    street: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    country: "",
+    billingAddressIsSame: true,
+    billingUserName: "",
+    billingStreet: "",
+    billingCity: "",
+    billingState: "",
+    billingZipCode: "",
+    billingCountry: "",
+    cardholderName: "",
+    cardNumber: "",
+    expiry: "",
+    cvv: "",
+    zip: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value, checked } = e.target;
+    if (name === "billingAddressIsSame") {
+      setCheckoutForm((prev) => ({ ...prev, [name]: checked }));
+    } else {
+      setCheckoutForm((prev) => ({ ...prev, [name]: value }));
+    }
+  };
 
   const handleCheckout = () => {
     navigate("/order-confirmation");
@@ -46,10 +77,41 @@ const Checkout = () => {
       <div className="flex flex-col md:flex-row mx-auto items-center gap-4">
         <div className="flex flex-col md:flex-row gap-4 w-[70%]">
           <div className="md:w-[50%]">
-            <AddressForm onSubmit={(data) => console.log("Submitted:", data)} />
+            <AddressForm
+              checkoutForm={checkoutForm}
+              handleChange={handleChange}
+              onSubmit={(data) => console.log("Submitted:", data)}
+            />
+            <div className="space-y-2 text-sm mt-4">
+              <label className="flex justify-center items-center space-x-2">
+                <input
+                  type="checkbox"
+                  name="billingAddressIsSame"
+                  checked={checkoutForm.billingAddressIsSame}
+                  onChange={handleChange}
+                  className="h-5 w-5 focus:ring-blue-500 focus:ring-2 cursor-pointer"
+                  style={{ accentColor: "#1F46E5" }}
+                />
+                <span className="text-pnp-black font-semibold">
+                  Use shipping address for billing
+                </span>
+              </label>
+            </div>
           </div>
+          {checkoutForm.billingAddress === false && (
+            <BillingAddressForm
+              checkoutForm={checkoutForm}
+              handleChange={handleChange}
+              onSubmit={(data) => console.log("Submitted:", data)}
+            />
+          )}
+          <div></div>
           <div className="md:w-[50%]">
-            <PaymentForm onSubmit={(data) => console.log("Submitted:", data)} />
+            <PaymentForm
+              checkoutForm={checkoutForm}
+              handleChange={handleChange}
+              onSubmit={(data) => console.log("Submitted:", data)}
+            />
           </div>
         </div>
         <div className="flex flex-col md:w-[30%] md:h-[50vh] bg-base-200 rounded-lg shadow-md p-4 md:ml-4">

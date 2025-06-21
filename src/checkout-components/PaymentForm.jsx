@@ -7,11 +7,16 @@ const PaymentForm = ({ onSubmit }) => {
     expiry: "",
     cvv: "",
     zip: "",
+    billingAddress: true,
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setPaymentFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, checked } = e.target;
+    if (name === "billingAddress") {
+      setPaymentFormData((prev) => ({ ...prev, [name]: checked }));
+    } else {
+      setPaymentFormData((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSubmit = (e) => {
@@ -24,7 +29,7 @@ const PaymentForm = ({ onSubmit }) => {
       }
     }
 
-    if (onSubmit) onSubmit(paymentFormData);
+    //if (onSubmit) onSubmit(paymentFormData);
   };
 
   return (
@@ -66,14 +71,7 @@ const PaymentForm = ({ onSubmit }) => {
           className="input input-bordered w-1/2"
         />
       </div>
-      <input
-        type="text"
-        name="zip"
-        placeholder="Billing ZIP/Postal Code"
-        value={paymentFormData.zip}
-        onChange={handleChange}
-        className="input input-bordered w-full"
-      />
+
       <button type="submit" className="btn w-full m-0">
         Confirm Payment Details
       </button>
