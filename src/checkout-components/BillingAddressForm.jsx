@@ -11,9 +11,14 @@ const BillingAddressForm = ({ checkoutForm, handleChange, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Simple validation
     for (let key in checkoutForm) {
-      if (!checkoutForm[key]) {
+      const value = checkoutForm[key];
+
+      if (
+        value === null ||
+        value === undefined ||
+        (typeof value === "string" && value.trim() === "")
+      ) {
         toast.error(`Please fill out the ${key} field`);
         return;
       }

@@ -22,11 +22,11 @@ const Checkout = () => {
     billingState: "",
     billingZipCode: "",
     billingCountry: "",
-    cardholderName: "",
-    cardNumber: "",
-    expiry: "",
-    cvv: "",
-    zip: "",
+    // cardholderName: "",
+    // cardNumber: "",
+    // expiry: "",
+    // cvv: "",
+    // zip: "",
   });
 
   const handleChange = (e) => {
