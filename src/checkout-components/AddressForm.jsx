@@ -44,9 +44,9 @@ const AddressForm = ({ checkoutForm, handleChange, onSubmit }) => {
 
   return (
     <div className="max-w-md mx-auto">
-      <form onSubmit={handleSubmit} className=" max-w-md mx-auto">
+      <form onSubmit={handleSubmit} className=" max-w-md mx-auto ">
         <div
-          className={` max-w-md mx-auto transition-all duration-500 overflow-hidden ${
+          className={` max-w-md mx-auto transition-all duration-500 overflow-hidden p-1 ${
             isOpen
               ? "max-h-[1000px] opacity-100 pointer-events-auto"
               : "max-h-0 opacity-0 pointer-events-none"
@@ -104,9 +104,11 @@ const AddressForm = ({ checkoutForm, handleChange, onSubmit }) => {
           </div>
         </div>
         {isOpen ? (
-          <button type="submit" className="btn w-full m-0 mt-4">
-            Confirm Address
-          </button>
+          <div className="max-w-md mx-auto px-1">
+            <button type="submit" className="btn w-full m-0 mt-3">
+              Confirm Address
+            </button>
+          </div>
         ) : null}
       </form>
       {isOpen ? null : (

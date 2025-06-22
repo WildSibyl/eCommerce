@@ -22,15 +22,6 @@ const MainLayout = () => {
     setSearchQuery(query); // Update the search query in the state
   };
 
-  const [addressFormData, setAddressFormData] = useState({
-    userName: "",
-    street: "",
-    city: "",
-    state: "",
-    postalCode: "",
-    country: "",
-  });
-
   return (
     <div className="flex flex-col min-h-screen bg-base-300">
       <AuthContextProvider>
@@ -60,8 +51,6 @@ const MainLayout = () => {
                 removeProduct,
                 cartItems,
                 searchQuery,
-                addressFormData,
-                setAddressFormData,
               }}
             />
           </div>

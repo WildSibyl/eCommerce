@@ -1,25 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { loadStripe } from "@stripe/stripe-js";
+import { useStripe, useElements } from "@stripe/react-stripe-js";
+import { PaymentElement } from "@stripe/react-stripe-js";
 
-const PaymentForm = ({ onSubmit }) => {
-  const [paymentFormData, setPaymentFormData] = useState({
-    cardholderName: "",
-    cardNumber: "",
-    expiry: "",
-    cvv: "",
-    zip: "",
-    billingAddress: true,
-  });
+const PaymentForm = () => {
+  const stripe = useStripe();
+  const elements = useElements();
 
-  const handleChange = (e) => {
-    const { name, value, checked } = e.target;
-    if (name === "billingAddress") {
-      setPaymentFormData((prev) => ({ ...prev, [name]: checked }));
-    } else {
-      setPaymentFormData((prev) => ({ ...prev, [name]: value }));
-    }
-  };
+  const [isProcessing, setIsProcessing] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     for (let key in paymentFormData) {
@@ -29,53 +20,87 @@ const PaymentForm = ({ onSubmit }) => {
       }
     }
 
+    if (!stripe || !elements) {
+      toast.error("Stripe is not loaded yet. Please try again later.");
+      return;
+    }
+
+    setIsProcessing(true);
+
+    const { error } = await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        return_url: `${window.location.origin}/order-confirmation`,
+      },
+    });
+
+    if (error) {
+      toast.error(`Payment failed: ${error.message}`);
+      setIsProcessing(false);
+      return;
+    }
+
+    toast.success("Payment successful!");
+    setIsProcessing(false);
+
     //if (onSubmit) onSubmit(paymentFormData);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
-      <input
-        type="text"
-        name="cardholderName"
-        placeholder="Cardholder Name"
-        value={paymentFormData.cardholderName}
-        onChange={handleChange}
-        className="input input-bordered w-full"
-      />
-      <input
-        type="text"
-        name="cardNumber"
-        placeholder="Card Number"
-        maxLength={19}
-        value={paymentFormData.cardNumber}
-        onChange={handleChange}
-        className="input input-bordered w-full"
-      />
-      <div className="flex space-x-2">
+    <>
+      <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
+        <>
+          {/* 
         <input
           type="text"
-          name="expiry"
-          placeholder="MM/YY"
-          maxLength={5}
-          value={paymentFormData.expiry}
+          name="cardholderName"
+          placeholder="Cardholder Name"
+          value={paymentFormData.cardholderName}
           onChange={handleChange}
-          className="input input-bordered w-1/2"
+          className="input input-bordered w-full"
         />
         <input
           type="text"
-          name="cvv"
-          placeholder="CVV"
-          maxLength={4}
-          value={paymentFormData.cvv}
+          name="cardNumber"
+          placeholder="Card Number"
+          maxLength={19}
+          value={paymentFormData.cardNumber}
           onChange={handleChange}
-          className="input input-bordered w-1/2"
+          className="input input-bordered w-full"
         />
-      </div>
-
-      <button type="submit" className="btn w-full m-0">
-        Confirm Payment Details
-      </button>
-    </form>
+        <div className="flex space-x-2">
+          <input
+            type="text"
+            name="expiry"
+            placeholder="MM/YY"
+            maxLength={5}
+            value={paymentFormData.expiry}
+            onChange={handleChange}
+            className="input input-bordered w-1/2"
+          />
+          <input
+            type="text"
+            name="cvv"
+            placeholder="CVV"
+            maxLength={4}
+            value={paymentFormData.cvv}
+            onChange={handleChange}
+            className="input input-bordered w-1/2"
+          />
+          </div>*/}
+        </>
+        <PaymentElement className="mt-4" />
+        <div className="px-1">
+          <button
+            type="submit"
+            disabled={isProcessing || !stripe || !elements}
+            className="btn w-full m-0"
+          >
+            {isProcessing ? "Processing..." : "Confirm and Pay Now"}
+          </button>
+        </div>
+      </form>
+    </>
   );
 };
 

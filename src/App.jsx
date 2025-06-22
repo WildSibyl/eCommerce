@@ -28,7 +28,10 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/search" element={<FreeSearch />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/order-confirmation" element={<OrderConfirmation />} />
+          <Route
+            path="/checkout/order-confirmation"
+            element={<OrderConfirmation />}
+          />
           <Route path="/profile" element={<Profile />} />
           {/* 404 Not Found Route */}
           <Route path="*" element={<div>404 Not Found</div>} />

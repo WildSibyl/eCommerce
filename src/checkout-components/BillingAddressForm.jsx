@@ -32,7 +32,7 @@ const BillingAddressForm = ({ checkoutForm, handleChange, onSubmit }) => {
     <div className="max-w-md mx-auto mt-4">
       <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
         <div
-          className={` max-w-md mx-auto transition-all duration-500 overflow-hidden ${
+          className={` max-w-md mx-auto transition-all duration-500 overflow-hidden p-1 ${
             isOpen
               ? "max-h-[1000px] opacity-100 pointer-events-auto"
               : "max-h-0 opacity-0 pointer-events-none"
@@ -90,15 +90,23 @@ const BillingAddressForm = ({ checkoutForm, handleChange, onSubmit }) => {
           </div>
         </div>
         {isOpen ? (
-          <button type="submit" className="btn w-full m-0">
-            Confirm Billing Address
-          </button>
+          <div className="max-w-md mx-auto px-1">
+            <button type="submit" className="btn w-full -mt-1 m-0">
+              Confirm Billing Address
+            </button>
+          </div>
         ) : null}
       </form>
       {isOpen ? null : (
-        <button type="button" onClick={toggleForm} className="btn w-full m-0">
-          Edit Billing Address
-        </button>
+        <div className="max-w-md mx-auto px-1">
+          <button
+            type="button"
+            onClick={toggleForm}
+            className="btn w-full -mt-1 m-0"
+          >
+            Edit Billing Address
+          </button>
+        </div>
       )}
     </div>
   );
