@@ -26,8 +26,8 @@ const MainLayout = () => {
     <div className="flex flex-col min-h-screen bg-base-300">
       <AuthContextProvider>
         <ToastContainer
-          position="top-right"
-          autoClose={5000}
+          position="bottom-right"
+          autoClose={1500}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
@@ -35,7 +35,7 @@ const MainLayout = () => {
           pauseOnFocusLoss
           draggable
           pauseOnHover
-          theme="light"
+          theme="colored"
         />
         <WelcomeModalContextProvider>
           <WelcomeModal />
