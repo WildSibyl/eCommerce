@@ -62,6 +62,12 @@ const Cart = () => {
           <button onClick={handleCheckout} className="btn">
             Go to checkout
           </button>
+          <div className="flex flex-col items-center justify-center text-sm text-error-content rounded-3xl bg-error p-4 m-2 mt-4">
+            <p className="mb-2 text-center font-bold text-lg">
+              This is a student project focused on testing eCommerce features.
+              There are no real items for sale.
+            </p>
+          </div>
         </div>
       </div>
     </div>

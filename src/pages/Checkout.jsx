@@ -218,6 +218,23 @@ const Checkout = () => {
               Please log in to have this order saved to your account.
             </div>
           )}
+          <div className="flex flex-col items-center justify-center text-sm text-error-content rounded-2xl bg-error p-4 m-2 mt-4">
+            <p className="mb-2 text-center font-bold text-lg">
+              DO NOT USE real payment details!
+            </p>
+            <p className="mb-2 text-center">
+              Use the test card numbers you can find by following the link here
+              below. We are not responsible for the misuse of this testing site.
+            </p>
+            <a
+              href="https://docs.stripe.com/testing#cards"
+              className="underline text-error-content hover:text-error-content/80 font-bold text-lg mb-1"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Stripe Test Cards
+            </a>
+          </div>
         </div>
       </div>
     </div>
