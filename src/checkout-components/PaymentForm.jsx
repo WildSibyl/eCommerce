@@ -4,7 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { PaymentElement } from "@stripe/react-stripe-js";
 
-const PaymentForm = () => {
+const PaymentForm = ({ handleCheckout }) => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -12,13 +12,6 @@ const PaymentForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    for (let key in paymentFormData) {
-      if (!paymentFormData[key]) {
-        alert(`Please fill out the ${key}`);
-        return;
-      }
-    }
 
     if (!stripe || !elements) {
       toast.error("Stripe is not loaded yet. Please try again later.");
@@ -39,6 +32,8 @@ const PaymentForm = () => {
       setIsProcessing(false);
       return;
     }
+
+    handleCheckout();
 
     toast.success("Payment successful!");
     setIsProcessing(false);

@@ -80,6 +80,36 @@ const Checkout = () => {
 
   const shippingPrice = 5.0; // Flat shipping price
   const totalPrice = subtotalPrice + shippingPrice;
+  const payload = {
+    items: cart.map(({ id, quantity }) => ({
+      productId: id.toString(),
+      quantity,
+    })),
+    shipping: {
+      address: checkoutForm.street,
+      city: checkoutForm.city,
+      state: checkoutForm.state,
+      zip: checkoutForm.zipCode,
+      country: checkoutForm.country,
+    },
+    billing: checkoutForm.billingAddressIsSame
+      ? {
+          address: checkoutForm.street,
+          city: checkoutForm.city,
+          state: checkoutForm.state,
+          zip: checkoutForm.zipCode,
+          country: checkoutForm.country,
+        }
+      : {
+          address: checkoutForm.billingStreet,
+          city: checkoutForm.billingCity,
+          state: checkoutForm.billingState,
+          zip: checkoutForm.billingZipCode,
+          country: checkoutForm.billingCountry,
+        },
+    fee: shippingPrice.toFixed(2),
+    total: Math.round(totalPrice * 100), // convert to cents
+  };
 
   // Setting up Stripe configuration
   useEffect(() => {
@@ -92,46 +122,12 @@ const Checkout = () => {
   // Set client secret when checkout form is filled
   useEffect(() => {
     const fetchClientSecret = async () => {
-      if (!clientSecret) {
-        const total = Math.round(totalPrice * 100); // Convert € to cents
-        await checkoutPayment(
-          {
-            items: cart.map((item) => ({
-              productId: item.id,
-              quantity: item.quantity,
-            })),
-            shipping: {
-              address: checkoutForm.street,
-              city: checkoutForm.city,
-              state: checkoutForm.state,
-              zip: checkoutForm.zipCode,
-              country: checkoutForm.country,
-            },
-            billing: checkoutForm.billingAddressIsSame
-              ? {
-                  address: checkoutForm.street,
-                  city: checkoutForm.city,
-                  state: checkoutForm.state,
-                  zip: checkoutForm.zipCode,
-                  country: checkoutForm.country,
-                }
-              : {
-                  address: checkoutForm.billingStreet,
-                  city: checkoutForm.billingCity,
-                  state: checkoutForm.billingState,
-                  zip: checkoutForm.billingZipCode,
-                  country: checkoutForm.billingCountry,
-                },
-
-            fee: shippingPrice.toFixed(2),
-            total: total,
-          },
-          setClientSecret
-        );
+      if (!clientSecret && isAddressValid()) {
+        await checkoutPayment(payload, setClientSecret);
       }
     };
     fetchClientSecret();
-  }, []);
+  }, [checkoutForm]);
 
   const handleChange = (e) => {
     const { name, value, checked } = e.target;
@@ -143,42 +139,29 @@ const Checkout = () => {
   };
 
   const handleCheckout = async (e) => {
-    const payload = {
-      items: cart.map(({ id, quantity }) => ({ productId: id, quantity })),
-      shipping: {
-        address: checkoutForm.street,
-        city: checkoutForm.city,
-        state: checkoutForm.state,
-        zip: checkoutForm.zipCode,
-        country: checkoutForm.country,
-      },
-      billing: checkoutForm.billingAddressIsSame
-        ? {
-            address: checkoutForm.street,
-            city: checkoutForm.city,
-            state: checkoutForm.state,
-            zip: checkoutForm.zipCode,
-            country: checkoutForm.country,
-          }
-        : {
-            address: checkoutForm.billingStreet,
-            city: checkoutForm.billingCity,
-            state: checkoutForm.billingState,
-            zip: checkoutForm.billingZipCode,
-            country: checkoutForm.billingCountry,
-          },
-      fee: shippingPrice.toFixed(2),
-      total: Math.round(totalPrice * 100), // convert to cents
-    };
-
     try {
       // Create payment intent on backend and get client secret
       const res = await checkoutPayment(payload, setClientSecret);
 
       navigate("/checkout/order-confirmation");
     } catch (error) {
-      console.error("Error during checkout:", error);
-      toast.error("Checkout failed. Please try again.");
+      if (error.type === "StripeCardError") {
+        // Handle card errors
+        console.error("Card error:", error.message);
+        toast.error(`Card error: ${error.message}`);
+      } else if (error.type === "StripeInvalidRequestError") {
+        // Handle invalid requests
+        console.error("Invalid request:", error.message);
+        toast.error(`Invalid request: ${error.message}`);
+      } else if (error.type === "APIError") {
+        // Handle invalid requests
+        console.error("API error:", error.message);
+        toast.error(`API error: ${error.message}`);
+      } else {
+        // Handle other errors
+        console.error("Error:", error);
+        toast.error("An error occurred while processing your payment.");
+      }
     }
   };
 
@@ -237,7 +220,7 @@ const Checkout = () => {
 
             {stripePromise && clientSecret && isAddressValid() && (
               <Elements stripe={stripePromise} options={{ clientSecret }}>
-                <PaymentForm />
+                <PaymentForm handleCheckout={handleCheckout} />
               </Elements>
             )}
           </div>
@@ -255,10 +238,6 @@ const Checkout = () => {
             <p>Total:</p>
             <p className="text-xl font-semibold">€ {totalPrice.toFixed(2)}</p>
           </div>
-
-          <button onClick={handleCheckout} className="btn">
-            Order and Pay now
-          </button>
         </div>
       </div>
     </div>
