@@ -69,9 +69,9 @@ const Product = () => {
                   </p>
                 </div>
                 <p className="text-3xl font-bold bg-error p-1 text-center rounded-full w-[97px] mb-4 border-8 border-error">
-                  <div className="-translate-y-1">
+                  <span className="-translate-y-1">
                     {product.discount}% OFF!!
-                  </div>
+                  </span>
                 </p>
               </div>
             ) : (

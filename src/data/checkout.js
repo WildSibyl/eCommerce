@@ -21,6 +21,7 @@ export const checkoutPayment = async (formData, setClientSecret) => {
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
     body: JSON.stringify(formData),
   });
 
