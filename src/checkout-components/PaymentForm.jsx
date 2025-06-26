@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { loadStripe } from "@stripe/stripe-js";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { PaymentElement } from "@stripe/react-stripe-js";
+import { Navigate } from "react-router";
 
 const PaymentForm = ({ handleCheckout }) => {
   const stripe = useStripe();
@@ -20,23 +21,25 @@ const PaymentForm = ({ handleCheckout }) => {
 
     setIsProcessing(true);
 
-    const { error } = await stripe.confirmPayment({
+    const { error, paymentIntent } = await stripe.confirmPayment({
       elements,
       confirmParams: {
         return_url: `${window.location.origin}/order-confirmation`,
       },
+      redirect: "if_required",
     });
 
     if (error) {
       toast.error(`Payment failed: ${error.message}`);
       setIsProcessing(false);
       return;
+    } else if (paymentIntent && paymentIntent.status === "succeeded") {
+      handleCheckout();
+      toast.success("Payment successful! 🎉");
+
+      setIsProcessing(false);
+      Navigate("/order-confirmation");
     }
-
-    handleCheckout();
-
-    toast.success("Payment successful!");
-    setIsProcessing(false);
 
     //if (onSubmit) onSubmit(paymentFormData);
   };

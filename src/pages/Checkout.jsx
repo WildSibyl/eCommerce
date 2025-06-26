@@ -5,12 +5,14 @@ import BillingAddressForm from "../checkout-components/BillingAddressForm";
 import { useState, useEffect } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { checkoutConfig, checkoutPayment } from "../data/checkout";
+import { useAuth } from "../hooks/useAuth";
 
 const Checkout = () => {
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
 
   const { cart, cartItems } = useOutletContext();
+  const { user } = useAuth();
 
   const navigate = useNavigate();
   const [checkoutForm, setCheckoutForm] = useState({
@@ -238,6 +240,11 @@ const Checkout = () => {
             <p>Total:</p>
             <p className="text-xl font-semibold">€ {totalPrice.toFixed(2)}</p>
           </div>
+          {!user && (
+            <div className="flex flex-col items-center justify-center text-sm text-gray-500 rounded-2xl bg-base-100 p-4">
+              Please log in to have this order saved to your account.
+            </div>
+          )}
         </div>
       </div>
     </div>
