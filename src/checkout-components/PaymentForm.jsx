@@ -3,11 +3,12 @@ import { toast } from "react-toastify";
 import { loadStripe } from "@stripe/stripe-js";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { PaymentElement } from "@stripe/react-stripe-js";
-import { Navigate } from "react-router";
+import { useNavigate } from "react-router";
 
-const PaymentForm = ({ handleCheckout }) => {
+const PaymentForm = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -34,11 +35,9 @@ const PaymentForm = ({ handleCheckout }) => {
       setIsProcessing(false);
       return;
     } else if (paymentIntent && paymentIntent.status === "succeeded") {
-      handleCheckout();
       toast.success("Payment successful! 🎉");
-
       setIsProcessing(false);
-      Navigate("/order-confirmation");
+      navigate("/checkout/order-confirmation");
     }
 
     //if (onSubmit) onSubmit(paymentFormData);

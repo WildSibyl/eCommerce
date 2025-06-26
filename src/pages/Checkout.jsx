@@ -140,33 +140,6 @@ const Checkout = () => {
     }
   };
 
-  const handleCheckout = async (e) => {
-    try {
-      // Create payment intent on backend and get client secret
-      const res = await checkoutPayment(payload, setClientSecret);
-
-      navigate("/checkout/order-confirmation");
-    } catch (error) {
-      if (error.type === "StripeCardError") {
-        // Handle card errors
-        console.error("Card error:", error.message);
-        toast.error(`Card error: ${error.message}`);
-      } else if (error.type === "StripeInvalidRequestError") {
-        // Handle invalid requests
-        console.error("Invalid request:", error.message);
-        toast.error(`Invalid request: ${error.message}`);
-      } else if (error.type === "APIError") {
-        // Handle invalid requests
-        console.error("API error:", error.message);
-        toast.error(`API error: ${error.message}`);
-      } else {
-        // Handle other errors
-        console.error("Error:", error);
-        toast.error("An error occurred while processing your payment.");
-      }
-    }
-  };
-
   console.log("Stripe ready?", !!stripePromise, "Client Secret:", clientSecret);
 
   // Check if cart is empty
@@ -222,7 +195,7 @@ const Checkout = () => {
 
             {stripePromise && clientSecret && isAddressValid() && (
               <Elements stripe={stripePromise} options={{ clientSecret }}>
-                <PaymentForm handleCheckout={handleCheckout} />
+                <PaymentForm />
               </Elements>
             )}
           </div>
@@ -241,7 +214,7 @@ const Checkout = () => {
             <p className="text-xl font-semibold">€ {totalPrice.toFixed(2)}</p>
           </div>
           {!user && (
-            <div className="flex flex-col items-center justify-center text-sm text-gray-500 rounded-2xl bg-base-100 p-4">
+            <div className="flex flex-col items-center justify-center text-sm text-base-100 rounded-2xl bg-base-100 p-4">
               Please log in to have this order saved to your account.
             </div>
           )}
