@@ -29,7 +29,7 @@ const App = () => {
           <Route path="/search" element={<FreeSearch />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route
-            path="/checkout/order-confirmation"
+            path="/checkout/order-confirmation/:orderId"
             element={<OrderConfirmation />}
           />
           <Route path="/profile" element={<Profile />} />

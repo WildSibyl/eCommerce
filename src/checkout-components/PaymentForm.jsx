@@ -5,7 +5,7 @@ import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { PaymentElement } from "@stripe/react-stripe-js";
 import { useNavigate } from "react-router";
 
-const PaymentForm = ({ onBack }) => {
+const PaymentForm = ({ onBack, orderId }) => {
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ const PaymentForm = ({ onBack }) => {
     const { error, paymentIntent } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `${window.location.origin}/order-confirmation`,
+        return_url: `${window.location.origin}/order-confirmation/${orderId}`,
       },
       redirect: "if_required",
     });
@@ -37,7 +37,7 @@ const PaymentForm = ({ onBack }) => {
     } else if (paymentIntent && paymentIntent.status === "succeeded") {
       toast.success("Payment successful! 🎉");
       setIsProcessing(false);
-      navigate("/checkout/order-confirmation");
+      navigate(`/order-confirmation/${orderId}`);
     }
 
     //if (onSubmit) onSubmit(paymentFormData);

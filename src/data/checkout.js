@@ -15,7 +15,7 @@ export const checkoutConfig = async (setStripePromise) => {
   setStripePromise(stripe);
 };
 
-export const checkoutPayment = async (formData, setClientSecret) => {
+export const checkoutPayment = async (formData) => {
   const res = await fetch(`${baseUrl}/create-payment-intent`, {
     method: "POST",
     headers: {
@@ -26,13 +26,11 @@ export const checkoutPayment = async (formData, setClientSecret) => {
   });
 
   const data = await res.json();
-
   console.log("Payment intent response:", data);
 
   if (!res.ok) {
     throw new Error(data.error || "An error occurred while processing payment");
   }
 
-  setClientSecret(data.clientSecret);
   return data;
 };

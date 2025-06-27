@@ -1,7 +1,6 @@
 import { useOutletContext, useNavigate } from "react-router";
 import AddressForm from "../checkout-components/AddressForm";
 import PaymentForm from "../checkout-components/PaymentForm";
-import BillingAddressForm from "../checkout-components/BillingAddressForm";
 import ProgressBar from "../checkout-components/ProgressBar";
 import { useState, useEffect } from "react";
 import { Elements } from "@stripe/react-stripe-js";
@@ -12,6 +11,7 @@ const Checkout = () => {
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
   const [currentStep, setCurrentStep] = useState(0);
+  const [orderId, setOrderId] = useState("");
 
   const { cart, cartItems } = useOutletContext();
   const { user } = useAuth();
@@ -126,7 +126,18 @@ const Checkout = () => {
   useEffect(() => {
     const fetchClientSecret = async () => {
       if (!clientSecret && isAddressValid()) {
-        await checkoutPayment(payload, setClientSecret);
+        try {
+          const { clientSecret: secret, orderId: newOrderId } =
+            await checkoutPayment(payload);
+          if (secret) {
+            setClientSecret(secret);
+            setOrderId(newOrderId);
+          } else {
+            console.error("Missing clientSecret from response");
+          }
+        } catch (error) {
+          console.error("Failed to fetch client secret:", error.message);
+        }
       }
     };
     fetchClientSecret();
@@ -189,7 +200,10 @@ const Checkout = () => {
             {currentStep === 1 && (
               <div>
                 <Elements stripe={stripePromise} options={{ clientSecret }}>
-                  <PaymentForm onBack={() => setCurrentStep(0)} />
+                  <PaymentForm
+                    onBack={() => setCurrentStep(0)}
+                    orderId={orderId}
+                  />
                 </Elements>
               </div>
             )}

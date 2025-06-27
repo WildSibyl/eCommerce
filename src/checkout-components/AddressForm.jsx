@@ -68,7 +68,7 @@ const AddressForm = ({ checkoutForm, handleChange, onConfirm }) => {
             <input
               type="text"
               name="street"
-              placeholder="Street Address"
+              placeholder="Street"
               value={checkoutForm.street}
               onChange={handleChange}
               className="input input-bordered w-full"
