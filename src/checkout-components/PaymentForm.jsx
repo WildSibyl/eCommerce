@@ -46,52 +46,36 @@ const PaymentForm = () => {
   return (
     <>
       <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
-        <>
-          {/* 
-        <input
-          type="text"
-          name="cardholderName"
-          placeholder="Cardholder Name"
-          value={paymentFormData.cardholderName}
-          onChange={handleChange}
-          className="input input-bordered w-full"
-        />
-        <input
-          type="text"
-          name="cardNumber"
-          placeholder="Card Number"
-          maxLength={19}
-          value={paymentFormData.cardNumber}
-          onChange={handleChange}
-          className="input input-bordered w-full"
-        />
-        <div className="flex space-x-2">
-          <input
-            type="text"
-            name="expiry"
-            placeholder="MM/YY"
-            maxLength={5}
-            value={paymentFormData.expiry}
-            onChange={handleChange}
-            className="input input-bordered w-1/2"
-          />
-          <input
-            type="text"
-            name="cvv"
-            placeholder="CVV"
-            maxLength={4}
-            value={paymentFormData.cvv}
-            onChange={handleChange}
-            className="input input-bordered w-1/2"
-          />
-          </div>*/}
-        </>
+        <div className="flex flex-col items-center justify-center text-sm text-error-content rounded-2xl bg-error p-4 m-2 mt-4">
+          <p className="mb-2 text-center font-bold text-lg">
+            DO NOT USE real payment details!
+          </p>
+          <p className="mb-2 text-center">
+            Use the test cards you can find by following the link below. We are
+            not responsible for any misuse of this testing site.
+          </p>
+          <a
+            href="https://docs.stripe.com/testing#cards"
+            className="underline text-error-content hover:text-error-content/80 font-bold text-lg mb-1"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Stripe Test Cards
+          </a>
+        </div>
         <PaymentElement className="mt-4" />
-        <div className="px-1">
+        <div className="px-1 flex">
           <button
             type="submit"
             disabled={isProcessing || !stripe || !elements}
-            className="btn w-full m-0"
+            className="btn bg-gray-500 w-[50%] m-0"
+          >
+            Edit Address
+          </button>
+          <button
+            type="submit"
+            disabled={isProcessing || !stripe || !elements}
+            className="btn w-[50%] m-0"
           >
             {isProcessing ? "Processing..." : "Confirm and Pay Now"}
           </button>

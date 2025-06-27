@@ -2,6 +2,7 @@ import { useOutletContext, useNavigate } from "react-router";
 import AddressForm from "../checkout-components/AddressForm";
 import PaymentForm from "../checkout-components/PaymentForm";
 import BillingAddressForm from "../checkout-components/BillingAddressForm";
+import ProgressBar from "../checkout-components/ProgressBar";
 import { useState, useEffect } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { checkoutConfig, checkoutPayment } from "../data/checkout";
@@ -13,8 +14,9 @@ const Checkout = () => {
 
   const { cart, cartItems } = useOutletContext();
   const { user } = useAuth();
-
   const navigate = useNavigate();
+  const currentStep = 0;
+
   const [checkoutForm, setCheckoutForm] = useState({
     userName: "",
     street: "",
@@ -161,38 +163,16 @@ const Checkout = () => {
 
   return (
     <div className="flex flex-col h-full lg:px-[10%]">
-      <h2 className="text-3xl font-semibold m-4">Your Details</h2>
+      <div className="p-4">
+        <ProgressBar currentStep={currentStep} />
+      </div>
       <div className="flex flex-col md:flex-row mx-auto items-start justify-center gap-4">
-        <div className="flex flex-col md:flex-row gap-4 w-[70%]">
+        <div className="flex flex-col md:flex-row gap-4">
           <div className="">
             <AddressForm
               checkoutForm={checkoutForm}
               handleChange={handleChange}
-              onSubmit={(data) => console.log("Submitted:", data)}
             />
-            <div className="flex flex-col items-center justify-between mt-4 space-y-2 text-sm">
-              <label className="flex justify-center items-center space-x-2">
-                <input
-                  type="checkbox"
-                  name="billingAddressIsSame"
-                  checked={checkoutForm.billingAddressIsSame}
-                  onChange={handleChange}
-                  className="h-5 w-5 focus:ring-blue-500 focus:ring-2 cursor-pointer"
-                  style={{ accentColor: "#1F46E5" }}
-                />
-                <span className="text-pnp-black font-semibold">
-                  Use shipping address for billing
-                </span>
-              </label>
-            </div>
-            {checkoutForm.billingAddressIsSame === false && (
-              <BillingAddressForm
-                checkoutForm={checkoutForm}
-                handleChange={handleChange}
-                onSubmit={(data) => console.log("Submitted:", data)}
-              />
-            )}
-
             {stripePromise && clientSecret && isAddressValid() && (
               <Elements stripe={stripePromise} options={{ clientSecret }}>
                 <PaymentForm />
@@ -200,7 +180,7 @@ const Checkout = () => {
             )}
           </div>
         </div>
-        <div className="flex flex-col md:w-[30%] md:h-[50vh] bg-base-200 rounded-lg shadow-md p-4 md:ml-4">
+        <div className="flex flex-col md:w-[30%] md:min-h-[50vh] bg-base-200 rounded-lg shadow-md p-4 md:ml-4">
           <div className="flex flex-row justify-between mb-2">
             <p>Subtotal ({cartItems} Items):</p>
             <p className="text-xl">€ {subtotalPrice.toFixed(2)}</p>
@@ -214,27 +194,10 @@ const Checkout = () => {
             <p className="text-xl font-semibold">€ {totalPrice.toFixed(2)}</p>
           </div>
           {!user && (
-            <div className="flex flex-col items-center justify-center text-sm text-base-100 rounded-2xl bg-base-100 p-4">
+            <div className="flex flex-col items-center justify-center text-sm text-content-100 rounded-2xl bg-base-100 p-4 m-2 mt-4">
               Please log in to have this order saved to your account.
             </div>
           )}
-          <div className="flex flex-col items-center justify-center text-sm text-error-content rounded-2xl bg-error p-4 m-2 mt-4">
-            <p className="mb-2 text-center font-bold text-lg">
-              DO NOT USE real payment details!
-            </p>
-            <p className="mb-2 text-center">
-              Use the test card numbers you can find by following the link here
-              below. We are not responsible for the misuse of this testing site.
-            </p>
-            <a
-              href="https://docs.stripe.com/testing#cards"
-              className="underline text-error-content hover:text-error-content/80 font-bold text-lg mb-1"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View Stripe Test Cards
-            </a>
-          </div>
         </div>
       </div>
     </div>

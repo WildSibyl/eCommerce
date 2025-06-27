@@ -1,11 +1,15 @@
 import { Link, useOutletContext } from "react-router";
 import orderConfirmed from "../assets/order_confirmed.png";
+import ProgressBar from "../checkout-components/ProgressBar";
 
 const OrderConfirmation = () => {
   //   const { addressFormData, setAddressFormData } = useOutletContext();
 
   return (
     <div className="flex flex-col items-center justify-center ">
+      <div className="p-4">
+        <ProgressBar currentStep={2} />
+      </div>
       <h1 className="text-3xl font-bold m-4">Thank you for your order!</h1>
       <div className="max-w-[300px] mx-auto m-4">
         <img

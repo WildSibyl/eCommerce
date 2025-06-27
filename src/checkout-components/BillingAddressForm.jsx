@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
-const BillingAddressForm = ({ checkoutForm, handleChange, onSubmit }) => {
+const BillingAddressForm = ({ checkoutForm, handleChange }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const toggleForm = () => {
@@ -39,6 +39,7 @@ const BillingAddressForm = ({ checkoutForm, handleChange, onSubmit }) => {
           }`}
         >
           <div className="space-y-4 max-w-md mx-auto">
+            <h2 className="text-2xl font-semibold mx-4">Billing Address</h2>
             <input
               type="text"
               name="billingUserName"
@@ -89,25 +90,7 @@ const BillingAddressForm = ({ checkoutForm, handleChange, onSubmit }) => {
             />
           </div>
         </div>
-        {isOpen ? (
-          <div className="max-w-md mx-auto px-1">
-            <button type="submit" className="btn w-full -mt-1 m-0">
-              Confirm Billing Address
-            </button>
-          </div>
-        ) : null}
       </form>
-      {isOpen ? null : (
-        <div className="max-w-md mx-auto px-1">
-          <button
-            type="button"
-            onClick={toggleForm}
-            className="btn w-full -mt-1 m-0"
-          >
-            Edit Billing Address
-          </button>
-        </div>
-      )}
     </div>
   );
 };
