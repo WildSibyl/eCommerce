@@ -11,11 +11,10 @@ import { useAuth } from "../hooks/useAuth";
 const Checkout = () => {
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
+  const [currentStep, setCurrentStep] = useState(0);
 
   const { cart, cartItems } = useOutletContext();
   const { user } = useAuth();
-  const navigate = useNavigate();
-  const currentStep = 0;
 
   const [checkoutForm, setCheckoutForm] = useState({
     userName: "",
@@ -169,14 +168,30 @@ const Checkout = () => {
       <div className="flex flex-col md:flex-row mx-auto items-start justify-center gap-4">
         <div className="flex flex-col md:flex-row gap-4">
           <div className="">
-            <AddressForm
-              checkoutForm={checkoutForm}
-              handleChange={handleChange}
-            />
-            {stripePromise && clientSecret && isAddressValid() && (
-              <Elements stripe={stripePromise} options={{ clientSecret }}>
-                <PaymentForm />
-              </Elements>
+            {currentStep === 0 && (
+              <div>
+                <AddressForm
+                  checkoutForm={checkoutForm}
+                  handleChange={handleChange}
+                  onConfirm={() => {
+                    if (isAddressValid()) {
+                      setCurrentStep(1);
+                    } else {
+                      toast.error(
+                        "Please fill out all required address fields"
+                      );
+                    }
+                  }}
+                />
+              </div>
+            )}
+
+            {currentStep === 1 && (
+              <div>
+                <Elements stripe={stripePromise} options={{ clientSecret }}>
+                  <PaymentForm onBack={() => setCurrentStep(0)} />
+                </Elements>
+              </div>
             )}
           </div>
         </div>

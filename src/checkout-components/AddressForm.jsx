@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import BillingAddressForm from "./BillingAddressForm";
 
-const AddressForm = ({ checkoutForm, handleChange }) => {
+const AddressForm = ({ checkoutForm, handleChange, onConfirm }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const toggleForm = () => {
@@ -40,12 +40,12 @@ const AddressForm = ({ checkoutForm, handleChange }) => {
     }
 
     setIsOpen(false);
-    //if (onSubmit) onSubmit(checkoutForm);
+    if (onConfirm) onConfirm(); // Go to payment step
   };
 
   return (
     <div className="max-w-md mx-auto">
-      <form onSubmit={handleSubmit} className=" max-w-md mx-auto ">
+      <form className=" max-w-md mx-auto ">
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-2xl font-semibold mx-4">Shipping Address</h2>
         </div>
@@ -132,7 +132,11 @@ const AddressForm = ({ checkoutForm, handleChange }) => {
         </div>
         {isOpen ? (
           <div className="px-1 flex w-[50%]">
-            <button type="submit" className="btn m-0 mt-3 w-full">
+            <button
+              type="submit"
+              onClick={handleSubmit}
+              className="btn m-0 mt-3 w-full"
+            >
               Confirm Address
             </button>
           </div>

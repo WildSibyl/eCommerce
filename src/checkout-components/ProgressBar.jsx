@@ -89,7 +89,7 @@ export default function ProgressBar({ currentStep = 0 }) {
                     : "bg-gray-300 text-gray-600"
                 }`}
             >
-              {isCompleted ? <Check size={16} /> : step.icon}
+              {step.icon}
             </div>
 
             {/* Line */}

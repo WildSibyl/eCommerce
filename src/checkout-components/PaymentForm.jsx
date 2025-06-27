@@ -5,7 +5,7 @@ import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { PaymentElement } from "@stripe/react-stripe-js";
 import { useNavigate } from "react-router";
 
-const PaymentForm = () => {
+const PaymentForm = ({ onBack }) => {
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
@@ -66,7 +66,8 @@ const PaymentForm = () => {
         <PaymentElement className="mt-4" />
         <div className="px-1 flex">
           <button
-            type="submit"
+            type="button"
+            onClick={onBack}
             disabled={isProcessing || !stripe || !elements}
             className="btn bg-gray-500 w-[50%] m-0"
           >
