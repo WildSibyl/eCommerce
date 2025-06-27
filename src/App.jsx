@@ -1,4 +1,4 @@
-import { BrowserRouter, Link, Route, Routes } from "react-router";
+import { BrowserRouter, Route, Routes } from "react-router";
 import MainLayout from "./layout/MainLayout.jsx";
 import Home from "./pages/Home.jsx";
 import Category from "./pages/Category.jsx";
@@ -29,7 +29,7 @@ const App = () => {
           <Route path="/search" element={<FreeSearch />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route
-            path="/checkout/order-confirmation/:orderId"
+            path="/order-confirmation/:orderId"
             element={<OrderConfirmation />}
           />
           <Route path="/profile" element={<Profile />} />
