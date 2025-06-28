@@ -212,7 +212,7 @@ const Checkout = () => {
             )}
           </div>
         </div>
-        <div className="flex flex-col md:w-[30%] md:min-h-[50vh] bg-base-200 rounded-lg shadow-md p-4 md:ml-4">
+        <div className="flex flex-col w-[70%] mx-auto md:w-[40%] md:min-h-[50vh] bg-base-200 rounded-lg shadow-md p-4 md:ml-4">
           <div className="flex flex-row justify-between mb-2">
             <p>Subtotal ({cartItems} Items):</p>
             <p className="text-xl">€ {subtotalPrice.toFixed(2)}</p>
