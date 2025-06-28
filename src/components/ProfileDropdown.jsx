@@ -30,6 +30,13 @@ const ProfileDropdown = ({ user, logOut }) => {
           </button>
 
           <button
+            onClick={() => navigate("/orders")}
+            className="block w-full text-left px-4 py-2 hover:bg-blue-400 rounded-lg self-center text-white font-bold cursor-pointer"
+          >
+            My Orders
+          </button>
+
+          <button
             onClick={() => {
               logOut();
               navigate("/");
