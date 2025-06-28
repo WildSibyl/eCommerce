@@ -60,7 +60,7 @@ const AddressForm = ({ checkoutForm, handleChange, onConfirm }) => {
             <input
               type="text"
               name="userName"
-              placeholder="Full Name"
+              placeholder="Full name"
               value={checkoutForm.userName}
               onChange={handleChange}
               className="input input-bordered w-full"
@@ -76,7 +76,7 @@ const AddressForm = ({ checkoutForm, handleChange, onConfirm }) => {
             <input
               type="text"
               name="zipCode"
-              placeholder="Zip Code"
+              placeholder="Zip code"
               value={checkoutForm.zipCode}
               onChange={handleChange}
               className="input input-bordered w-full"
@@ -115,7 +115,7 @@ const AddressForm = ({ checkoutForm, handleChange, onConfirm }) => {
         )}
       </form>
       <div className="flex w-full">
-        <div className="flex flex-col items-center justify-between mt-4 space-y-4 text-sm w-[50%]">
+        <div className="flex flex-col items-center justify-between mt-4 space-y-4 text-sm w-[50%] mr-2">
           <label className="flex justify-center items-center space-x-2">
             <input
               type="checkbox"

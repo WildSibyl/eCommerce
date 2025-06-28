@@ -43,7 +43,7 @@ const BillingAddressForm = ({ checkoutForm, handleChange }) => {
             <input
               type="text"
               name="billingUserName"
-              placeholder="Full Name"
+              placeholder="Full name"
               value={checkoutForm.billingUserName}
               onChange={handleChange}
               className="input input-bordered w-full"

@@ -69,19 +69,19 @@ const PaymentForm = ({ onBack, orderId }) => {
           </a>
         </div>
         <PaymentElement className="mt-4" />
-        <div className="px-1 flex">
+        <div className="px-1 flex gap-4">
           <button
             type="button"
             onClick={onBack}
             disabled={isProcessing || !stripe || !elements}
-            className="btn bg-gray-500 w-[50%] m-0"
+            className="btn bg-gray-500 w-[49%] m-0 -ml-1"
           >
             Edit Address
           </button>
           <button
             type="submit"
             disabled={isProcessing || !stripe || !elements}
-            className="btn w-[50%] m-0"
+            className="btn w-[49%] m-0"
           >
             {isProcessing ? "Processing..." : "Confirm and Pay Now"}
           </button>
