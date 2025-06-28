@@ -51,8 +51,16 @@ const BillingAddressForm = ({ checkoutForm, handleChange }) => {
             <input
               type="text"
               name="billingStreet"
-              placeholder="Street Address"
+              placeholder="Street and house number"
               value={checkoutForm.billingStreet}
+              onChange={handleChange}
+              className="input input-bordered w-full"
+            />
+            <input
+              type="text"
+              name="billingZipCode"
+              placeholder="Zip code"
+              value={checkoutForm.billingZipCode}
               onChange={handleChange}
               className="input input-bordered w-full"
             />
@@ -69,14 +77,6 @@ const BillingAddressForm = ({ checkoutForm, handleChange }) => {
               name="billingState"
               placeholder="State/Province"
               value={checkoutForm.billingState}
-              onChange={handleChange}
-              className="input input-bordered w-full"
-            />
-            <input
-              type="text"
-              name="billingZipCode"
-              placeholder="Zip code"
-              value={checkoutForm.billingZipCode}
               onChange={handleChange}
               className="input input-bordered w-full"
             />

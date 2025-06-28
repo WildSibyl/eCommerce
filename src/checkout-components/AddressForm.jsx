@@ -68,8 +68,16 @@ const AddressForm = ({ checkoutForm, handleChange, onConfirm }) => {
             <input
               type="text"
               name="street"
-              placeholder="Street"
+              placeholder="Street and house number"
               value={checkoutForm.street}
+              onChange={handleChange}
+              className="input input-bordered w-full"
+            />
+            <input
+              type="text"
+              name="zipCode"
+              placeholder="Zip Code"
+              value={checkoutForm.zipCode}
               onChange={handleChange}
               className="input input-bordered w-full"
             />
@@ -86,14 +94,6 @@ const AddressForm = ({ checkoutForm, handleChange, onConfirm }) => {
               name="state"
               placeholder="State/Province"
               value={checkoutForm.state}
-              onChange={handleChange}
-              className="input input-bordered w-full"
-            />
-            <input
-              type="text"
-              name="zipCode"
-              placeholder="Zip Code"
-              value={checkoutForm.zipCode}
               onChange={handleChange}
               className="input input-bordered w-full"
             />
