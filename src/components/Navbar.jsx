@@ -35,24 +35,24 @@ const Navbar = ({ cartItems, onSearch }) => {
 
         <ThemeToggle />
         {user ? (
-          <div className="flex flex-row">
+          <div className="flex flex-row justify-center items-center">
             <ProfileDropdown user={user} logOut={logOut} />
           </div>
         ) : (
           <Link to="/login">
-            <div className="pt-1 mx-4 flex flex-row">
-              <button className=" self-center text-white font-bold ">
+            <div className="pt-1 mx-4 flex flex-row justify-center items-center">
+              <button className="self-center text-white font-bold">
                 Login
               </button>
             </div>
           </Link>
         )}
         <Link to="/cart">
-          <div className="pt-0.5 mx-4 flex flex-row">
-            <div className=" self-center text-white font-bold hidden md:block">
+          <div className=" mx-4 flex flex-row">
+            <div className="self-center text-white font-bold hidden md:block">
               Cart
             </div>
-            <div className="relative flex items-center justify-center">
+            <div className="relative flex items-center justify-center pt-0.5">
               <img src={cartIcon} alt="Cart icon" className="h-[30px] ml-2" />
               <span className="absolute -top-1 -right-2 text-white text-center rounded-full w-10.5 h-6 flex items-center justify-center">
                 {cartItems > 99 ? (

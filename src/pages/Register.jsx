@@ -140,11 +140,11 @@ const Register = ({ setUser }) => {
               className="h-5 w-5 focus:ring-blue-500 focus:ring-2 cursor-pointer"
               style={{ accentColor: "#1F46E5" }}
             />
-            <span className="text-pnp-black font-semibold">
+            <span className="text-content-100 font-semibold">
               I agree to the{" "}
               <button
                 type="button"
-                className="text-pnp-darkpurple underline hover:text-blue-500 font-semibold cursor-pointer"
+                className="text-purple-500 underline hover:text-blue-500 font-semibold cursor-pointer"
                 onClick={() => setIsModalOpen(true)}
               >
                 Terms and Conditions

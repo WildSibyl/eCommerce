@@ -22,9 +22,9 @@ const WelcomeModal = () => {
           : "opacity-0 invisible pointer-events-none"
       } `}
     >
-      <div className="flex flex-col mx-2 overflow-hidden *:items-center lg:mx-auto max-w-[500px] lg:max-w-[50vw] xl:max-w-[40vw] my-auto rounded-2xl bg-center bg-cover border-pnp-white">
-        <div className="flex flex-col relative px-8 -mt-10 items-center w-full bg-pnp-white p-2 rounded-b-2xl">
-          <h2 className="uppercase text-transparent bg-clip-text bg-gradient-to-r from-pnp-darkpurple to-pnp-darkblue my-4">
+      <div className="flex flex-col mx-2 overflow-hidden *:items-center lg:mx-auto max-w-[500px] lg:max-w-[50vw] xl:max-w-[40vw] my-auto rounded-2xl bg-center bg-cover border-white">
+        <div className="flex flex-col relative px-8 -mt-10 items-center w-full bg-white p-2 rounded-b-2xl">
+          <h2 className="uppercase text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 my-4">
             WELCOME, {user?.userName || "Adventurer!"}
           </h2>
           <p>Welcome to eCommerce! Are you ready to get the best deals?</p>

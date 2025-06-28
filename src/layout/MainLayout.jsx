@@ -22,21 +22,12 @@ const MainLayout = () => {
     setSearchQuery(query); // Update the search query in the state
   };
 
-  const [addressFormData, setAddressFormData] = useState({
-    userName: "",
-    street: "",
-    city: "",
-    state: "",
-    postalCode: "",
-    country: "",
-  });
-
   return (
     <div className="flex flex-col min-h-screen bg-base-300">
       <AuthContextProvider>
         <ToastContainer
-          position="top-right"
-          autoClose={5000}
+          position="bottom-right"
+          autoClose={1500}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
@@ -44,7 +35,7 @@ const MainLayout = () => {
           pauseOnFocusLoss
           draggable
           pauseOnHover
-          theme="light"
+          theme="colored"
         />
         <WelcomeModalContextProvider>
           <WelcomeModal />
@@ -60,8 +51,6 @@ const MainLayout = () => {
                 removeProduct,
                 cartItems,
                 searchQuery,
-                addressFormData,
-                setAddressFormData,
               }}
             />
           </div>

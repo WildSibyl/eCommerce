@@ -17,7 +17,7 @@ const ProfileDropdown = ({ user, logOut }) => {
           alt="Profile icon"
           className="h-full"
         />
-        <span className="ml-2">{user.userName}</span>
+        <span className="ml-2 font-bold">{user.userName}</span>
       </button>
 
       {open && (
