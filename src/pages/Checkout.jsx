@@ -89,7 +89,8 @@ const Checkout = () => {
       quantity,
     })),
     shipping: {
-      address: checkoutForm.street,
+      name: checkoutForm.userName,
+      street: checkoutForm.street,
       city: checkoutForm.city,
       state: checkoutForm.state,
       zip: checkoutForm.zipCode,
@@ -97,14 +98,16 @@ const Checkout = () => {
     },
     billing: checkoutForm.billingAddressIsSame
       ? {
-          address: checkoutForm.street,
+          name: checkoutForm.userName,
+          street: checkoutForm.street,
           city: checkoutForm.city,
           state: checkoutForm.state,
           zip: checkoutForm.zipCode,
           country: checkoutForm.country,
         }
       : {
-          address: checkoutForm.billingStreet,
+          name: checkoutForm.billingUserName,
+          street: checkoutForm.billingStreet,
           city: checkoutForm.billingCity,
           state: checkoutForm.billingState,
           zip: checkoutForm.billingZipCode,

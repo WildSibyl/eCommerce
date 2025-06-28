@@ -44,7 +44,8 @@ const OrderConfirmation = () => {
       <div className="flex flex-col md:flex-row gap-4 my-4">
         <div className="border border-base-100 rounded-2xl bg-base-200 p-4">
           <h2 className="text-xl font-semibold mb-2">Shipping address:</h2>
-          <div>{orderData.shipping.address}</div>
+          <div>{orderData.shipping.name}</div>
+          <div>{orderData.shipping.street}</div>
           <div>{orderData.shipping.city}</div>
           <div>{orderData.shipping.state}</div>
           <div>{orderData.shipping.zip}</div>
