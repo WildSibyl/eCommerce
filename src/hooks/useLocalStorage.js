@@ -73,5 +73,17 @@ export const useAddToCart = () => {
   // Calculate total number of items in cart
   const cartItems = cart.reduce((acc, product) => acc + product.quantity, 0);
 
-  return { cart, addProduct, decreaseQuantity, removeProduct, cartItems };
+  const clearCart = () => {
+    localStorage.removeItem("cartProducts");
+    setCart([]);
+  };
+
+  return {
+    cart,
+    addProduct,
+    decreaseQuantity,
+    removeProduct,
+    cartItems,
+    clearCart,
+  };
 };
