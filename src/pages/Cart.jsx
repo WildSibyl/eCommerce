@@ -1,9 +1,10 @@
 import ProductCardLong from "../card-components/ProductCardLong";
 import { useOutletContext, useNavigate } from "react-router";
+import { useCart } from "../hooks/useCart";
 
 const Cart = () => {
   const { cart, addProduct, decreaseQuantity, removeProduct, cartItems } =
-    useOutletContext();
+    useCart();
 
   const navigate = useNavigate();
 

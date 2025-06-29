@@ -4,7 +4,6 @@ import WelcomeModal from "../components/reg-comp/WelcomeModal";
 import { Outlet } from "react-router";
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";
-import { useAddToCart } from "../hooks/useCart";
 import {
   AuthContextProvider,
   AuthContext,
@@ -14,9 +13,6 @@ import { CartContextProvider } from "../context/CartContextProvider";
 
 // This is a Layout component, using React's composable nature
 const MainLayout = () => {
-  const { cart, addProduct, decreaseQuantity, removeProduct, cartItems } =
-    useAddToCart();
-
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (query) => {
@@ -40,17 +36,12 @@ const MainLayout = () => {
             theme="colored"
           />
           <WelcomeModalContextProvider>
-            <Navbar cartItems={cartItems} onSearch={handleSearch} />
+            <Navbar onSearch={handleSearch} />
             <WelcomeModal />
             <div className="flex-grow">
               {/* The Outlet component is a placeholder for children components under this route */}
               <Outlet
                 context={{
-                  cart,
-                  addProduct,
-                  decreaseQuantity,
-                  removeProduct,
-                  cartItems,
                   searchQuery,
                 }}
               />

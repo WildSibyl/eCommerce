@@ -4,13 +4,13 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { PaymentElement } from "@stripe/react-stripe-js";
 import { useNavigate } from "react-router";
-import { useAddToCart } from "../hooks/useCart";
+import { useCart } from "../hooks/useCart";
 
 const PaymentForm = ({ onBack, orderId }) => {
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
-  const { clearCart, cartItems } = useAddToCart();
+  const { clearCart, cartItems } = useCart();
 
   const [isProcessing, setIsProcessing] = useState(false);
 

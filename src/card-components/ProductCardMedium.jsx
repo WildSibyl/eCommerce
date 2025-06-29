@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router";
-
+import { useCart } from "../hooks/useCart";
 import ProductImage from "./ProductImage";
 
-const ProductCardMedium = ({ product, addProduct }) => {
+const ProductCardMedium = ({ product }) => {
+  const { addProduct } = useCart();
+
   return (
     <div key={product.id} className="box relative max-h-[374px]">
       <Link to={`/products/${product.id}`}>
