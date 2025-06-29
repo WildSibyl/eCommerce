@@ -2,8 +2,8 @@ const OrderSummaryCard = ({ orderData, orderItems, orderId }) => {
   if (!orderData || !orderItems) return null;
 
   return (
-    <div className="flex flex-col md:flex-row gap-4 mt-2 mb-4">
-      <div className="border border-base-100 rounded-2xl bg-base-200 p-4">
+    <div className="flex flex-col md:flex-row mt-2 mb-4 border border-base-100 rounded-2xl bg-base-200">
+      <div className="p-4 pl-6 pb-5">
         <p className="text-xl mb-4 font-semibold"># {orderId}</p>
         {orderData?.userId === null && (
           <p className="mb-4 text-center font-bold bg-error text-error-content rounded-lg px-3 py-2">
@@ -57,7 +57,7 @@ const OrderSummaryCard = ({ orderData, orderItems, orderId }) => {
         </div>
       </div>
 
-      <div className="border border-base-100 rounded-2xl bg-base-200 p-4 min-w-50">
+      <div className="p-4 pl-6 pb-5 border-base-100 border-t md:border-t-0 md:border-l min-w-50">
         <h2 className="text-xl font-semibold mb-2">Shipping to:</h2>
         <div>{orderData.shipping.name}</div>
         <div>{orderData.shipping.street}</div>

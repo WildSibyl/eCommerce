@@ -12,12 +12,9 @@ const ProfileDropdown = ({ user, logOut }) => {
         onClick={() => setOpen((prev) => !prev)}
         className="rounded w-[74px] h-[27px] flex items-center justify-center text-white font-semibold cursor-pointer"
       >
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-          alt="Profile icon"
-          className="h-full"
-        />
-        <span className="ml-2 font-bold">{user.userName}</span>
+        <div className="flex flex-col items-center">
+          <span className="ml-2 font-bold">Account</span>
+        </div>
       </button>
 
       {open && (

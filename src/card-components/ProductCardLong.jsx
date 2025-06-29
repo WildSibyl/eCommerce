@@ -1,17 +1,12 @@
 import React from "react";
 import { Link } from "react-router";
 import ProductImage from "./ProductImage";
-import { useAddToCart } from "../hooks/useLocalStorage";
+import { useCart } from "../hooks/useCart";
 import Counter from "./Counter";
 
-const ProductCardLong = ({
-  product,
-  cart,
-  addProduct,
-  decreaseQuantity,
-  removeProduct,
-  cartItems,
-}) => {
+const ProductCardLong = ({ product }) => {
+  const { addProduct, decreaseQuantity, removeProduct, cartItems } = useCart();
+
   return (
     <div key={product.id} className="box md:longbox">
       <div className="flex flex-col md:flex-row items-center justify-center h-full">

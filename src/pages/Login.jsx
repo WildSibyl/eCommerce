@@ -23,8 +23,9 @@ const Login = () => {
       setLoading(true);
       const data = await signIn({ email, password });
       setUser(data.user);
+      const firstName = data.user.userName.split(" ")[0];
       navigate("/");
-      toast.success(`Welcome, ${data.user.userName}!`);
+      toast.success(`Welcome, ${firstName}!`);
       //console.log(email, password);
     } catch (error) {
       toast.error(error.message);

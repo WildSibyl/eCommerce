@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router";
+import { useCart } from "../hooks/useCart";
 import ProductImage from "./ProductImage";
 
-const ProductCardSearch = ({ product, addProduct }) => {
+const ProductCardSearch = ({ product }) => {
+  const { addProduct } = useCart();
+
   return (
     <div key={product.id} className="box md:longbox">
       <div className="flex flex-col md:flex-row">

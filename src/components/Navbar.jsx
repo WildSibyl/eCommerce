@@ -6,11 +6,14 @@ import cartIcon from "../assets/shopping-cart-icon.png";
 import Searchbar from "./Searchbar";
 import ProfileDropdown from "./ProfileDropdown";
 import { useAuth } from "../hooks/useAuth";
+import { useCart } from "../hooks/useCart";
 //import { useOutletContext } from "react-router";
 
 // This component simply renders a navigation bar
-const Navbar = ({ cartItems, onSearch }) => {
+const Navbar = ({ onSearch }) => {
   const { user, setUser, logOut } = useAuth();
+  const { cartItems } = useCart();
+
   //const { cartItems } = useOutletContext();
 
   return (

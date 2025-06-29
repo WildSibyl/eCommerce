@@ -3,7 +3,7 @@ import { useWelcomeModal } from "../../context/WelcomeModalContextProvider";
 import { useAuth } from "../../hooks/useAuth";
 import { useState, useEffect } from "react";
 
-const WelcomeModal = () => {
+const WelcomeModal = ({ regForm }) => {
   const { closeWelcomeModal, isWelcomeModalOpen } = useWelcomeModal();
   const { user } = useAuth();
 
@@ -22,17 +22,18 @@ const WelcomeModal = () => {
           : "opacity-0 invisible pointer-events-none"
       } `}
     >
-      <div className="flex flex-col mx-2 overflow-hidden *:items-center lg:mx-auto max-w-[500px] lg:max-w-[50vw] xl:max-w-[40vw] my-auto rounded-2xl bg-center bg-cover border-white">
-        <div className="flex flex-col relative px-8 -mt-10 items-center w-full bg-white p-2 rounded-b-2xl">
-          <h2 className="uppercase text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 my-4">
-            WELCOME, {user?.userName || "Adventurer!"}
+      <div className="flex flex-col mx-2 overflow-hidden *:items-center lg:mx-auto max-w-[500px] lg:max-w-[50vw] xl:max-w-[40vw] my-auto rounded-2xl bg-center bg-cover border-base-100">
+        <div className="flex flex-col relative px-8 items-center w-full bg-base-100 p-4 rounded-b-2xl gap-4">
+          <h2 className="uppercase font-semibold">
+            WELCOME TO THE TECH OUTLET!!
           </h2>
-          <p>Welcome to eCommerce! Are you ready to get the best deals?</p>
-          <button
-            className="btn-primary-light mt-6"
-            onClick={closeWelcomeModal}
-          >
-            LET'S GO
+          <p>Are you ready to save like a pro?</p>
+          <p>
+            Here is a discount code just for you: <strong>BESTDEALS50%</strong>
+          </p>
+          <p>Login now to get an additional 50% off your first order!</p>
+          <button className="btn m-0" onClick={closeWelcomeModal}>
+            LOG IN
           </button>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, Navigate, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { signUp } from "../data/auth";
 import { useAuth } from "../hooks/useAuth";
@@ -93,7 +93,7 @@ const Register = ({ setUser }) => {
         <input
           type="text"
           name="userName"
-          placeholder="Name"
+          placeholder="Full name"
           className="w-full px-5 py-2 border rounded-full shadow appearance-none focus:outline-none"
           value={regForm.userName}
           onChange={handleChange}
@@ -144,7 +144,7 @@ const Register = ({ setUser }) => {
               I agree to the{" "}
               <button
                 type="button"
-                className="text-purple-500 underline hover:text-blue-500 font-semibold cursor-pointer"
+                className="underline hover:text-blue-500 font-semibold cursor-pointer"
                 onClick={() => setIsModalOpen(true)}
               >
                 Terms and Conditions

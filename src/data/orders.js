@@ -21,3 +21,15 @@ export const getOrderById = async (orderId) => {
   const data = await res.json();
   return data;
 };
+
+export const getOrdersByUserId = async (userId) => {
+  const res = await fetch(`${baseUrl}/user?userId=${userId}`, {
+    method: "GET",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch user orders");
+  }
+
+  return await res.json();
+};
