@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { checkoutConfig, checkoutPayment } from "../data/checkout";
 import { useAuth } from "../hooks/useAuth";
+import { useCart } from "../hooks/useCart";
 
 const Checkout = () => {
   const [stripePromise, setStripePromise] = useState(null);
@@ -13,8 +14,8 @@ const Checkout = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [orderId, setOrderId] = useState("");
 
-  const { cart, cartItems } = useOutletContext();
   const { user } = useAuth();
+  const { cart, cartItems } = useCart();
 
   const [checkoutForm, setCheckoutForm] = useState({
     userName: "",
