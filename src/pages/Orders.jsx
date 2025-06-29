@@ -78,6 +78,7 @@ const Orders = () => {
         ) : (
           orders.map((order) => (
             <OrderSummaryCard
+              key={order.orderId}
               orderId={order.orderId}
               orderData={order}
               orderItems={order.enrichedItems}

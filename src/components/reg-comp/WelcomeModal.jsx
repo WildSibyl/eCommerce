@@ -23,15 +23,17 @@ const WelcomeModal = ({ regForm }) => {
       } `}
     >
       <div className="flex flex-col mx-2 overflow-hidden *:items-center lg:mx-auto max-w-[500px] lg:max-w-[50vw] xl:max-w-[40vw] my-auto rounded-2xl bg-center bg-cover border-base-100">
-        <div className="flex flex-col relative px-8 items-center w-full bg-base-100 p-2 rounded-b-2xl">
-          <h2 className="uppercase my-4">WELCOME to eCommerce!!</h2>
-          <p>Are you ready to save ike a pro?</p>
+        <div className="flex flex-col relative px-8 items-center w-full bg-base-100 p-4 rounded-b-2xl gap-4">
+          <h2 className="uppercase font-semibold">
+            WELCOME TO THE TECH OUTLET!!
+          </h2>
+          <p>Are you ready to save like a pro?</p>
           <p>
-            Here is a discount code for your first purchase:{" "}
-            <strong>BESTDEALS50%</strong>
+            Here is a discount code just for you: <strong>BESTDEALS50%</strong>
           </p>
-          <button className="btn mt-6" onClick={closeWelcomeModal}>
-            LET'S GO
+          <p>Login now to get an additional 50% off your first order!</p>
+          <button className="btn m-0" onClick={closeWelcomeModal}>
+            LOG IN
           </button>
         </div>
       </div>
