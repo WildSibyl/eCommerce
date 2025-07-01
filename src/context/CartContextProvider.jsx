@@ -10,6 +10,10 @@ export const CartContextProvider = ({ children }) => {
     return savedCart;
   });
 
+  const [discountCode, setDiscountCode] = useState("");
+  const [discountAmount, setDiscountAmount] = useState(0);
+  const [discountError, setDiscountError] = useState("");
+
   console.log(`cartProducts array created: ${cart}`);
 
   useEffect(() => {
@@ -84,6 +88,12 @@ export const CartContextProvider = ({ children }) => {
   const values = {
     cart,
     cartItems,
+    discountCode,
+    discountAmount,
+    setDiscountCode,
+    setDiscountAmount,
+    discountError,
+    setDiscountError,
     addProduct,
     decreaseQuantity,
     removeProduct,

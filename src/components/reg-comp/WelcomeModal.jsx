@@ -31,7 +31,7 @@ const WelcomeModal = ({ regForm }) => {
           <p>
             Here is a discount code just for you: <strong>BESTDEALS50%</strong>
           </p>
-          <p>Login now to get an additional 50% off your first order!</p>
+          <p>Login now to get an additional 50% off your next order!</p>
           <button className="btn m-0" onClick={closeWelcomeModal}>
             LOG IN
           </button>
