@@ -9,7 +9,7 @@ const AllProducts = () => {
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(null);
 
-  const { addProduct } = useOutletContext();
+  const { addProduct } = useCart();
   const { products, loading, error } = useProducts();
 
   const [filters, setFilters] = useState({

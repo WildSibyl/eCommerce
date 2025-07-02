@@ -14,7 +14,7 @@ const Navbar = ({ onSearch }) => {
   const { user, setUser, logOut } = useAuth();
   const { cartItems } = useCart();
 
-  //const { cartItems } = useOutletContext();
+  //const { cartItems } = useCart();
 
   return (
     <div className="sticky top-0 z-50">

@@ -1,12 +1,57 @@
 import ProductCardLong from "../card-components/ProductCardLong";
-import { useOutletContext, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useCart } from "../hooks/useCart";
+import { applyDiscount } from "../data/discounts";
 
 const Cart = () => {
-  const { cart, addProduct, decreaseQuantity, removeProduct, cartItems } =
-    useCart();
+  const {
+    cart,
+    addProduct,
+    decreaseQuantity,
+    removeProduct,
+    cartItems,
+    discountCode,
+    discountAmount,
+    setDiscountCode,
+    setDiscountAmount,
+    discountError,
+    setDiscountError,
+  } = useCart();
 
   const navigate = useNavigate();
+
+  // Calculate subtotal, shipping, and total prices
+  const subtotalPrice = cart.reduce((acc, product) => {
+    const productPrice =
+      product.discount > 0
+        ? product.price - product.price * (product.discount / 100)
+        : product.price;
+    return acc + productPrice * product.quantity;
+  }, 0);
+
+  const applyDiscountCode = async () => {
+    setDiscountError("");
+
+    try {
+      const discountData = await applyDiscount(discountCode);
+
+      const discountValue =
+        subtotalPrice * (discountData.discount.percentage / 100);
+
+      console.log(
+        "Discount applied:",
+        subtotalPrice,
+        discountData.discount.percentage,
+        discountAmount
+      );
+
+      setDiscountAmount(discountValue);
+    } catch (error) {
+      setDiscountError(error.message);
+      console.error("Error applying discount code:", error);
+      setDiscountAmount(0);
+    }
+  };
 
   const handleCheckout = () => {
     navigate("/checkout");
@@ -29,15 +74,6 @@ const Cart = () => {
     );
   }
 
-  // Calculate subtotal, shipping, and total prices
-  const subtotalPrice = cart.reduce((acc, product) => {
-    const productPrice =
-      product.discount > 0
-        ? product.price - product.price * (product.discount / 100)
-        : product.price;
-    return acc + productPrice * product.quantity;
-  }, 0);
-
   return (
     <div className="flex flex-col h-full p-4 pb-0 lg:px-[10%]">
       <h2 className="text-3xl font-semibold mb-4">Your cart</h2>
@@ -59,6 +95,36 @@ const Cart = () => {
             <p>Subtotal ({cartItems} Items):</p>
             <p className="text-xl">€ {subtotalPrice.toFixed(2)}</p>
           </div>
+          {discountAmount > 0 && (
+            <div className="flex flex-row justify-between mb-2">
+              <p>Discounted:</p>
+              <p className="text-xl">
+                € {(subtotalPrice - discountAmount).toFixed(2)}
+              </p>
+            </div>
+          )}
+          <div className="mx-2">
+            <input
+              type="text"
+              value={discountCode}
+              onChange={(e) => setDiscountCode(e.target.value.toUpperCase())}
+              placeholder="Enter discount code"
+              className="input input-bordered mb-2 mx-auto w-full"
+            />
+          </div>
+          <button className="btn btn-primary mb-4" onClick={applyDiscountCode}>
+            Apply Discount
+          </button>
+          {discountError && (
+            <p className="text-error font-bold text-sm mb-2 text-center">
+              {discountError}
+            </p>
+          )}
+          {discountAmount > 0 && (
+            <p className="text-success font-bold text-sm mb-2 text-center">
+              Discount applied: €{discountAmount.toFixed(2)} off your order!
+            </p>
+          )}
 
           <button onClick={handleCheckout} className="btn">
             Go to checkout

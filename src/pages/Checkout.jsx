@@ -15,7 +15,7 @@ const Checkout = () => {
   const [orderId, setOrderId] = useState("");
 
   const { user } = useAuth();
-  const { cart, cartItems } = useCart();
+  const { cart, cartItems, discountAmount, discountCode } = useCart();
 
   const [checkoutForm, setCheckoutForm] = useState({
     userName: "",
@@ -74,13 +74,15 @@ const Checkout = () => {
   };
 
   // Calculate subtotal, shipping, and total prices
-  const subtotalPrice = cart.reduce((acc, product) => {
+  const subtotalRaw = cart.reduce((acc, product) => {
     const productPrice =
       product.discount > 0
         ? product.price - product.price * (product.discount / 100)
         : product.price;
     return acc + productPrice * product.quantity;
   }, 0);
+
+  const subtotalPrice = subtotalRaw - discountAmount;
 
   const shippingPrice = 5.0; // Flat shipping price
   const totalPrice = subtotalPrice + shippingPrice;
@@ -115,6 +117,7 @@ const Checkout = () => {
           country: checkoutForm.billingCountry,
         },
     fee: shippingPrice.toFixed(2),
+    discountCode: discountCode || null,
     total: Math.round(totalPrice * 100), // convert to cents
   };
 

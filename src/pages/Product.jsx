@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import { useProduct } from "../hooks/useProductData";
-import { useOutletContext } from "react-router";
+import { useCart } from "../hooks/useCart";
 // import { Counter } from "../components/Counter.jsx";
 import ProductImage from "../card-components/ProductImage.jsx";
 
@@ -12,7 +12,7 @@ const Product = () => {
   console.log(` Product ID: ${productId}`);
 
   const { product, loading, error } = useProduct(productId);
-  const { addProduct } = useOutletContext();
+  const { addProduct } = useCart();
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;

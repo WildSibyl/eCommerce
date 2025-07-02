@@ -47,13 +47,19 @@ const OrderSummaryCard = ({ orderData, orderItems, orderId }) => {
             </div>
           )
         )}
+        {orderData.discountCode && (
+          <div className="flex">
+            <p className="w-28 flex-shrink-0">Discount:</p>
+            <p>{orderData.discountCode}</p>
+          </div>
+        )}
         <div className="flex">
           <p className="w-28 flex-shrink-0">Shipping:</p>
           <p>€ {orderData.fee}</p>
         </div>
         <div className="flex">
-          <p className="w-28 flex-shrink-0">Total:</p>
-          <p>€ {orderData.total / 100}</p>
+          <p className="w-28 flex-shrink-0 font-semibold">Total:</p>
+          <p className="font-semibold">€ {orderData.total / 100}</p>
         </div>
       </div>
 
