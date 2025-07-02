@@ -10,7 +10,7 @@ const Category = () => {
   const { productCategory } = useParams();
   console.log(` Category: ${productCategory}`);
 
-  const { addProduct } = useOutletContext();
+  const { addProduct } = useCart();
 
   const { category, loading, error } = useCategory(productCategory);
 

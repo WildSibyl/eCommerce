@@ -1,5 +1,5 @@
 import ProductCardLong from "../card-components/ProductCardLong";
-import { useOutletContext, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useCart } from "../hooks/useCart";
 import { applyDiscount } from "../data/discounts";
 
@@ -41,7 +41,8 @@ const Cart = () => {
       console.log(
         "Discount applied:",
         subtotalPrice,
-        discountData.discount.percentage
+        discountData.discount.percentage,
+        discountAmount
       );
 
       setDiscountAmount(discountValue);
@@ -94,29 +95,34 @@ const Cart = () => {
             <p>Subtotal ({cartItems} Items):</p>
             <p className="text-xl">€ {subtotalPrice.toFixed(2)}</p>
           </div>
-          <div className="flex flex-row justify-between mb-2">
-            <p>Discounted:</p>
-            <p className="text-xl">
-              € {(subtotalPrice - discountAmount).toFixed(2)}
-            </p>
+          {discountAmount > 0 && (
+            <div className="flex flex-row justify-between mb-2">
+              <p>Discounted:</p>
+              <p className="text-xl">
+                € {(subtotalPrice - discountAmount).toFixed(2)}
+              </p>
+            </div>
+          )}
+          <div className="mx-2">
+            <input
+              type="text"
+              value={discountCode}
+              onChange={(e) => setDiscountCode(e.target.value.toUpperCase())}
+              placeholder="Enter discount code"
+              className="input input-bordered mb-2 mx-auto w-full"
+            />
           </div>
-
-          <input
-            type="text"
-            value={discountCode}
-            onChange={(e) => setDiscountCode(e.target.value.toUpperCase())}
-            placeholder="Enter discount code"
-            className="input input-bordered mb-2"
-          />
           <button className="btn btn-primary mb-4" onClick={applyDiscountCode}>
             Apply Discount
           </button>
           {discountError && (
-            <p className="text-error text-sm mb-2">{discountError}</p>
+            <p className="text-error font-bold text-sm mb-2 text-center">
+              {discountError}
+            </p>
           )}
           {discountAmount > 0 && (
-            <p className="text-success text-sm mb-2">
-              Discount applied: €{discountAmount.toFixed(2)}
+            <p className="text-success font-bold text-sm mb-2 text-center">
+              Discount applied: €{discountAmount.toFixed(2)} off your order!
             </p>
           )}
 
