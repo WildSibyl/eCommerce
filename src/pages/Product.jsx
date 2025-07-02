@@ -20,20 +20,6 @@ const Product = () => {
 
   console.log(product);
 
-  // const handleQuantityChange = (newQuantity) => {
-  //   setQuantity(newQuantity);
-  // };
-
-  // const handleAddToCart = () => {
-  //   // Add the product to the cart with the selected quantity
-  //   console.log(`Added ${quantity} of ${product.title} to the cart.`);
-  // };
-
-  // const handleBuyNow = () => {
-  //   // Handle the buy now action
-  //   console.log(`Buying ${quantity} of ${product.title} now.`);
-  // };
-
   return (
     <div
       id="product-container"
@@ -43,7 +29,7 @@ const Product = () => {
         <h2 className="text-2xl font-semibold my-4 md:mx-4">{product.title}</h2>
 
         <div key={product.id} className="flex flex-col md:flex-row w-full">
-          <div className="md:w-[250%] object-contain p-4 bg-white rounded-lg shadow-md">
+          <div className="w-[100%] sm:w-[50%] md:min-w-[300px] md:max-w-[500px] object-contain p-4 bg-white rounded-lg shadow-md">
             <ProductImage product={product} />
           </div>
           <div className="flex flex-col my-4 md:mx-4">
@@ -105,9 +91,7 @@ const Product = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col w-full md:w-[1000px] border border-base-200 font-bold justify-center items-center rounded-lg md:h-[400px] m-4 bg-base-200 shadow-md gap-4">
-        <p className="text-sm">In stock</p>
-        <p className="text-sm">Quantity</p>
+      <div className="flex flex-col w-full md:w-[150px] border border-base-200 font-bold justify-center items-center rounded-lg md:h-[400px] bg-base-200 shadow-md shrink-0 py-4">
         {/* <Counter initialValue={1} maxValue={30} /> */}
         <button onClick={() => addProduct(product)} className="btn">
           Add to Cart
