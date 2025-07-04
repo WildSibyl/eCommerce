@@ -1,15 +1,14 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { useProducts } from "../hooks/useProductData";
-import { useCategory } from "../hooks/useProductData";
 import ProductCardSmall from "../card-components/ProductCardSmall";
 import HeroCarousel from "../components/HeroCarousel";
 import CategoryBar from "../components/CategoryBar";
+import DisclaimerModal from "../components/DisclaimerModal";
 
 const Home = () => {
+  const [infoModalOpen, setInfoModalOpen] = useState(true);
+  const [acceptedInfo, setAcceptedInfo] = useState(false);
   const { products, loading, error } = useProducts();
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
 
   const appliances = products
     .filter((product) => product.category === "appliances")
@@ -36,6 +35,21 @@ const Home = () => {
     .slice(0, 4);
 
   const deals = products.filter((product) => product.discount > 24).slice(0, 4);
+
+  useEffect(() => {
+    const hasAccepted = localStorage.getItem("acceptTerms");
+    if (hasAccepted === "true") {
+      setInfoModalOpen(false);
+    }
+  }, []);
+
+  const handleCloseModal = () => {
+    setInfoModalOpen(false);
+    localStorage.setItem("acceptTerms", "true");
+  };
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <>
@@ -137,7 +151,13 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div></div>
+        {infoModalOpen && (
+          <DisclaimerModal
+            handleCloseModal={handleCloseModal}
+            acceptedInfo={acceptedInfo}
+            setAcceptedInfo={setAcceptedInfo}
+          />
+        )}
       </div>
     </>
   );

@@ -3,7 +3,7 @@ import { useWelcomeModal } from "../../context/WelcomeModalContextProvider";
 import { useAuth } from "../../hooks/useAuth";
 import { useState, useEffect } from "react";
 
-const WelcomeModal = ({ regForm }) => {
+const WelcomeModal = () => {
   const { closeWelcomeModal, isWelcomeModalOpen } = useWelcomeModal();
   const { user } = useAuth();
 
