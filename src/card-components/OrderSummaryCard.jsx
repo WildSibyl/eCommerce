@@ -3,7 +3,7 @@ const OrderSummaryCard = ({ orderData, orderItems, orderId }) => {
 
   return (
     <div className="flex flex-col md:flex-row mt-2 mb-4 border border-base-100 rounded-2xl bg-base-200">
-      <div className="p-4 pl-6 pb-5">
+      <div className="p-4 pl-6 pb-5 w-full">
         <p className="text-xl mb-4 font-semibold"># {orderId}</p>
         {orderData?.userId === null && (
           <p className="mb-4 text-center font-bold bg-error text-error-content rounded-lg px-3 py-2">

@@ -103,16 +103,22 @@ const Cart = () => {
               </p>
             </div>
           )}
+          <button onClick={handleCheckout} className="btn">
+            Go to checkout
+          </button>
           <div className="mx-2">
             <input
               type="text"
               value={discountCode}
               onChange={(e) => setDiscountCode(e.target.value.toUpperCase())}
-              placeholder="Enter discount code"
-              className="input input-bordered mb-2 mx-auto w-full"
+              placeholder="Discount code"
+              className="input input-bordered m-2 mx-auto w-full"
             />
           </div>
-          <button className="btn btn-primary mb-4" onClick={applyDiscountCode}>
+          <button
+            className="btn btn-primary bg-gray-500"
+            onClick={applyDiscountCode}
+          >
             Apply Discount
           </button>
           {discountError && (
@@ -126,9 +132,6 @@ const Cart = () => {
             </p>
           )}
 
-          <button onClick={handleCheckout} className="btn">
-            Go to checkout
-          </button>
           <div className="flex flex-col items-center justify-center text-sm text-error-content rounded-3xl bg-error p-4 m-2 mt-4">
             <p className="mb-2 text-center font-bold text-lg">
               This is a student project focused on testing eCommerce features.

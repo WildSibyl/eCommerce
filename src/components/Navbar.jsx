@@ -7,14 +7,11 @@ import Searchbar from "./Searchbar";
 import ProfileDropdown from "./ProfileDropdown";
 import { useAuth } from "../hooks/useAuth";
 import { useCart } from "../hooks/useCart";
-//import { useOutletContext } from "react-router";
 
 // This component simply renders a navigation bar
 const Navbar = ({ onSearch }) => {
   const { user, setUser, logOut } = useAuth();
   const { cartItems } = useCart();
-
-  //const { cartItems } = useCart();
 
   return (
     <div className="sticky top-0 z-50">

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router";
 import { useCategory } from "../hooks/useProductData";
 import { useParams } from "react-router";
-import { useOutletContext } from "react-router";
+import { useCart } from "../hooks/useCart";
 import ProductCardMedium from "../card-components/ProductCardMedium";
 import CategoryBar from "../components/CategoryBar";
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router";
 import { useProducts } from "../hooks/useProductData";
-import { useOutletContext } from "react-router";
+import { useCart } from "../hooks/useCart";
 import ProductCardMedium from "../card-components/ProductCardMedium";
 import CategoryBar from "../components/CategoryBar";
 
