@@ -5,6 +5,7 @@ const ProfileDropdown = ({ user, logOut }) => {
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
+  const firstName = user.userName.split(" ")[0];
 
   return (
     <div className="relative inline-block text-left">
@@ -12,8 +13,11 @@ const ProfileDropdown = ({ user, logOut }) => {
         onClick={() => setOpen((prev) => !prev)}
         className="rounded w-[74px] h-[27px] flex items-center justify-center text-white font-semibold cursor-pointer"
       >
-        <div className="flex flex-col items-center">
-          <span className="ml-2 font-bold">Account</span>
+        <div className="flex flex-col items-center relative">
+          <span className="absolute text-[10.5px] left-1/2 -translate-x-1/2 -translate-y-1.5">
+            {firstName}'s
+          </span>
+          <span className="font-bold">Account</span>
         </div>
       </button>
 
