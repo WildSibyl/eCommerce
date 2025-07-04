@@ -22,7 +22,7 @@ const ProfileDropdown = ({ user, logOut }) => {
       </button>
 
       {open && (
-        <div className="absolute -right-6 top-10 w-30 bg-blue-500 rounded-lg shadow-lg z-50">
+        <div className="absolute -right-6 top-[37px] w-30 bg-blue-500 rounded-lg shadow-lg z-50">
           <button
             onClick={() => navigate("/profile")}
             className="block w-full text-left px-4 py-2 hover:bg-blue-400 rounded-lg self-center text-white font-bold cursor-pointer"
