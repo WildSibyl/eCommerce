@@ -1,4 +1,3 @@
-import { useOutletContext } from "react-router";
 import { useAuth } from "../hooks/useAuth";
 
 const Profile = () => {
