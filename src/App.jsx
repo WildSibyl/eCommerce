@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router";
+import { useEffect } from "react";
 import MainLayout from "./layout/MainLayout.jsx";
 import Home from "./pages/Home.jsx";
 import Category from "./pages/Category.jsx";
@@ -14,7 +15,15 @@ import OrderConfirmation from "./pages/OrderConfirmation.jsx";
 import Profile from "./pages/Profile.jsx";
 import Orders from "./pages/Orders.jsx";
 
+import { ping } from "./data/ping.js";
+
 const App = () => {
+  useEffect(() => {
+    ping()
+      .then(() => console.log("DB is reachable"))
+      .catch((error) => console.error("DB is not reachable:", error));
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>

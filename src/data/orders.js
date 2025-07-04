@@ -1,5 +1,3 @@
-import { loadStripe } from "@stripe/stripe-js";
-
 const API_URL = import.meta.env.VITE_APP_ECOMMERCE_API_URL;
 
 if (!API_URL) {
