@@ -2,6 +2,7 @@ import ProductCardLong from "../components/card-components/ProductCardLong";
 import { useNavigate } from "react-router";
 import { useCart } from "../hooks/useCart";
 import { applyDiscount } from "../data/discounts";
+import emptyCartImage from "../assets/empty_cart.png";
 
 const Cart = () => {
   const {
@@ -64,7 +65,7 @@ const Cart = () => {
         <div className="flex flex-col items-center">
           <div className="max-w-[300px] mx-auto m-4">
             <img
-              src="src/assets/empty_cart.png"
+              src={emptyCartImage}
               alt="a stylized illustration of a confused cat in an empty cart"
             />
           </div>

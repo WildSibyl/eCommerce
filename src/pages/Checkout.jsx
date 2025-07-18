@@ -7,6 +7,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { checkoutConfig, checkoutPayment } from "../data/checkout";
 import { useAuth } from "../hooks/useAuth";
 import { useCart } from "../hooks/useCart";
+import emptyCartImage from "../assets/empty_cart.png";
 
 const Checkout = () => {
   const [stripePromise, setStripePromise] = useState(null);
@@ -168,7 +169,7 @@ const Checkout = () => {
         <div className="flex flex-col items-center">
           <div className="max-w-[300px] mx-auto m-4">
             <img
-              src="src/assets/empty_cart.png"
+              src={emptyCartImage}
               alt="a stylized illustration of a confused cat in an empty cart"
             />
           </div>

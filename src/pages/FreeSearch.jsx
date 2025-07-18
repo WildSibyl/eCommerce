@@ -55,7 +55,7 @@ const FreeSearch = () => {
               <div className="max-w-[300px] mx-auto m-4">
                 <img
                   src={notFound}
-                  alt="a stylized illustration of a confused cat in an empty cart"
+                  alt="a stylized illustration of a confused cat playing with a magnifying glass"
                 />
               </div>
               <h2>No results found for "{searchQuery}". Try something else!</h2>
