@@ -4,7 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { PaymentElement } from "@stripe/react-stripe-js";
 import { useNavigate } from "react-router";
-import { useCart } from "../hooks/useCart";
+import { useCart } from "../../hooks/useCart";
 
 const PaymentForm = ({ onBack, orderId }) => {
   const stripe = useStripe();

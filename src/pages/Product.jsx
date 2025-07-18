@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router";
 import { useProduct } from "../hooks/useProductData";
 import { useCart } from "../hooks/useCart";
 // import { Counter } from "../components/Counter.jsx";
-import ProductImage from "../card-components/ProductImage.jsx";
+import ProductImage from "../components/card-components/ProductImage.jsx";
 
 const Product = () => {
   const { productId } = useParams();

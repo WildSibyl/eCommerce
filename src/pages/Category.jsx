@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { useCategory } from "../hooks/useProductData";
 import { useParams } from "react-router";
 import { useCart } from "../hooks/useCart";
-import ProductCardMedium from "../card-components/ProductCardMedium";
+import ProductCardMedium from "../components/card-components/ProductCardMedium";
 import CategoryBar from "../components/CategoryBar";
 
 const Category = () => {

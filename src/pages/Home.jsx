@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useProducts } from "../hooks/useProductData";
-import ProductCardSmall from "../card-components/ProductCardSmall";
+import ProductCardSmall from "../components/card-components/ProductCardSmall";
 import HeroCarousel from "../components/HeroCarousel";
 import CategoryBar from "../components/CategoryBar";
 import DisclaimerModal from "../components/DisclaimerModal";
