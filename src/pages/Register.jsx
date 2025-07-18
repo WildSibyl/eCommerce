@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { signUp } from "../data/auth";
 import { useAuth } from "../hooks/useAuth";
 import { useWelcomeModal } from "../context/WelcomeModalContextProvider";
-import TermsModal from "../components/reg-comp/TermsModal";
+import TermsModal from "../components/reg-components/TermsModal";
 
 const Register = ({ setUser }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
