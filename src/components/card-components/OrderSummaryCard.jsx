@@ -1,3 +1,5 @@
+import ProductImage from "./ProductImage";
+
 const OrderSummaryCard = ({ orderData, orderItems, orderId }) => {
   if (!orderData || !orderItems) return null;
 
@@ -17,12 +19,8 @@ const OrderSummaryCard = ({ orderData, orderItems, orderId }) => {
               key={item.productId}
               className="order-item flex items-center gap-4 mb-4"
             >
-              <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
-                <img
-                  src={item.product.image}
-                  alt={item.product.title}
-                  className="w-24 h-24 object-cover mb-2"
-                />
+              <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 bg-white">
+                <ProductImage product={item.product} />
               </div>
               <div>
                 <h4 className="font-semibold max-w-100 line-clamp-1">

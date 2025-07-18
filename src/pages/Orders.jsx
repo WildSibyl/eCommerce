@@ -57,7 +57,7 @@ const Orders = () => {
     const now = new Date();
 
     return orders.filter((order) => {
-      const orderDate = new Date(order.createdAt); // Make sure `order.date` is valid
+      const orderDate = new Date(order.createdAt);
 
       if (filter === "week") {
         const startOfWeek = new Date();
@@ -109,7 +109,7 @@ const Orders = () => {
           </>
         ) : (
           <>
-            <div className="flex justify-center gap-4 my-4">
+            <div className="flex justify-center">
               <button
                 className={`btn ${
                   filter === "all" ? "bg-blue-600" : "bg-gray-200 text-gray-700"

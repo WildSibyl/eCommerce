@@ -11,7 +11,7 @@ const ProductImage = ({ product }) => {
   return (
     <img
       src={isError ? noImageAvailable : product.image}
-      alt={product.name}
+      alt={product.title}
       onError={handleError}
       className="w-full h-full object-contain rounded-lg p-2"
     />
