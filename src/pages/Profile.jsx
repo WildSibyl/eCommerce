@@ -1,3 +1,6 @@
+import ChangeEmail from "../components/profile-components/ChangeEmail";
+import ChangePassword from "../components/profile-components/ChangePassword";
+import DeleteAccount from "../components/profile-components/DeleteAccount";
 import { useAuth } from "../hooks/useAuth";
 
 const Profile = () => {
@@ -20,6 +23,13 @@ const Profile = () => {
           ? `Welcome back, ${user.userName}!`
           : "Please sign in to view your profile."}
       </p>
+      {user && (
+        <div className="w-full md:w-100 p-4 flex flex-col gap-4">
+          <ChangeEmail />
+          <ChangePassword />
+          <DeleteAccount />
+        </div>
+      )}
     </div>
   );
 };

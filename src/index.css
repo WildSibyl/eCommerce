@@ -87,3 +87,7 @@
 @utility box {
   @apply border border-base-200 bg-base-100 rounded-lg;
 }
+
+@utility inputField {
+  @apply w-full px-5 py-2 border rounded-full shadow appearance-none focus:outline-none;
+}
