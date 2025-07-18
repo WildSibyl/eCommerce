@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
-import { useCart } from "../hooks/useCart";
+import { useCart } from "../../hooks/useCart";
 import ProductImage from "./ProductImage";
 
 const ProductCardSearch = ({ product }) => {

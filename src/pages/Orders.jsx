@@ -2,7 +2,7 @@ import { useAuth } from "../hooks/useAuth";
 import { useProducts } from "../hooks/useProductData";
 import { getOrdersByUserId } from "../data/orders";
 import { useEffect, useState } from "react";
-import OrderSummaryCard from "../card-components/OrderSummaryCard";
+import OrderSummaryCard from "../components/card-components/OrderSummaryCard";
 
 const Orders = () => {
   const { user } = useAuth();

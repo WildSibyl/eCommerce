@@ -1,10 +1,10 @@
 import { Link, useParams } from "react-router";
 import React, { useEffect, useState } from "react";
 import orderConfirmed from "../assets/order_confirmed.png";
-import ProgressBar from "../checkout-components/ProgressBar";
+import ProgressBar from "../components/checkout-components/ProgressBar";
 import { getOrderById } from "../data/orders";
 import { useProducts } from "../hooks/useProductData";
-import OrderSummaryCard from "../card-components/OrderSummaryCard";
+import OrderSummaryCard from "../components/card-components/OrderSummaryCard";
 
 const OrderConfirmation = () => {
   //   const { data, setAddressFormData } = useOutletContext();

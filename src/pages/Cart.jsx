@@ -1,4 +1,4 @@
-import ProductCardLong from "../card-components/ProductCardLong";
+import ProductCardLong from "../components/card-components/ProductCardLong";
 import { useNavigate } from "react-router";
 import { useCart } from "../hooks/useCart";
 import { applyDiscount } from "../data/discounts";

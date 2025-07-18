@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useOutletContext } from "react-router";
 import { useCart } from "../hooks/useCart";
 import { useProducts } from "../hooks/useProductData"; // Custom hook to fetch products
-import ProductCardSearch from "../card-components/ProductCardSearch";
+import ProductCardSearch from "../components/card-components/ProductCardSearch";
 import CategoryBar from "../components/CategoryBar"; // Component for the category bar
 import notFound from "../assets/not_found.png"; // Import the not found image
 

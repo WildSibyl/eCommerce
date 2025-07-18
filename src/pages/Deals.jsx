@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router";
 import { useProducts } from "../hooks/useProductData";
 import { useCart } from "../hooks/useCart";
-import ProductCardMedium from "../card-components/ProductCardMedium";
+import ProductCardMedium from "../components/card-components/ProductCardMedium";
 import CategoryBar from "../components/CategoryBar";
 
 const Deals = () => {

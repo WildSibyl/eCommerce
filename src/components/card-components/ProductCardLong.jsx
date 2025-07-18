@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 import ProductImage from "./ProductImage";
-import { useCart } from "../hooks/useCart";
+import { useCart } from "../../hooks/useCart";
 import Counter from "./Counter";
 
 const ProductCardLong = ({ product }) => {

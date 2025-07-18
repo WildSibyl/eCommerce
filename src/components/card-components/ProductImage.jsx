@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import noImageAvailable from "../assets/noImageAvailable.jpg";
+import noImageAvailable from "../../assets/noImageAvailable.jpg";
 
 const ProductImage = ({ product }) => {
   const [isError, setIsError] = useState(false);
