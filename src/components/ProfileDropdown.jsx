@@ -1,14 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
 
 const ProfileDropdown = ({ user, logOut }) => {
   const [open, setOpen] = useState(false);
-
+  const dropdownRef = useRef(null);
   const navigate = useNavigate();
   const firstName = user.userName.split(" ")[0];
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="relative inline-block text-left">
+    <div ref={dropdownRef} className="relative inline-block text-left">
       <button
         onClick={() => setOpen((prev) => !prev)}
         className="rounded w-[74px] h-[27px] flex items-center justify-center text-white font-semibold cursor-pointer"
