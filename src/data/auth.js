@@ -134,3 +134,21 @@ export const deleteAccount = async (formData) => {
 
   return await res.json();
 };
+
+export const updateAddress = async (formData) => {
+  const res = await fetch(`${baseUrl}/update-address`, {
+    method: "PATCH", // PATCH is typical for partial updates
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(formData),
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.error || "Failed to update address");
+  }
+
+  return await res.json();
+};
