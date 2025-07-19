@@ -2,8 +2,18 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import BillingAddressForm from "./BillingAddressForm";
 
-const AddressForm = ({ checkoutForm, handleChange, onConfirm }) => {
+const AddressForm = ({
+  user,
+  checkoutForm,
+  setCheckoutForm,
+  handleChange,
+  onConfirm,
+}) => {
   const [isOpen, setIsOpen] = useState(true);
+
+  const userAddress = user?.address || {};
+
+  //console.log("User Address:", userAddress);
 
   const toggleForm = () => {
     setIsOpen((prev) => !prev);
@@ -43,11 +53,29 @@ const AddressForm = ({ checkoutForm, handleChange, onConfirm }) => {
     if (onConfirm) onConfirm(); // Go to payment step
   };
 
+  const fillAddress = () => {
+    const filledForm = {
+      userName: userAddress.userName || "",
+      street: userAddress.street || "",
+      city: userAddress.city || "",
+      state: userAddress.state || "",
+      zipCode: userAddress.zipCode || "",
+      country: userAddress.country || "",
+    };
+
+    setCheckoutForm((prev) => ({ ...prev, ...filledForm }));
+  };
+
   return (
     <div className="max-w-md mx-auto">
       <form className=" max-w-md mx-auto ">
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-2xl font-semibold mx-4">Shipping Address</h2>
+          {userAddress.city && (
+            <button type="button" onClick={fillAddress} className="btn my-0">
+              Fill Address
+            </button>
+          )}
         </div>
         <div
           className={` max-w-md mx-auto transition-all duration-500 overflow-hidden p-1 ${

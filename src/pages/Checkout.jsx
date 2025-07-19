@@ -190,7 +190,9 @@ const Checkout = () => {
             {currentStep === 0 && (
               <div>
                 <AddressForm
+                  user={user}
                   checkoutForm={checkoutForm}
+                  setCheckoutForm={setCheckoutForm}
                   handleChange={handleChange}
                   onConfirm={() => {
                     if (isAddressValid()) {
