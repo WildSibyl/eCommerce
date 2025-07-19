@@ -26,7 +26,7 @@ const ProfileDropdown = ({ user, logOut }) => {
         onClick={() => setOpen((prev) => !prev)}
         className="rounded w-[74px] h-[27px] flex items-center justify-center text-white font-semibold cursor-pointer"
       >
-        <div className="flex flex-col items-center relative">
+        <div className="flex flex-col items-center relative translate-y-1">
           <span className="absolute text-[10.5px] left-1/2 -translate-x-1/2 -translate-y-1.5">
             {firstName}'s
           </span>

@@ -1,6 +1,7 @@
 import ChangeEmail from "../components/profile-components/ChangeEmail";
 import ChangePassword from "../components/profile-components/ChangePassword";
 import DeleteAccount from "../components/profile-components/DeleteAccount";
+import AddAddress from "../components/profile-components/AddAddress";
 import { useAuth } from "../hooks/useAuth";
 
 const Profile = () => {
@@ -25,6 +26,7 @@ const Profile = () => {
       </p>
       {user && (
         <div className="w-full md:w-100 p-4 flex flex-col gap-4">
+          <AddAddress />
           <ChangeEmail />
           <ChangePassword />
           <DeleteAccount />

@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import WelcomeModal from "../components/reg-comp/WelcomeModal";
+import WelcomeModal from "../components/reg-components/WelcomeModal";
 import { Outlet } from "react-router";
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";
