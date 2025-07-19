@@ -10,7 +10,7 @@ const AddAddress = () => {
   const userAddress = user?.address || "";
 
   const [addressForm, setAddressForm] = useState({
-    userName: user?.userName || "",
+    userName: userAddress.userName || "",
     street: userAddress.street || "",
     zipCode: userAddress.zipCode || "",
     city: userAddress.city || "",
@@ -26,7 +26,7 @@ const AddAddress = () => {
   const handleCancelAddress = () => {
     setIsEditingAddress(false);
     setAddressForm({
-      userName: user?.userName || "",
+      userName: userAddress.userName || "",
       street: userAddress.street || "",
       zipCode: userAddress.zipCode || "",
       city: userAddress.city || "",
@@ -45,7 +45,7 @@ const AddAddress = () => {
 
       // Reset fields
       setAddressForm({
-        userName: user?.userName || "",
+        userName: addressForm.userName || "",
         street: addressForm.street || "",
         zipCode: addressForm.zipCode || "",
         city: addressForm.city || "",

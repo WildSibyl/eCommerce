@@ -71,7 +71,7 @@ const Register = ({ setUser }) => {
       //console.log("Payload being sent to backend:", payload);
 
       await signUp(payload);
-      toast.success("One of us! You can now log in!");
+      toast.success("Registered successfully!");
       openWelcomeModal();
       navigate("/login");
     } catch (error) {
