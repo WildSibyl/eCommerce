@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useProducts } from "../hooks/useProductData";
 import { useCart } from "../hooks/useCart";
 import ProductCardMedium from "../components/card-components/ProductCardMedium";
@@ -12,12 +12,22 @@ const AllProducts = () => {
   const { addProduct } = useCart();
   const { products, loading, error } = useProducts();
 
-  const [filters, setFilters] = useState({
-    price: 1000,
-    brands: [],
-    colors: [],
-    deals: [],
-  });
+  const [filters, setFilters] = useState(null);
+
+  useEffect(() => {
+    if (products.length && !filters) {
+      const prices = products.map((p) => p.price);
+      setFilters({
+        price: {
+          min: Math.min(...prices),
+          max: Math.max(...prices),
+        },
+        brands: [],
+        colors: [],
+        deals: [],
+      });
+    }
+  }, [products, filters]);
 
   const availableOptions = useMemo(() => {
     const brands = [...new Set(products.map((p) => p.brand))];
@@ -33,8 +43,12 @@ const AllProducts = () => {
   }, [products]);
 
   const filteredProducts = useMemo(() => {
+    if (!filters) return [];
+
     return products.filter((p) => {
-      const withinPrice = p.price <= filters.price;
+      const withinPrice =
+        p.price >= filters.price.min && p.price <= filters.price.max;
+
       const brandMatch =
         filters.brands.length === 0 || filters.brands.includes(p.brand);
       const colorMatch =
@@ -46,7 +60,7 @@ const AllProducts = () => {
     });
   }, [products, filters]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading || !filters) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
   console.log(products);
