@@ -22,11 +22,17 @@ const DisclaimerModal = ({
           not use analytics tools to track user data.
         </p>
         <strong className="mt-4">
+          FakeStoreAPI is used for product data, and it is not connected to any
+          real inventory or stock management. Its images appear to support
+          limited calls a day, so if you start seeing the no image available
+          error handling you know you may have hit the limit.
+        </strong>
+        <strong className="mt-4">
           Stripe is implemented for payment processing, and it is set to test
           mode. Please use Stripe's card numbers (a link to the list will be
           provided) to make mock purchases.
         </strong>
-        <p className="text-base-content font-normal border border-red-200 bg-red-100 rounded-2xl p-2 mt-4">
+        <p className="text-base-content font-normal bg-error rounded-2xl p-2 mt-4">
           Neon's free tier goes to sleep after 5 minutes of inactivity, so you
           may experience hiccups in server response when not interacting over
           that time. I am working on retry and ping calls to mitigate this, but

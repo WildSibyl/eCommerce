@@ -97,8 +97,36 @@ const Orders = () => {
     <div className="flex flex-col items-center justify-center ">
       <h1 className="text-3xl font-bold mt-4">Your orders</h1>
       <div className="p-4 max-w-4xl mx-auto">
+        <div className="flex justify-center">
+          <button
+            className={`btn ${
+              filter === "all" ? "bg-blue-600" : "bg-gray-200 text-gray-700"
+            }`}
+            onClick={() => setFilter("all")}
+          >
+            All Orders
+          </button>
+          <button
+            className={`btn ${
+              filter === "3months"
+                ? "bg-blue-600 "
+                : "bg-gray-200 text-gray-700"
+            }`}
+            onClick={() => setFilter("3months")}
+          >
+            Last 3 Months
+          </button>
+          <button
+            className={`btn ${
+              filter === "week" ? "bg-blue-600" : "bg-gray-200 text-gray-700"
+            }`}
+            onClick={() => setFilter("week")}
+          >
+            This Week
+          </button>
+        </div>
         {getFilteredOrders().length === 0 ? (
-          <>
+          <div className="flex flex-col items-center justify-center">
             <div className="max-w-[300px] mx-auto mt-3">
               <img
                 src={orderConfirmed}
@@ -106,39 +134,9 @@ const Orders = () => {
               />
             </div>
             <p>You haven’t placed any orders yet.</p>
-          </>
+          </div>
         ) : (
           <>
-            <div className="flex justify-center">
-              <button
-                className={`btn ${
-                  filter === "all" ? "bg-blue-600" : "bg-gray-200 text-gray-700"
-                }`}
-                onClick={() => setFilter("all")}
-              >
-                All Orders
-              </button>
-              <button
-                className={`btn ${
-                  filter === "3months"
-                    ? "bg-blue-600 "
-                    : "bg-gray-200 text-gray-700"
-                }`}
-                onClick={() => setFilter("3months")}
-              >
-                Last 3 Months
-              </button>
-              <button
-                className={`btn ${
-                  filter === "week"
-                    ? "bg-blue-600"
-                    : "bg-gray-200 text-gray-700"
-                }`}
-                onClick={() => setFilter("week")}
-              >
-                This Week
-              </button>
-            </div>
             {getFilteredOrders()
               .slice()
               .reverse()

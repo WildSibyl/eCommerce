@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import DoubleRangeSlider from "./filter-components/DoubleRangeSlider";
 
 const ProductFilter = ({ filters, setFilters, availableOptions }) => {
+  const [expandedCategories, setExpandedCategories] = useState({});
+
   const handleCheckboxChange = (category, value) => {
     setFilters((prev) => {
       const isSelected = prev[category].includes(value);
@@ -13,36 +16,68 @@ const ProductFilter = ({ filters, setFilters, availableOptions }) => {
     });
   };
 
-  return (
-    <div className="p-4 space-y-4 bg-base-100 rounded shadow">
-      <div>
-        <h3 className="font-semibold mb-2">Price: ${filters.price}</h3>
-        <input
-          type="range"
-          min={availableOptions.price.min}
-          max={availableOptions.price.max}
-          value={filters.price}
-          onChange={(e) =>
-            setFilters((prev) => ({ ...prev, price: Number(e.target.value) }))
-          }
-        />
-      </div>
+  const toggleCategory = (category) => {
+    setExpandedCategories((prev) => ({
+      ...prev,
+      [category]: !prev[category],
+    }));
+  };
 
-      {["brands", "colors", "deals"].map((category) => (
-        <div key={category}>
-          <h4 className="font-semibold capitalize">{category}</h4>
-          {availableOptions[category].map((option) => (
-            <label key={option} className="block">
-              <input
-                type="checkbox"
-                checked={filters[category].includes(option)}
-                onChange={() => handleCheckboxChange(category, option)}
-              />
-              <span className="ml-2">{option}</span>
-            </label>
-          ))}
-        </div>
-      ))}
+  return (
+    <div className="p-4 space-y-4 bg-base-100 rounded-lg shadow w-50 h-[85dvh] overflow-y-auto">
+      <DoubleRangeSlider
+        priceRange={filters.price}
+        setPriceRange={(range) =>
+          setFilters((prev) => ({ ...prev, price: range }))
+        }
+        min={availableOptions.price.min}
+        max={availableOptions.price.max}
+      />
+
+      {["categories", "brands", "colors"].map((category) => {
+        const options = [...availableOptions[category]].sort((a, b) =>
+          String(a).localeCompare(String(b))
+        );
+        const isExpanded = expandedCategories[category];
+        const shownOptions = isExpanded ? options : options.slice(0, 6);
+
+        return (
+          <div key={category}>
+            <div className="flex justify-between items-center">
+              <h4 className="font-semibold capitalize">{category}</h4>
+              {options.length > 6 && (
+                <button
+                  className="text-blue-600 text-sm font-bold hover:underline cursor-pointer mt-1"
+                  onClick={() => toggleCategory(category)}
+                >
+                  {isExpanded ? "Less" : "More"}
+                </button>
+              )}
+            </div>
+            <div className="max-h-70 overflow-y-auto">
+              {shownOptions.map((option) => (
+                <label
+                  key={`${category}-${option}`}
+                  className="flex items-center justify-start"
+                >
+                  <input
+                    type="checkbox"
+                    checked={filters[category].includes(option)}
+                    onChange={() => handleCheckboxChange(category, option)}
+                    className="h-4 w-4 ml-1 focus:ring-blue-500 focus:ring-2 cursor-pointer"
+                    style={{ accentColor: "#1F46E5" }}
+                  />
+                  <span className="ml-2 cursor-pointer">
+                    {typeof option === "string"
+                      ? option.charAt(0).toUpperCase() + option.slice(1)
+                      : ""}
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };

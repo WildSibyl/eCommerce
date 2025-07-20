@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router";
-import ThemeToggle from "./ThemeToggle";
+import ThemeToggle from "./navbar-components/ThemeToggle";
 import websiteLogo from "../assets/shopping-bag-icon.png";
 import cartIcon from "../assets/shopping-cart-icon.png";
-import Searchbar from "./Searchbar";
-import ProfileDropdown from "./ProfileDropdown";
+import Searchbar from "./navbar-components/Searchbar";
+import ProfileDropdown from "./navbar-components/ProfileDropdown";
 import { useAuth } from "../hooks/useAuth";
 import { useCart } from "../hooks/useCart";
 
