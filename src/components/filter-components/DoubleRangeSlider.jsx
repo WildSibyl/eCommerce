@@ -32,7 +32,7 @@ const DoubleRangeSlider = ({ min, max, priceRange, setPriceRange }) => {
   };
 
   return (
-    <div className="flex flex-col items-center w-full space-y-2">
+    <div className="flex flex-col items-center w-full">
       <div className="w-full flex-col items-center justify-between text-content-100 font-semibold">
         <p>Price range</p>
         <div className="w-full flex items-center justify-between text-content-100 font-semibold">
@@ -46,39 +46,40 @@ const DoubleRangeSlider = ({ min, max, priceRange, setPriceRange }) => {
           </span>
         </div>
       </div>
-
-      <div className="relative w-full" style={{ width }}>
-        <input
-          type="range"
-          min={min}
-          max={max}
-          value={priceRange.min}
-          onChange={handleMinChange}
-          className="absolute -translate-x-2 mt-[3px] w-full pointer-events-none appearance-none bg-transparent
+      <div className="px-2 w-full">
+        <div className="relative w-full" style={{ width }}>
+          <input
+            type="range"
+            min={min}
+            max={max}
+            value={priceRange.min}
+            onChange={handleMinChange}
+            className="absolute -translate-x-2 -translate-y-1 w-full pointer-events-none appearance-none bg-transparent
             [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-5
             [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:rounded-full
             [&::-webkit-slider-thumb]:bg-blue-600 [&::-webkit-slider-thumb]:pointer-events-auto
             z-30 cursor-pointer"
-        />
-        <input
-          type="range"
-          min={min}
-          max={max}
-          value={priceRange.max}
-          onChange={handleMaxChange}
-          className="absolute translate-x-2 mt-[3px] w-full pointer-events-none appearance-none bg-transparent
-            [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-5
-            [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:rounded-full
-            [&::-webkit-slider-thumb]:bg-blue-600 [&::-webkit-slider-thumb]:pointer-events-auto
-            z-30 cursor-pointer"
-        />
-
-        <div className="relative h-2.5 bg-gray-300 rounded mt-2">
-          <div
-            ref={rangeRef}
-            className="absolute h-2.5 rounded"
-            style={{ backgroundColor: rangeColor }}
           />
+          <input
+            type="range"
+            min={min}
+            max={max}
+            value={priceRange.max}
+            onChange={handleMaxChange}
+            className="absolute translate-x-2 -translate-y-1 w-full pointer-events-none appearance-none bg-transparent
+            [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-5
+            [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:rounded-full
+            [&::-webkit-slider-thumb]:bg-blue-600 [&::-webkit-slider-thumb]:pointer-events-auto
+            z-30 cursor-pointer"
+          />
+
+          <div className="relative h-2.5 bg-gray-300 rounded mt-2">
+            <div
+              ref={rangeRef}
+              className="absolute h-2.5 rounded"
+              style={{ backgroundColor: rangeColor }}
+            />
+          </div>
         </div>
       </div>
     </div>

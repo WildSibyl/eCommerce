@@ -34,34 +34,38 @@ const ProductFilter = ({ filters, setFilters, availableOptions }) => {
         max={availableOptions.price.max}
       />
 
-      {["brands", "colors", "deals"].map((category) => {
+      {["categories", "brands", "colors"].map((category) => {
         const options = [...availableOptions[category]].sort((a, b) =>
           String(a).localeCompare(String(b))
         );
         const isExpanded = expandedCategories[category];
-        const shownOptions = isExpanded ? options : options.slice(0, 5);
+        const shownOptions = isExpanded ? options : options.slice(0, 6);
 
         return (
           <div key={category}>
             <div className="flex justify-between items-center">
               <h4 className="font-semibold capitalize">{category}</h4>
-              {options.length > 5 && (
+              {options.length > 6 && (
                 <button
                   className="text-blue-600 text-sm font-bold hover:underline cursor-pointer mt-1"
                   onClick={() => toggleCategory(category)}
                 >
-                  {isExpanded ? "Show less" : "Show more"}
+                  {isExpanded ? "Less" : "More"}
                 </button>
               )}
             </div>
             <div className="max-h-70 overflow-y-auto">
               {shownOptions.map((option) => (
-                <label key={`${category}-${option}`} className="block">
+                <label
+                  key={`${category}-${option}`}
+                  className="flex items-center justify-start"
+                >
                   <input
                     type="checkbox"
                     checked={filters[category].includes(option)}
                     onChange={() => handleCheckboxChange(category, option)}
-                    className="cursor-pointer"
+                    className="h-4 w-4 ml-1 focus:ring-blue-500 focus:ring-2 cursor-pointer"
+                    style={{ accentColor: "#1F46E5" }}
                   />
                   <span className="ml-2 cursor-pointer">
                     {typeof option === "string"

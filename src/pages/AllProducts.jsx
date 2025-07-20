@@ -4,6 +4,7 @@ import { useCart } from "../hooks/useCart";
 import ProductCardMedium from "../components/card-components/ProductCardMedium";
 import CategoryBar from "../components/CategoryBar";
 import ProductFilter from "../components/ProductFilter";
+import notFound from "../assets/not_found.png";
 
 const AllProducts = () => {
   // const [loading, setLoading] = useState(true);
@@ -24,7 +25,7 @@ const AllProducts = () => {
         },
         brands: [],
         colors: [],
-        deals: [],
+        categories: [],
       });
     }
   }, [products, filters]);
@@ -36,7 +37,9 @@ const AllProducts = () => {
 
     const brands = safeUnique(products.map((p) => p.brand?.toLowerCase()));
     const colors = safeUnique(products.map((p) => p.color?.toLowerCase()));
-    const deals = safeUnique(products.map((p) => p.deal?.toLowerCase()));
+    const categories = safeUnique(
+      products.map((p) => p.category?.toLowerCase())
+    );
     const prices = products
       .map((p) => p.price)
       .filter((p) => typeof p === "number");
@@ -44,7 +47,7 @@ const AllProducts = () => {
     return {
       brands,
       colors,
-      deals,
+      categories,
       price: { min: Math.min(...prices), max: Math.max(...prices) },
     };
   }, [products]);
@@ -68,13 +71,13 @@ const AllProducts = () => {
           (c) => c.toLowerCase() === (p.color || "").toLowerCase()
         );
 
-      const dealMatch =
-        filters.deals.length === 0 ||
-        filters.deals.some(
-          (d) => d.toLowerCase() === (p.deal || "").toLowerCase()
+      const categoryMatch =
+        filters.categories.length === 0 ||
+        filters.categories.some(
+          (d) => d.toLowerCase() === (p.category || "").toLowerCase()
         );
 
-      return withinPrice && brandMatch && colorMatch && dealMatch;
+      return withinPrice && brandMatch && colorMatch && categoryMatch;
     });
   }, [products, filters]);
 
@@ -86,25 +89,41 @@ const AllProducts = () => {
   return (
     <>
       <CategoryBar />
-      <div className="flex">
-        <div className="w-64">
+      <div className="flex w-full">
+        <div className="w-50">
           <ProductFilter
             filters={filters}
             setFilters={setFilters}
             availableOptions={availableOptions}
           />
         </div>
-        <div
-          id="cart-container"
-          className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 px-4"
-        >
-          {filteredProducts.map((product) => (
-            <ProductCardMedium
-              key={product.id}
-              product={product}
-              addProduct={addProduct}
-            />
-          ))}
+        <div className="w-full">
+          {filteredProducts.length > 0 ? (
+            <div
+              id="cart-container"
+              className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 px-4"
+            >
+              {filteredProducts.map((product) => (
+                <ProductCardMedium
+                  key={product.id}
+                  product={product}
+                  addProduct={addProduct}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="flex items-center justify-center h-full w-full lg:py-[5%]">
+              <div className="flex flex-col items-center justify-center">
+                <div className="max-w-[300px] mx-auto m-4">
+                  <img
+                    src={notFound}
+                    alt="a stylized illustration of a confused cat playing with a magnifying glass"
+                  />
+                </div>
+                <h2>No results match your filters. Try something else!</h2>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
