@@ -30,9 +30,9 @@ const AllProducts = () => {
   }, [products, filters]);
 
   const availableOptions = useMemo(() => {
-    const brands = [...new Set(products.map((p) => p.brand))];
-    const colors = [...new Set(products.map((p) => p.color))];
-    const deals = [...new Set(products.map((p) => p.deal))];
+    const brands = [...new Set(products.map((p) => p.brand?.toLowerCase()))];
+    const colors = [...new Set(products.map((p) => p.color?.toLowerCase()))];
+    const deals = [...new Set(products.map((p) => p.deal?.toLowerCase()))];
     const prices = products.map((p) => p.price);
     return {
       brands,
@@ -50,11 +50,22 @@ const AllProducts = () => {
         p.price >= filters.price.min && p.price <= filters.price.max;
 
       const brandMatch =
-        filters.brands.length === 0 || filters.brands.includes(p.brand);
+        filters.brands.length === 0 ||
+        filters.brands.some(
+          (b) => b.toLowerCase() === (p.brand || "").toLowerCase()
+        );
+
       const colorMatch =
-        filters.colors.length === 0 || filters.colors.includes(p.color);
+        filters.colors.length === 0 ||
+        filters.colors.some(
+          (c) => c.toLowerCase() === (p.color || "").toLowerCase()
+        );
+
       const dealMatch =
-        filters.deals.length === 0 || filters.deals.includes(p.deal);
+        filters.deals.length === 0 ||
+        filters.deals.some(
+          (d) => d.toLowerCase() === (p.deal || "").toLowerCase()
+        );
 
       return withinPrice && brandMatch && colorMatch && dealMatch;
     });

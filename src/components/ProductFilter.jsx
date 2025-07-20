@@ -35,7 +35,9 @@ const ProductFilter = ({ filters, setFilters, availableOptions }) => {
       />
 
       {["brands", "colors", "deals"].map((category) => {
-        const options = availableOptions[category];
+        const options = [...availableOptions[category]].sort((a, b) =>
+          String(a).localeCompare(String(b))
+        );
         const isExpanded = expandedCategories[category];
         const shownOptions = isExpanded ? options : options.slice(0, 5);
 
@@ -48,13 +50,18 @@ const ProductFilter = ({ filters, setFilters, availableOptions }) => {
                   type="checkbox"
                   checked={filters[category].includes(option)}
                   onChange={() => handleCheckboxChange(category, option)}
+                  className="cursor-pointer"
                 />
-                <span className="ml-2">{option}</span>
+                <span className="ml-2 cursor-pointer">
+                  {typeof option === "string"
+                    ? option.charAt(0).toUpperCase() + option.slice(1)
+                    : "N/A"}
+                </span>
               </label>
             ))}
             {options.length > 5 && (
               <button
-                className="text-blue-600 text-sm mt-1"
+                className="text-blue-600 text-sm font-bold hover:underline cursor-pointer mt-1"
                 onClick={() => toggleCategory(category)}
               >
                 {isExpanded ? "Show less" : "Show more"}

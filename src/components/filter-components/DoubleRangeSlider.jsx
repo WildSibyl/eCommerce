@@ -33,15 +33,18 @@ const DoubleRangeSlider = ({ min, max, priceRange, setPriceRange }) => {
 
   return (
     <div className="flex flex-col items-center w-full space-y-2">
-      <div className="w-full flex items-center justify-between text-content-100 font-semibold px-2">
-        <span>
-          {currencyText}
-          {priceRange.min}
-        </span>
-        <span>
-          {currencyText}
-          {priceRange.max}
-        </span>
+      <div className="w-full flex-col items-center justify-between text-content-100 font-semibold">
+        <p>Price range</p>
+        <div className="w-full flex items-center justify-between text-content-100 font-semibold">
+          <span>
+            {currencyText}
+            {priceRange.min}
+          </span>
+          <span>
+            {currencyText}
+            {priceRange.max}
+          </span>
+        </div>
       </div>
 
       <div className="relative w-full" style={{ width }}>
@@ -55,7 +58,7 @@ const DoubleRangeSlider = ({ min, max, priceRange, setPriceRange }) => {
             [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-5
             [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:rounded-full
             [&::-webkit-slider-thumb]:bg-blue-600 [&::-webkit-slider-thumb]:pointer-events-auto
-            z-30"
+            z-30 cursor-pointer"
         />
         <input
           type="range"
@@ -67,7 +70,7 @@ const DoubleRangeSlider = ({ min, max, priceRange, setPriceRange }) => {
             [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-5
             [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:rounded-full
             [&::-webkit-slider-thumb]:bg-blue-600 [&::-webkit-slider-thumb]:pointer-events-auto
-            z-20"
+            z-30 cursor-pointer"
         />
 
         <div className="relative h-2.5 bg-gray-300 rounded mt-2">
