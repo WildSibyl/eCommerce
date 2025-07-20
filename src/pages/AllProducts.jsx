@@ -30,10 +30,17 @@ const AllProducts = () => {
   }, [products, filters]);
 
   const availableOptions = useMemo(() => {
-    const brands = [...new Set(products.map((p) => p.brand?.toLowerCase()))];
-    const colors = [...new Set(products.map((p) => p.color?.toLowerCase()))];
-    const deals = [...new Set(products.map((p) => p.deal?.toLowerCase()))];
-    const prices = products.map((p) => p.price);
+    const safeUnique = (arr) => [
+      ...new Set(arr.filter((val) => typeof val === "string")),
+    ];
+
+    const brands = safeUnique(products.map((p) => p.brand?.toLowerCase()));
+    const colors = safeUnique(products.map((p) => p.color?.toLowerCase()));
+    const deals = safeUnique(products.map((p) => p.deal?.toLowerCase()));
+    const prices = products
+      .map((p) => p.price)
+      .filter((p) => typeof p === "number");
+
     return {
       brands,
       colors,

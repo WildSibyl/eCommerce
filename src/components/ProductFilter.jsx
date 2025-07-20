@@ -24,7 +24,7 @@ const ProductFilter = ({ filters, setFilters, availableOptions }) => {
   };
 
   return (
-    <div className="p-4 space-y-4 bg-base-100 rounded shadow w-50">
+    <div className="p-4 space-y-4 bg-base-100 rounded-lg shadow w-50 h-[85dvh] overflow-y-auto">
       <DoubleRangeSlider
         priceRange={filters.price}
         setPriceRange={(range) =>
@@ -43,30 +43,34 @@ const ProductFilter = ({ filters, setFilters, availableOptions }) => {
 
         return (
           <div key={category}>
-            <h4 className="font-semibold capitalize">{category}</h4>
-            {shownOptions.map((option) => (
-              <label key={`${category}-${option}`} className="block">
-                <input
-                  type="checkbox"
-                  checked={filters[category].includes(option)}
-                  onChange={() => handleCheckboxChange(category, option)}
-                  className="cursor-pointer"
-                />
-                <span className="ml-2 cursor-pointer">
-                  {typeof option === "string"
-                    ? option.charAt(0).toUpperCase() + option.slice(1)
-                    : "N/A"}
-                </span>
-              </label>
-            ))}
-            {options.length > 5 && (
-              <button
-                className="text-blue-600 text-sm font-bold hover:underline cursor-pointer mt-1"
-                onClick={() => toggleCategory(category)}
-              >
-                {isExpanded ? "Show less" : "Show more"}
-              </button>
-            )}
+            <div className="flex justify-between items-center">
+              <h4 className="font-semibold capitalize">{category}</h4>
+              {options.length > 5 && (
+                <button
+                  className="text-blue-600 text-sm font-bold hover:underline cursor-pointer mt-1"
+                  onClick={() => toggleCategory(category)}
+                >
+                  {isExpanded ? "Show less" : "Show more"}
+                </button>
+              )}
+            </div>
+            <div className="max-h-70 overflow-y-auto">
+              {shownOptions.map((option) => (
+                <label key={`${category}-${option}`} className="block">
+                  <input
+                    type="checkbox"
+                    checked={filters[category].includes(option)}
+                    onChange={() => handleCheckboxChange(category, option)}
+                    className="cursor-pointer"
+                  />
+                  <span className="ml-2 cursor-pointer">
+                    {typeof option === "string"
+                      ? option.charAt(0).toUpperCase() + option.slice(1)
+                      : ""}
+                  </span>
+                </label>
+              ))}
+            </div>
           </div>
         );
       })}
