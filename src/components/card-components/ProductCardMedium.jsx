@@ -7,7 +7,7 @@ const ProductCardMedium = ({ product }) => {
   const { addProduct } = useCart();
 
   return (
-    <div key={product.id} className="box relative max-h-[374px]">
+    <div key={product.id} className="box relative max-h-[397px]">
       <Link to={`/products/${product.id}`}>
         <div className="w-full h-48 object-contain bg-white rounded-lg">
           <ProductImage product={product} />
