@@ -1,4 +1,4 @@
-import { retry } from "../utils/retry.js";
+import retry from "../utils/retry.js";
 
 const API_URL = import.meta.env.VITE_APP_ECOMMERCE_API_URL;
 
