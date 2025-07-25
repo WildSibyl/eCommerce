@@ -25,7 +25,7 @@ const WelcomeModal = () => {
       <div className="flex flex-col mx-2 overflow-hidden *:items-center lg:mx-auto max-w-[500px] lg:max-w-[50vw] xl:max-w-[40vw] my-auto rounded-2xl bg-center bg-cover border-base-100">
         <div className="flex flex-col relative px-8 items-center w-full bg-base-100 p-4 rounded-b-2xl gap-4">
           <h2 className="uppercase font-semibold">
-            WELCOME TO THE TECH OUTLET!!
+            WELCOME TO THE TECH MIAOUTLET!!
           </h2>
           <p>Are you ready to save like a pro?</p>
           <p>

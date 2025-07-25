@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 import ThemeToggle from "./navbar-components/ThemeToggle";
-import websiteLogo from "../assets/shopping-bag-icon.png";
+import websiteLogo from "../assets/logo-icon.png";
 import cartIcon from "../assets/shopping-cart-icon.png";
 import Searchbar from "./navbar-components/Searchbar";
 import ProfileDropdown from "./navbar-components/ProfileDropdown";
@@ -24,7 +24,7 @@ const Navbar = ({ onSearch }) => {
               className="h-[30px] md:mr-2 "
             />
             <div className=" self-center text-white font-bold hidden md:block">
-              eCommerce
+              MIAOutlet
             </div>
           </div>
         </Link>

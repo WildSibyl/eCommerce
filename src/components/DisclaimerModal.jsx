@@ -14,7 +14,7 @@ const DisclaimerModal = ({
         </h2>
         <p className="text-base-content font-normal">
           <strong>
-            eCommerce is a student project currently in development for testing
+            MIAOutlet is a student project currently in development for testing
             purposes and intended for invited users only:{" "}
           </strong>
           please avoid entering personal data, as I am still working toward full
