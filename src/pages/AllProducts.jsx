@@ -3,7 +3,7 @@ import { useProducts } from "../hooks/useProductData";
 import { useCart } from "../hooks/useCart";
 import ProductCardMedium from "../components/card-components/ProductCardMedium";
 import CategoryBar from "../components/CategoryBar";
-import ProductFilter from "../components/ProductFilter";
+import FilterBar from "../components/FilterBar";
 import notFound from "../assets/not_found.png";
 
 const AllProducts = () => {
@@ -89,14 +89,12 @@ const AllProducts = () => {
   return (
     <>
       <CategoryBar />
-      <div className="flex w-full">
-        <div className="w-50">
-          <ProductFilter
-            filters={filters}
-            setFilters={setFilters}
-            availableOptions={availableOptions}
-          />
-        </div>
+      <div className="flex flex-col w-full">
+        <FilterBar
+          filters={filters}
+          setFilters={setFilters}
+          availableOptions={availableOptions}
+        />
         <div className="w-full">
           {filteredProducts.length > 0 ? (
             <div

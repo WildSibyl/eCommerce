@@ -24,7 +24,7 @@ const ProductFilter = ({ filters, setFilters, availableOptions }) => {
   };
 
   return (
-    <div className="p-4 space-y-4 bg-base-100 rounded-lg shadow w-50 h-[85dvh] overflow-y-auto">
+    <div className="p-4 space-y-4 bg-base-100 rounded-lg shadow w-50 h-[85dvh] overflow-y-auto absolute top-[50px] left-0 z-10">
       <DoubleRangeSlider
         priceRange={filters.price}
         setPriceRange={(range) =>
