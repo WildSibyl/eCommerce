@@ -1,38 +1,41 @@
-import React, { useState } from "react";
-import { Link } from "react-router";
 import { useProducts } from "../hooks/useProductData";
 import { useCart } from "../hooks/useCart";
 import ProductCardMedium from "../components/card-components/ProductCardMedium";
-import CategoryBar from "../components/CategoryBar";
+import FilterBar from "../components/FilterBar";
+import { useFilteredProducts } from "../hooks/useFilteredProducts";
 
 const Deals = () => {
   //   const [loading, setLoading] = useState(true);
   //   const [error, setError] = useState(null);
   const { addProduct } = useCart();
-
   const { products, loading, error } = useProducts();
 
-  if (loading) return <div>Loading...</div>;
+  const { filters, setFilters, availableOptions, filteredProducts } =
+    useFilteredProducts(products);
+
+  if (loading || !filters) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
-  console.log(products);
+  const discountedProducts = filteredProducts.filter((p) => p.discount > 0);
 
   return (
     <>
-      <CategoryBar />
+      <FilterBar
+        filters={filters}
+        setFilters={setFilters}
+        availableOptions={availableOptions}
+      />
       <div
         id="cart-container"
         className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 px-4"
       >
-        {products
-          .filter((product) => product.discount > 0) // Filter products with a discount
-          .map((product) => (
-            <ProductCardMedium
-              key={product.id}
-              product={product}
-              addProduct={addProduct}
-            /> // Use ProductCardMedium for larger cards
-          ))}
+        {discountedProducts.map((product) => (
+          <ProductCardMedium
+            key={product.id}
+            product={product}
+            addProduct={addProduct}
+          /> // Use ProductCardMedium for larger cards
+        ))}
       </div>
     </>
   );

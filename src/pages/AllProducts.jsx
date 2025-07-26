@@ -1,9 +1,9 @@
-import React, { useState, useMemo, useEffect } from "react";
 import { useProducts } from "../hooks/useProductData";
 import { useCart } from "../hooks/useCart";
 import ProductCardMedium from "../components/card-components/ProductCardMedium";
 import FilterBar from "../components/FilterBar";
 import notFound from "../assets/not_found.png";
+import { useFilteredProducts } from "../hooks/useFilteredProducts";
 
 const AllProducts = () => {
   // const [loading, setLoading] = useState(true);
@@ -12,78 +12,11 @@ const AllProducts = () => {
   const { addProduct } = useCart();
   const { products, loading, error } = useProducts();
 
-  const [filters, setFilters] = useState(null);
-
-  useEffect(() => {
-    if (products.length && !filters) {
-      const prices = products.map((p) => p.price);
-      setFilters({
-        price: {
-          min: Math.min(...prices),
-          max: Math.max(...prices),
-        },
-        brands: [],
-        colors: [],
-        categories: [],
-      });
-    }
-  }, [products, filters]);
-
-  const availableOptions = useMemo(() => {
-    const safeUnique = (arr) => [
-      ...new Set(arr.filter((val) => typeof val === "string")),
-    ];
-
-    const brands = safeUnique(products.map((p) => p.brand?.toLowerCase()));
-    const colors = safeUnique(products.map((p) => p.color?.toLowerCase()));
-    const categories = safeUnique(
-      products.map((p) => p.category?.toLowerCase())
-    );
-    const prices = products
-      .map((p) => p.price)
-      .filter((p) => typeof p === "number");
-
-    return {
-      brands,
-      colors,
-      categories,
-      price: { min: Math.min(...prices), max: Math.max(...prices) },
-    };
-  }, [products]);
-
-  const filteredProducts = useMemo(() => {
-    if (!filters) return [];
-
-    return products.filter((p) => {
-      const withinPrice =
-        p.price >= filters.price.min && p.price <= filters.price.max;
-
-      const brandMatch =
-        filters.brands.length === 0 ||
-        filters.brands.some(
-          (b) => b.toLowerCase() === (p.brand || "").toLowerCase()
-        );
-
-      const colorMatch =
-        filters.colors.length === 0 ||
-        filters.colors.some(
-          (c) => c.toLowerCase() === (p.color || "").toLowerCase()
-        );
-
-      const categoryMatch =
-        filters.categories.length === 0 ||
-        filters.categories.some(
-          (d) => d.toLowerCase() === (p.category || "").toLowerCase()
-        );
-
-      return withinPrice && brandMatch && colorMatch && categoryMatch;
-    });
-  }, [products, filters]);
+  const { filters, setFilters, availableOptions, filteredProducts } =
+    useFilteredProducts(products);
 
   if (loading || !filters) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
-
-  console.log(products);
 
   return (
     <>

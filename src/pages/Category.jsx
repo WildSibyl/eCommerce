@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { useCategory, useProducts } from "../hooks/useProductData";
 import { useParams } from "react-router";
 import { useCart } from "../hooks/useCart";
 import ProductCardMedium from "../components/card-components/ProductCardMedium";
 import FilterBar from "../components/FilterBar";
+import { useFilteredProducts } from "../hooks/useFilteredProducts";
 
 const Category = () => {
   const { productCategory } = useParams();
@@ -13,75 +14,16 @@ const Category = () => {
   const { products, loading, error } = useProducts();
   const { category } = useCategory(productCategory);
 
-  const [filters, setFilters] = useState(null);
-
-  const categoryProducts = products.filter(
-    (product) =>
-      product.category?.toLowerCase() === productCategory.toLowerCase()
+  const categoryProducts = useMemo(
+    () =>
+      products.filter(
+        (p) => p.category?.toLowerCase() === productCategory.toLowerCase()
+      ),
+    [products, productCategory]
   );
 
-  useEffect(() => {
-    if (categoryProducts.length && !filters) {
-      const prices = categoryProducts.map((p) => p.price);
-      setFilters({
-        price: {
-          min: Math.min(...prices),
-          max: Math.max(...prices),
-        },
-        brands: [],
-        colors: [],
-      });
-    }
-  }, [products, filters]);
-
-  const availableOptions = useMemo(() => {
-    const safeUnique = (arr) => [
-      ...new Set(arr.filter((val) => typeof val === "string")),
-    ];
-
-    const brands = safeUnique(
-      categoryProducts.map((p) => p.brand?.toLowerCase())
-    );
-    const colors = safeUnique(
-      categoryProducts.map((p) => p.color?.toLowerCase())
-    );
-
-    const prices = products
-      .map((p) => p.price)
-      .filter((p) => typeof p === "number");
-
-    return {
-      brands,
-      colors,
-      price: { min: Math.min(...prices), max: Math.max(...prices) },
-    };
-  }, [products]);
-
-  const filteredProducts = useMemo(() => {
-    if (!filters) return [];
-
-    return products.filter((p) => {
-      const withinPrice =
-        p.price >= filters.price.min && p.price <= filters.price.max;
-
-      const brandMatch =
-        filters.brands.length === 0 ||
-        filters.brands.some(
-          (b) => b.toLowerCase() === (p.brand || "").toLowerCase()
-        );
-
-      const colorMatch =
-        filters.colors.length === 0 ||
-        filters.colors.some(
-          (c) => c.toLowerCase() === (p.color || "").toLowerCase()
-        );
-
-      const categoryMatch =
-        p.category?.toLowerCase() === productCategory.toLowerCase();
-
-      return withinPrice && brandMatch && colorMatch && categoryMatch;
-    });
-  }, [products, filters]);
+  const { filters, setFilters, availableOptions, filteredProducts } =
+    useFilteredProducts(categoryProducts);
 
   if (loading || !filters) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
