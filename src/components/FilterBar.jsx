@@ -1,10 +1,17 @@
-import { useState, useEffect, use } from "react";
+import { useState } from "react";
+import { useParams } from "react-router";
 import ProductFilter from "../components/ProductFilter";
 import ProductCategoryFilter from "./ProductCategoryFilter";
 
 const FilterBar = ({ filters, setFilters, availableOptions }) => {
   const [filterIsOpen, setFilterIsOpen] = useState(false);
   const [categoryFilterIsOpen, setCategoryFilterIsOpen] = useState(false);
+
+  const { productCategory } = useParams();
+
+  const pageName =
+    productCategory.charAt(0).toUpperCase() +
+    productCategory.slice(1).toLowerCase();
 
   const toggleFilter = () => {
     setFilterIsOpen((prev) => !prev);
@@ -16,7 +23,7 @@ const FilterBar = ({ filters, setFilters, availableOptions }) => {
 
   return (
     <div className="flex relative bg-blue-600 h-[50px] w-full items-center mb-4 px-4 gap-4">
-      <p className="text-xl font-bold text-white">Category name</p>
+      <p className="text-xl font-bold text-white">{pageName}</p>
       {/* All products and deals pages have the categories property */}
       {availableOptions.categories && (
         <button onClick={toggleFilter} className="btn">
