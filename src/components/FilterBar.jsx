@@ -8,10 +8,14 @@ const FilterBar = ({ filters, setFilters, availableOptions }) => {
   const [categoryFilterIsOpen, setCategoryFilterIsOpen] = useState(false);
 
   const { productCategory } = useParams();
+  const locationPath = location.pathname;
 
-  const pageName =
-    productCategory.charAt(0).toUpperCase() +
-    productCategory.slice(1).toLowerCase();
+  const categoryName =
+    productCategory?.charAt(0).toUpperCase() +
+    productCategory?.slice(1).toLowerCase();
+  const pathName = "All " + locationPath?.slice(1).toLowerCase();
+
+  const pageName = categoryName || pathName;
 
   const toggleFilter = () => {
     setFilterIsOpen((prev) => !prev);
