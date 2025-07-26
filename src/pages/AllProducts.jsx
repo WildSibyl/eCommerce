@@ -2,7 +2,6 @@ import React, { useState, useMemo, useEffect } from "react";
 import { useProducts } from "../hooks/useProductData";
 import { useCart } from "../hooks/useCart";
 import ProductCardMedium from "../components/card-components/ProductCardMedium";
-import CategoryBar from "../components/CategoryBar";
 import FilterBar from "../components/FilterBar";
 import notFound from "../assets/not_found.png";
 
@@ -88,7 +87,6 @@ const AllProducts = () => {
 
   return (
     <>
-      <CategoryBar />
       <div className="flex flex-col w-full">
         <FilterBar
           filters={filters}
