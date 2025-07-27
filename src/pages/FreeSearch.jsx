@@ -38,7 +38,7 @@ const FreeSearch = () => {
   return (
     <>
       <CategoryBar />
-      <div>
+      <div className="mt-4">
         {filteredProducts.length > 0 ? (
           <div className="flex flex-col gap-4 px-4 md:px-[10%]">
             {filteredProducts.map((product) => (

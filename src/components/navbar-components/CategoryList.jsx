@@ -3,6 +3,7 @@ import { Link } from "react-router";
 const CategoryList = () => {
   return (
     <>
+      {/* Md screens */}
       <div className="hidden md:flex lg:hidden flex-wrap w-full sm:justify-evenly items-center">
         <Link to="/category/appliances">
           <button className="btn m-0 px-0 w-[60px]">
@@ -177,6 +178,8 @@ const CategoryList = () => {
           <button className="btn m-0 px-0 w-[60px]">All</button>
         </Link>
       </div>
+
+      {/* Lg screens */}
       <div className="hidden lg:flex flex-wrap w-full lg:justify-evenly items-center">
         <Link to="/category/appliances">
           <button className="btn m-0 px-0 w-[100px]">Appliances</button>

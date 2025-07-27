@@ -29,7 +29,7 @@ const Navbar = ({ onSearch }) => {
           </div>
         </Link>
 
-        <div className="flex md:flex-grow md:w-auto px-2">
+        <div className="flex md:flex-grow md:w-auto px-2 mx-1 md:mx-0">
           <Searchbar onSearch={onSearch} />
         </div>
 
@@ -48,7 +48,7 @@ const Navbar = ({ onSearch }) => {
           </Link>
         )}
         <Link to="/cart">
-          <div className=" mx-4 flex flex-row">
+          <div className="mr-3 md:mx-4 flex flex-row">
             <div className="self-center text-white font-bold hidden md:block">
               Cart
             </div>
