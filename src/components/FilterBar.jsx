@@ -28,17 +28,17 @@ const FilterBar = ({ filters, setFilters, availableOptions }) => {
 
   return (
     <div className="flex relative bg-blue-600 h-[50px] w-full items-center mb-4 px-4">
-      <p className="flex shrink-0 text-xl font-bold text-white lg:hidden mx-4">
+      <p className="flex shrink-0 text-xl font-bold text-white md:hidden mx-4">
         {pageName}
       </p>
       {/* All products and deals pages have the categories property */}
       {availableOptions.categories && (
-        <button onClick={toggleFilter} className="btn">
+        <button onClick={toggleFilter} className="btn mr-0">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            strokeWidth={1.5}
+            strokeWidth={2}
             stroke="currentColor"
             className="size-6"
           >
@@ -59,12 +59,12 @@ const FilterBar = ({ filters, setFilters, availableOptions }) => {
       )}
       {/* Category pages don't have the categories property */}
       {!availableOptions.categories && (
-        <button onClick={toggleCategoryFilter} className="btn">
+        <button onClick={toggleCategoryFilter} className="btn mr-0">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            strokeWidth={1.5}
+            strokeWidth={2}
             stroke="currentColor"
             className="size-6"
           >
@@ -83,8 +83,28 @@ const FilterBar = ({ filters, setFilters, availableOptions }) => {
           availableOptions={availableOptions}
         />
       )}
-      <div className="hidden lg:flex flex-grow justify-center items-center">
+
+      <div className="hidden md:flex flex-grow justify-center items-center">
         <CategoryList />
+      </div>
+
+      <div className="flex items-center justify-center px-2 md:hidden">
+        <button className="btn m-0">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="white"
+            className="size-7 cursor-pointer lg:hidden"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
+        </button>
       </div>
     </div>
   );

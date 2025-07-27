@@ -29,23 +29,6 @@ const Navbar = ({ onSearch }) => {
           </div>
         </Link>
 
-        <div className="flex items-center justify-center px-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="white"
-            className="size-7 cursor-pointer lg:hidden"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-          </svg>
-        </div>
-
         <div className="flex md:flex-grow md:w-auto px-2">
           <Searchbar onSearch={onSearch} />
         </div>
