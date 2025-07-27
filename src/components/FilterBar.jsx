@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router";
 import ProductFilter from "./filter-components/ProductFilter";
 import ProductCategoryFilter from "./filter-components/ProductCategoryFilter";
+import CategoryList from "./navbar-components/CategoryList";
 
 const FilterBar = ({ filters, setFilters, availableOptions }) => {
   const [filterIsOpen, setFilterIsOpen] = useState(false);
@@ -26,8 +27,10 @@ const FilterBar = ({ filters, setFilters, availableOptions }) => {
   };
 
   return (
-    <div className="flex relative bg-blue-600 h-[50px] w-full items-center mb-4 px-4 gap-4">
-      <p className="text-xl font-bold text-white">{pageName}</p>
+    <div className="flex relative bg-blue-600 h-[50px] w-full items-center mb-4 px-4">
+      <p className="flex shrink-0 text-xl font-bold text-white lg:hidden mx-4">
+        {pageName}
+      </p>
       {/* All products and deals pages have the categories property */}
       {availableOptions.categories && (
         <button onClick={toggleFilter} className="btn">
@@ -80,6 +83,9 @@ const FilterBar = ({ filters, setFilters, availableOptions }) => {
           availableOptions={availableOptions}
         />
       )}
+      <div className="hidden lg:flex flex-grow justify-center items-center">
+        <CategoryList />
+      </div>
     </div>
   );
 };
