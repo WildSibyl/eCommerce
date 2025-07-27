@@ -56,7 +56,7 @@ const Home = () => {
     <>
       <CategoryBar />
       <div className=" mx-[5%] ">
-        <div className="h-[400px] mx-[5%] mb-4 rounded-lg shadow-md">
+        <div className="h-[400px] mx-[5%] my-4 rounded-lg shadow-md">
           <HeroCarousel />
         </div>
         <div

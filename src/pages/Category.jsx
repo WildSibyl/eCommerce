@@ -1,35 +1,48 @@
-import React, { useState } from "react";
-import { Link } from "react-router";
-import { useCategory } from "../hooks/useProductData";
+import { useMemo } from "react";
+import { useCategory, useProducts } from "../hooks/useProductData";
 import { useParams } from "react-router";
 import { useCart } from "../hooks/useCart";
 import ProductCardMedium from "../components/card-components/ProductCardMedium";
-import CategoryBar from "../components/CategoryBar";
+import FilterBar from "../components/FilterBar";
+import { useFilteredProducts } from "../hooks/useFilteredProducts";
 
 const Category = () => {
   const { productCategory } = useParams();
   console.log(` Category: ${productCategory}`);
 
   const { addProduct } = useCart();
+  const { products, loading, error } = useProducts();
+  const { category } = useCategory(productCategory);
 
-  const { category, loading, error } = useCategory(productCategory);
+  const categoryProducts = useMemo(
+    () =>
+      products.filter(
+        (p) => p.category?.toLowerCase() === productCategory.toLowerCase()
+      ),
+    [products, productCategory]
+  );
 
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
+  const { filters, setFilters, availableOptions, filteredProducts } =
+    useFilteredProducts(categoryProducts);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading || !filters) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
-  console.log(category);
+  console.log("category:", category);
+  console.log("availableOptions:", availableOptions);
 
   return (
     <>
-      <CategoryBar />
+      <FilterBar
+        filters={filters}
+        setFilters={setFilters}
+        availableOptions={availableOptions}
+      />
       <div
         id="cart-container "
         className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 px-4"
       >
-        {category.map((product) => (
+        {filteredProducts.map((product) => (
           <ProductCardMedium
             key={product.id}
             product={product}

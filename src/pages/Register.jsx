@@ -83,7 +83,7 @@ const Register = ({ setUser }) => {
   };
 
   return (
-    <div className="flex flex-grow items-center justify-center min-h-[calc(100vh-120px)]">
+    <div className="flex flex-grow items-center justify-center min-h-[calc(100vh-120px)] mt-4">
       <form
         onSubmit={handleSubmit}
         className=" bg-base-300 dark:bg-base-200 shadow-md rounded-lg px-8 pt-6 pb-8 w-full max-w-md flex flex-col gap-6"
