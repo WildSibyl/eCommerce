@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import ProductFilter from "./filter-components/ProductFilter";
 import ProductCategoryFilter from "./filter-components/ProductCategoryFilter";
 import CategoryList from "./navbar-components/CategoryList";
+import CategoryModal from "./navbar-components/CategoryModal";
 
 const FilterBar = ({ filters, setFilters, availableOptions }) => {
   const [filterIsOpen, setFilterIsOpen] = useState(false);
   const [categoryFilterIsOpen, setCategoryFilterIsOpen] = useState(false);
+  const [categoryModalOpen, setCategoryModalOpen] = useState(false);
 
   const { productCategory } = useParams();
   const locationPath = location.pathname;
@@ -24,6 +26,14 @@ const FilterBar = ({ filters, setFilters, availableOptions }) => {
 
   const toggleCategoryFilter = () => {
     setCategoryFilterIsOpen((prev) => !prev);
+  };
+
+  const handleOpenModal = () => {
+    setCategoryModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setCategoryModalOpen(false);
   };
 
   return (
@@ -89,7 +99,7 @@ const FilterBar = ({ filters, setFilters, availableOptions }) => {
       </div>
 
       <div className="flex items-center justify-center px-2 md:hidden">
-        <button className="btn m-0">
+        <button onClick={handleOpenModal} className="btn m-0">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -105,6 +115,9 @@ const FilterBar = ({ filters, setFilters, availableOptions }) => {
             />
           </svg>
         </button>
+        {categoryModalOpen && (
+          <CategoryModal handleCloseModal={handleCloseModal} />
+        )}
       </div>
     </div>
   );
