@@ -1,12 +1,20 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 
 const CategoryList = () => {
+  const location = useLocation();
+
+  const isActive = (path) => location.pathname === path;
+
   return (
     <>
       {/* Md screens */}
       <div className="hidden md:flex lg:hidden flex-wrap w-full sm:justify-evenly items-center">
         <Link to="/category/appliances">
-          <button className="btn m-0 px-0 w-[60px]">
+          <button
+            className={`btn m-0 px-0 w-[60px] ${
+              isActive("/category/appliances") ? "bg-blue-400" : ""
+            }`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -30,7 +38,11 @@ const CategoryList = () => {
           </button>
         </Link>
         <Link to="/category/tv">
-          <button className="btn m-0 px-0 w-[60px]">
+          <button
+            className={`btn m-0 px-0 w-[60px] ${
+              isActive("/category/tv") ? "bg-blue-400" : ""
+            }`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -48,7 +60,11 @@ const CategoryList = () => {
           </button>
         </Link>
         <Link to="/category/audio">
-          <button className="btn m-0 px-0 w-[60px]">
+          <button
+            className={`btn m-0 px-0 w-[60px] ${
+              isActive("/category/audio") ? "bg-blue-400" : ""
+            }`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -78,7 +94,11 @@ const CategoryList = () => {
           </button>
         </Link>
         <Link to="/category/mobile">
-          <button className="btn m-0 px-0 w-[60px]">
+          <button
+            className={`btn m-0 px-0 w-[60px] ${
+              isActive("/category/mobile") ? "bg-blue-400" : ""
+            }`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -115,7 +135,11 @@ const CategoryList = () => {
           </button>
         </Link>
         <Link to="/category/laptop">
-          <button className="btn m-0 px-0 w-[60px]">
+          <button
+            className={`btn m-0 px-0 w-[60px] ${
+              isActive("/category/laptop") ? "bg-blue-400" : ""
+            }`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -133,7 +157,11 @@ const CategoryList = () => {
           </button>
         </Link>
         <Link to="/category/gaming">
-          <button className="btn m-0 px-0 w-[60px]">
+          <button
+            className={`btn m-0 px-0 w-[60px] ${
+              isActive("/category/gaming") ? "bg-blue-400" : ""
+            }`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -157,7 +185,11 @@ const CategoryList = () => {
           </button>
         </Link>
         <Link to="/deals">
-          <button className="btn m-0 px-0 w-[60px]">
+          <button
+            className={`btn m-0 px-0 w-[60px] ${
+              isActive("/deals") ? "bg-blue-400" : ""
+            }`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -175,35 +207,89 @@ const CategoryList = () => {
           </button>
         </Link>
         <Link to="/products">
-          <button className="btn m-0 px-0 w-[60px]">All</button>
+          <button
+            className={`btn m-0 px-0 w-[60px] ${
+              isActive("/products") ? "bg-blue-400" : ""
+            }`}
+          >
+            All
+          </button>
         </Link>
       </div>
 
       {/* Lg screens */}
       <div className="hidden lg:flex flex-wrap w-full lg:justify-evenly items-center">
         <Link to="/category/appliances">
-          <button className="btn m-0 px-0 w-[100px]">Appliances</button>
+          <button
+            className={`btn m-0 px-0 w-[100px] ${
+              isActive("/category/appliances") ? "bg-blue-400" : ""
+            }`}
+          >
+            Appliances
+          </button>
         </Link>
         <Link to="/category/tv">
-          <button className="btn m-0 px-0 w-[100px]">TV</button>
+          <button
+            className={`btn m-0 px-0 w-[100px] ${
+              isActive("/category/tv") ? "bg-blue-400" : ""
+            }`}
+          >
+            TV
+          </button>
         </Link>
         <Link to="/category/audio">
-          <button className="btn m-0 px-0 w-[100px]">Audio</button>
+          <button
+            className={`btn m-0 px-0 w-[100px] ${
+              isActive("/category/audio") ? "bg-blue-400" : ""
+            }`}
+          >
+            Audio
+          </button>
         </Link>
         <Link to="/category/mobile">
-          <button className="btn m-0 px-0 w-[100px]">Mobile</button>
+          <button
+            className={`btn m-0 px-0 w-[100px] ${
+              isActive("/category/mobile") ? "bg-blue-400" : ""
+            }`}
+          >
+            Mobile
+          </button>
         </Link>
         <Link to="/category/laptop">
-          <button className="btn m-0 px-0 w-[100px]">Laptop</button>
+          <button
+            className={`btn m-0 px-0 w-[100px] ${
+              isActive("/category/laptop") ? "bg-blue-400" : ""
+            }`}
+          >
+            Laptop
+          </button>
         </Link>
         <Link to="/category/gaming">
-          <button className="btn m-0 px-0 w-[100px]">Gaming</button>
+          <button
+            className={`btn m-0 px-0 w-[100px] ${
+              isActive("/category/gaming") ? "bg-blue-400" : ""
+            }`}
+          >
+            Gaming
+          </button>
         </Link>
         <Link to="/deals">
-          <button className="btn m-0 px-0 w-[100px]">Our deals</button>
+          <button
+            className={`btn m-0 px-0 w-[100px] ${
+              isActive("/deals") ? "bg-blue-400" : ""
+            }`}
+          >
+            Our deals
+          </button>
         </Link>
         <Link to="/products">
-          <button className="btn m-0 px-0 w-[100px]">All products</button>
+          <button
+            className={`btn m-0 px-0 w-[100px] ${
+              isActive("/products") ? "bg-blue-400" : ""
+            }`}
+          >
+            All products
+          </button>
         </Link>
       </div>
     </>

@@ -27,7 +27,7 @@ const FilterBar = ({ filters, setFilters, availableOptions }) => {
   };
 
   return (
-    <div className="flex relative bg-blue-600 h-[50px] w-full items-center mb-4 px-4">
+    <div className="flex relative bg-blue-600 h-[50px] w-full items-center justify-between mb-4 px-4">
       <p className="flex shrink-0 text-xl font-bold text-white md:hidden mx-4">
         {pageName}
       </p>
