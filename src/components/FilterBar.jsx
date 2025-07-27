@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router";
-import ProductFilter from "../components/ProductFilter";
-import ProductCategoryFilter from "./ProductCategoryFilter";
+import ProductFilter from "./filter-components/ProductFilter";
+import ProductCategoryFilter from "./filter-components/ProductCategoryFilter";
 
 const FilterBar = ({ filters, setFilters, availableOptions }) => {
   const [filterIsOpen, setFilterIsOpen] = useState(false);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import DoubleRangeSlider from "./filter-components/DoubleRangeSlider";
+import DoubleRangeSlider from "./DoubleRangeSlider";
 
-const ProductFilter = ({ filters, setFilters, availableOptions }) => {
+const ProductCategoryFilter = ({ filters, setFilters, availableOptions }) => {
   const [expandedCategories, setExpandedCategories] = useState({});
 
   const handleCheckboxChange = (category, value) => {
@@ -34,7 +34,7 @@ const ProductFilter = ({ filters, setFilters, availableOptions }) => {
         max={availableOptions.price.max}
       />
 
-      {["categories", "brands", "colors"].map((category) => {
+      {["brands", "colors"].map((category) => {
         const options = [...availableOptions[category]].sort((a, b) =>
           String(a).localeCompare(String(b))
         );
@@ -82,4 +82,4 @@ const ProductFilter = ({ filters, setFilters, availableOptions }) => {
   );
 };
 
-export default ProductFilter;
+export default ProductCategoryFilter;
