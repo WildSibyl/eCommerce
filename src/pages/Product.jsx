@@ -93,7 +93,7 @@ const Product = () => {
       </div>
       <div className="flex flex-col w-full md:w-[150px] border border-base-200 font-bold justify-center items-center rounded-lg md:h-[400px] bg-base-200 shadow-md shrink-0 py-4">
         {/* <Counter initialValue={1} maxValue={30} /> */}
-        <button onClick={() => addProduct(product)} className="btn">
+        <button onClick={() => addProduct(product)} className="btn w-[110px]">
           Add to Cart
         </button>
         <button
@@ -101,7 +101,7 @@ const Product = () => {
             addProduct(product);
             navigate("/cart");
           }}
-          className="btn"
+          className="btn w-[110px]"
         >
           Buy now
         </button>

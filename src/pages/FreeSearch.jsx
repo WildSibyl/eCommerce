@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useOutletContext } from "react-router";
 import { useCart } from "../hooks/useCart";
-import { useProducts } from "../hooks/useProductData"; // Custom hook to fetch products
+import { useProducts } from "../hooks/useProductData";
 import ProductCardSearch from "../components/card-components/ProductCardSearch";
-import CategoryBar from "../components/CategoryBar"; // Component for the category bar
-import notFound from "../assets/not_found.png"; // Import the not found image
+import FilterBar from "../components/FilterBar";
+import notFound from "../assets/not_found.png";
+import { useFilteredProducts } from "../hooks/useFilteredProducts";
 
 const FreeSearch = () => {
   const { searchQuery } = useOutletContext(); // Get the searchQuery from
   const { addProduct } = useCart();
   const { products, loading, error } = useProducts(); // Fetch all products
 
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filteredSearchedProducts, setFilteredSearchedProducts] = useState([]);
 
   useEffect(() => {
     if (searchQuery) {
@@ -26,18 +27,34 @@ const FreeSearch = () => {
           field.toLowerCase().includes(searchQuery.toLowerCase())
         );
       });
-      setFilteredProducts(filtered);
+      setFilteredSearchedProducts(filtered);
     } else {
-      setFilteredProducts([]);
+      setFilteredSearchedProducts([]);
     }
   }, [searchQuery, products]); // Re-run filter when searchQuery or products change
+
+  // Determine the base list to filter
+  const baseProductsForFilter =
+    searchQuery && filteredSearchedProducts.length > 0
+      ? filteredSearchedProducts
+      : products;
+
+  // Run filters over the base list (filtered by search or not)
+  const { filters, setFilters, availableOptions, filteredProducts } =
+    useFilteredProducts(baseProductsForFilter);
+
+  //console.log("Filtered Products:", baseProductsForFilter);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
   return (
     <>
-      <CategoryBar />
+      <FilterBar
+        filters={filters}
+        setFilters={setFilters}
+        availableOptions={availableOptions}
+      />
       <div className="mt-4">
         {filteredProducts.length > 0 ? (
           <div className="flex flex-col gap-4 px-4 md:px-[10%]">

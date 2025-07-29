@@ -1,16 +1,23 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useCart } from "../../hooks/useCart";
 import ProductImage from "./ProductImage";
 
 const ProductCardMedium = ({ product }) => {
   const { addProduct } = useCart();
 
+  const navigate = useNavigate();
+
   return (
     <div key={product.id} className="box relative max-h-[397px]">
       <Link to={`/products/${product.id}`}>
-        <div className="w-full h-48 object-contain bg-white rounded-lg">
+        <div className="relative w-full h-48 object-contain bg-white rounded-lg">
           <ProductImage product={product} />
+          {product.popular ? (
+            <p className="absolute bottom-0 left-0 font-semibold bg-accent pl-2 rounded-br-lg rounded-tr-full w-[160px]">
+              POPULAR CHOICE
+            </p>
+          ) : null}
         </div>
         <div className="pt-4 px-4 flex flex-col justify-between">
           <h2 className="h-12 font-semibold overflow-hidden text-ellipsis line-clamp-2">
@@ -39,7 +46,9 @@ const ProductCardMedium = ({ product }) => {
               </>
             ) : (
               <div className="flex mx-auto my-2">
-                <p className="text-3xl font-bold">€ {product.price}</p>
+                <p className="text-3xl font-bold">
+                  € {product.price.toFixed(2)}
+                </p>
               </div>
             )}
           </div>
@@ -49,9 +58,18 @@ const ProductCardMedium = ({ product }) => {
         <div className="mx-auto">
           <button
             onClick={() => addProduct(product)} // Call the addProduct function when the button is clicked
-            className="btn"
+            className="btn w-[110px]"
           >
             Add to Cart
+          </button>
+          <button
+            onClick={() => {
+              addProduct(product);
+              navigate("/cart");
+            }}
+            className="btn w-[110px]"
+          >
+            Buy now
           </button>
         </div>
       </div>

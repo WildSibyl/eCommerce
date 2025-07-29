@@ -34,10 +34,28 @@ const ProductFilter = ({ filters, setFilters, availableOptions }) => {
         max={availableOptions.price.max}
       />
 
+      <div>
+        <h4 className="font-semibold capitalize">Sort by</h4>
+        <select
+          value={filters.sortBy}
+          onChange={(e) =>
+            setFilters((prev) => ({ ...prev, sortBy: e.target.value }))
+          }
+          className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+        >
+          <option value="">Relevance</option>
+          <option value="priceLowToHigh">Price: Low to High</option>
+          <option value="priceHighToLow">Price: High to Low</option>
+        </select>
+      </div>
+
       {["categories", "brands", "colors"].map((category) => {
         const options = [...availableOptions[category]].sort((a, b) =>
           String(a).localeCompare(String(b))
         );
+
+        if (category === "categories" && options.length <= 1) return null;
+
         const isExpanded = expandedCategories[category];
         const shownOptions = isExpanded ? options : options.slice(0, 6);
 
@@ -78,6 +96,24 @@ const ProductFilter = ({ filters, setFilters, availableOptions }) => {
           </div>
         );
       })}
+
+      {availableOptions.popular && (
+        <div>
+          <h4 className="font-semibold capitalize">Popularity</h4>
+          <label className="flex items-center justify-start">
+            <input
+              type="checkbox"
+              checked={filters.popular}
+              onChange={() =>
+                setFilters((prev) => ({ ...prev, popular: !prev.popular }))
+              }
+              className="h-4 w-4 ml-1 focus:ring-blue-500 focus:ring-2 cursor-pointer"
+              style={{ accentColor: "#1F46E5" }}
+            />
+            <span className="ml-2 cursor-pointer">Only popular items</span>
+          </label>
+        </div>
+      )}
     </div>
   );
 };

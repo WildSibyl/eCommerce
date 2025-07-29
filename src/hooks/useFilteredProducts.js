@@ -1,4 +1,3 @@
-// hooks/useFilteredProducts.js
 import { useState, useEffect, useMemo } from "react";
 
 export function useFilteredProducts(products, initialFilterOptions = {}) {
@@ -15,6 +14,8 @@ export function useFilteredProducts(products, initialFilterOptions = {}) {
         brands: [],
         colors: [],
         categories: [],
+        popular: false,
+        sortBy: "",
         ...initialFilterOptions,
       });
     }
@@ -30,6 +31,9 @@ export function useFilteredProducts(products, initialFilterOptions = {}) {
     const categories = safeUnique(
       products.map((p) => p.category?.toLowerCase())
     );
+    const hasPopular = products.some(
+      (p) => p.hasOwnProperty("popular") && p.popular === true
+    );
 
     const prices = products
       .map((p) => p.price)
@@ -43,13 +47,14 @@ export function useFilteredProducts(products, initialFilterOptions = {}) {
         min: Math.min(...prices),
         max: Math.max(...prices),
       },
+      popular: hasPopular,
     };
   }, [products]);
 
   const filteredProducts = useMemo(() => {
     if (!filters) return [];
 
-    return products.filter((p) => {
+    const result = products.filter((p) => {
       const withinPrice =
         p.price >= filters.price.min && p.price <= filters.price.max;
 
@@ -72,8 +77,20 @@ export function useFilteredProducts(products, initialFilterOptions = {}) {
           (cat) => cat.toLowerCase() === (p.category || "").toLowerCase()
         );
 
-      return withinPrice && brandMatch && colorMatch && categoryMatch;
+      const popularMatch = !filters.popular || p.popular === true;
+
+      return (
+        withinPrice && brandMatch && colorMatch && categoryMatch && popularMatch
+      );
     });
+
+    if (filters.sortBy === "priceLowToHigh") {
+      result.sort((a, b) => a.price - b.price);
+    } else if (filters.sortBy === "priceHighToLow") {
+      result.sort((a, b) => b.price - a.price);
+    }
+
+    return result;
   }, [products, filters]);
 
   return { filters, setFilters, availableOptions, filteredProducts };

@@ -1,10 +1,12 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useCart } from "../../hooks/useCart";
 import ProductImage from "./ProductImage";
 
 const ProductCardSearch = ({ product }) => {
   const { addProduct } = useCart();
+
+  const navigate = useNavigate();
 
   return (
     <div key={product.id} className="box md:longbox">
@@ -59,9 +61,18 @@ const ProductCardSearch = ({ product }) => {
             <div className="flex self-center md:justify-end md:self-end md:mr-2">
               <button
                 onClick={() => addProduct(product)} // Call the addProduct function when the button is clicked
-                className="btn"
+                className="btn w-[110px]"
               >
                 Add to Cart
+              </button>
+              <button
+                onClick={() => {
+                  addProduct(product);
+                  navigate("/cart");
+                }}
+                className="btn w-[110px]"
+              >
+                Buy now
               </button>
             </div>
           </div>
