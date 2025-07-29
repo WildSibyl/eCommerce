@@ -78,6 +78,24 @@ const ProductFilter = ({ filters, setFilters, availableOptions }) => {
           </div>
         );
       })}
+
+      {availableOptions.popular && (
+        <div>
+          <h4 className="font-semibold capitalize">Popularity</h4>
+          <label className="flex items-center justify-start">
+            <input
+              type="checkbox"
+              checked={filters.popular}
+              onChange={() =>
+                setFilters((prev) => ({ ...prev, popular: !prev.popular }))
+              }
+              className="h-4 w-4 ml-1 focus:ring-blue-500 focus:ring-2 cursor-pointer"
+              style={{ accentColor: "#1F46E5" }}
+            />
+            <span className="ml-2 cursor-pointer">Only popular items</span>
+          </label>
+        </div>
+      )}
     </div>
   );
 };

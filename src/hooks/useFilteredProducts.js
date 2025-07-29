@@ -1,4 +1,3 @@
-// hooks/useFilteredProducts.js
 import { useState, useEffect, useMemo } from "react";
 
 export function useFilteredProducts(products, initialFilterOptions = {}) {
@@ -15,6 +14,7 @@ export function useFilteredProducts(products, initialFilterOptions = {}) {
         brands: [],
         colors: [],
         categories: [],
+        popular: false,
         ...initialFilterOptions,
       });
     }
@@ -30,6 +30,9 @@ export function useFilteredProducts(products, initialFilterOptions = {}) {
     const categories = safeUnique(
       products.map((p) => p.category?.toLowerCase())
     );
+    const hasPopular = products.some(
+      (p) => p.hasOwnProperty("popular") && p.popular === true
+    );
 
     const prices = products
       .map((p) => p.price)
@@ -43,6 +46,7 @@ export function useFilteredProducts(products, initialFilterOptions = {}) {
         min: Math.min(...prices),
         max: Math.max(...prices),
       },
+      popular: hasPopular,
     };
   }, [products]);
 
@@ -72,7 +76,11 @@ export function useFilteredProducts(products, initialFilterOptions = {}) {
           (cat) => cat.toLowerCase() === (p.category || "").toLowerCase()
         );
 
-      return withinPrice && brandMatch && colorMatch && categoryMatch;
+      const popularMatch = !filters.popular || p.popular === true;
+
+      return (
+        withinPrice && brandMatch && colorMatch && categoryMatch && popularMatch
+      );
     });
   }, [products, filters]);
 
