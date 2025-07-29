@@ -1,10 +1,12 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useCart } from "../../hooks/useCart";
 import ProductImage from "./ProductImage";
 
 const ProductCardMedium = ({ product }) => {
   const { addProduct } = useCart();
+
+  const navigate = useNavigate();
 
   return (
     <div key={product.id} className="box relative max-h-[397px]">
@@ -51,9 +53,18 @@ const ProductCardMedium = ({ product }) => {
         <div className="mx-auto">
           <button
             onClick={() => addProduct(product)} // Call the addProduct function when the button is clicked
-            className="btn"
+            className="btn w-[110px]"
           >
             Add to Cart
+          </button>
+          <button
+            onClick={() => {
+              addProduct(product);
+              navigate("/cart");
+            }}
+            className="btn w-[110px]"
+          >
+            Buy now
           </button>
         </div>
       </div>
