@@ -14,8 +14,8 @@ const DisclaimerModal = ({
         </h2>
         <p className="text-base-content font-normal">
           <strong>
-            MIAOutlet is a student project currently in development for testing
-            purposes and intended for invited users only:{" "}
+            MIAOutlet is a project by Giada Bellan, currently in development for
+            testing purposes and intended for invited users only:{" "}
           </strong>
           please avoid entering personal data, as I am still working toward full
           GDPR (DSGVO) compliance. The platform is hosted on Neon.com and does

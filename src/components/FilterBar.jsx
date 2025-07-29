@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router";
 import ProductFilter from "./filter-components/ProductFilter";
 import ProductCategoryFilter from "./filter-components/ProductCategoryFilter";
