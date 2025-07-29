@@ -34,10 +34,28 @@ const ProductFilter = ({ filters, setFilters, availableOptions }) => {
         max={availableOptions.price.max}
       />
 
+      <div>
+        <h4 className="font-semibold capitalize">Sort by</h4>
+        <select
+          value={filters.sortBy}
+          onChange={(e) =>
+            setFilters((prev) => ({ ...prev, sortBy: e.target.value }))
+          }
+          className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+        >
+          <option value="">Relevance</option>
+          <option value="priceLowToHigh">Price: Low to High</option>
+          <option value="priceHighToLow">Price: High to Low</option>
+        </select>
+      </div>
+
       {["categories", "brands", "colors"].map((category) => {
         const options = [...availableOptions[category]].sort((a, b) =>
           String(a).localeCompare(String(b))
         );
+
+        if (category === "categories" && options.length <= 1) return null;
+
         const isExpanded = expandedCategories[category];
         const shownOptions = isExpanded ? options : options.slice(0, 6);
 

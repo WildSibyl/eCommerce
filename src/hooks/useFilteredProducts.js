@@ -15,6 +15,7 @@ export function useFilteredProducts(products, initialFilterOptions = {}) {
         colors: [],
         categories: [],
         popular: false,
+        sortBy: "",
         ...initialFilterOptions,
       });
     }
@@ -53,7 +54,7 @@ export function useFilteredProducts(products, initialFilterOptions = {}) {
   const filteredProducts = useMemo(() => {
     if (!filters) return [];
 
-    return products.filter((p) => {
+    const result = products.filter((p) => {
       const withinPrice =
         p.price >= filters.price.min && p.price <= filters.price.max;
 
@@ -82,6 +83,14 @@ export function useFilteredProducts(products, initialFilterOptions = {}) {
         withinPrice && brandMatch && colorMatch && categoryMatch && popularMatch
       );
     });
+
+    if (filters.sortBy === "priceLowToHigh") {
+      result.sort((a, b) => a.price - b.price);
+    } else if (filters.sortBy === "priceHighToLow") {
+      result.sort((a, b) => b.price - a.price);
+    }
+
+    return result;
   }, [products, filters]);
 
   return { filters, setFilters, availableOptions, filteredProducts };
