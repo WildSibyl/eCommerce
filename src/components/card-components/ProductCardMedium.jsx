@@ -39,7 +39,9 @@ const ProductCardMedium = ({ product }) => {
               </>
             ) : (
               <div className="flex mx-auto my-2">
-                <p className="text-3xl font-bold">€ {product.price}</p>
+                <p className="text-3xl font-bold">
+                  € {product.price.toFixed(2)}
+                </p>
               </div>
             )}
           </div>

@@ -36,7 +36,7 @@ const ProductCardSmall = ({ product }) => {
               </div>
             </>
           ) : (
-            <p className="text-xl font-bold">€ {product.price}</p>
+            <p className="text-xl font-bold">€ {product.price.toFixed(2)}</p>
           )}
         </div>
       </Link>
