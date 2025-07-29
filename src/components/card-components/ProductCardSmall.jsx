@@ -10,8 +10,13 @@ const ProductCardSmall = ({ product }) => {
     >
       <Link to={`/products/${product.id}`} className="relative">
         <div className="bg-white rounded-tl-lg rounded-tr-lg">
-          <div className="w-full h-48 object-contain rounded-lg p-2">
+          <div className="relative w-full h-48 object-contain rounded-lg p-2">
             <ProductImage product={product} />
+            {product.popular ? (
+              <p className="absolute bottom-0 left-0 font-semibold bg-accent pl-2 rounded-br-lg rounded-tr-full w-[100px]">
+                POPULAR!
+              </p>
+            ) : null}
           </div>
         </div>
         <div className="flex flex-col items-center justify-center my-4 gap-2">

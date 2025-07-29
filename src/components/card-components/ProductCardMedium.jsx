@@ -11,8 +11,13 @@ const ProductCardMedium = ({ product }) => {
   return (
     <div key={product.id} className="box relative max-h-[397px]">
       <Link to={`/products/${product.id}`}>
-        <div className="w-full h-48 object-contain bg-white rounded-lg">
+        <div className="relative w-full h-48 object-contain bg-white rounded-lg">
           <ProductImage product={product} />
+          {product.popular ? (
+            <p className="absolute bottom-0 left-0 font-semibold bg-accent pl-2 rounded-br-lg rounded-tr-full w-[160px]">
+              POPULAR CHOICE
+            </p>
+          ) : null}
         </div>
         <div className="pt-4 px-4 flex flex-col justify-between">
           <h2 className="h-12 font-semibold overflow-hidden text-ellipsis line-clamp-2">
