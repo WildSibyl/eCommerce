@@ -13,6 +13,6 @@ export const ping = async () => {
     throw new Error(`Ping failed: ${res.status} ${res.statusText}`);
   }
 
-  const data = await res.text();
-  return; //console.log(data);
+  //const data = await res.text();
+  //return console.log(data);
 };
