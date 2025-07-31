@@ -14,7 +14,7 @@ export const CartContextProvider = ({ children }) => {
   const [discountAmount, setDiscountAmount] = useState(0);
   const [discountError, setDiscountError] = useState("");
 
-  console.log(`cartProducts array created: ${cart}`);
+  //console.log(`cartProducts array created: ${cart}`);
 
   useEffect(() => {
     localStorage.setItem("cartProducts", JSON.stringify(cart));
@@ -39,7 +39,7 @@ export const CartContextProvider = ({ children }) => {
       quantity: 1,
     };
 
-    console.log("Cart products:", cartProductData);
+    //console.log("Cart products:", cartProductData);
 
     // Check if product already exists in cart
     const exists = updatedCart.some((item) => item.id === product.id);
@@ -57,7 +57,7 @@ export const CartContextProvider = ({ children }) => {
     localStorage.setItem("cartProducts", JSON.stringify(updatedCart));
     setCart(updatedCart); // Update state of the cart
 
-    console.log("cartProducts array updated: ", updatedCart);
+    //console.log("cartProducts array updated: ", updatedCart);
   };
 
   const decreaseQuantity = (productId) => {

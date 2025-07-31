@@ -23,7 +23,7 @@ export const applyDiscount = async (code) => {
     }
 
     const discountData = await response.json();
-    console.log("Discount applied:", discountData);
+    //console.log("Discount applied:", discountData);
 
     // For example: subtract from order total
     return discountData;

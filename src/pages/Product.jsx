@@ -9,7 +9,7 @@ const Product = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
 
-  console.log(` Product ID: ${productId}`);
+  //console.log(` Product ID: ${productId}`);
 
   const { product, loading, error } = useProduct(productId);
   const { addProduct } = useCart();
@@ -18,7 +18,7 @@ const Product = () => {
   if (error) return <div>Error: {error}</div>;
   if (!product) return <div>Product not found.</div>;
 
-  console.log(product);
+  //console.log(product);
 
   return (
     <div

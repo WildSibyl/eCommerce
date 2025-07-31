@@ -8,7 +8,7 @@ import orderConfirmed from "../assets/order_confirmed.png";
 const Orders = () => {
   const { user } = useAuth();
   const { products } = useProducts();
-  console.log("User in Orders page:", user);
+  //console.log("User in Orders page:", user);
 
   const [orders, setOrders] = useState([]);
   const [filter, setFilter] = useState("all");
@@ -42,7 +42,7 @@ const Orders = () => {
 
         setOrders(enrichedOrders);
 
-        console.log("Fetched orders:", enrichedOrders);
+        //console.log("Fetched orders:", enrichedOrders);
       } catch (error) {
         console.error("Failed to fetch orders:", error);
       } finally {
@@ -91,7 +91,7 @@ const Orders = () => {
   if (error) {
     return <p className="text-center text-red-600 mt-4">{error}</p>;
   }
-  console.log("Orders fetched:", orders);
+  //console.log("Orders fetched:", orders);
 
   return (
     <div className="flex flex-col items-center justify-center ">
