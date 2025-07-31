@@ -39,12 +39,7 @@ const Cart = () => {
       const discountValue =
         subtotalPrice * (discountData.discount.percentage / 100);
 
-      //console.log(
-        "Discount applied:",
-        subtotalPrice,
-        discountData.discount.percentage,
-        discountAmount
-      );
+      //console.log("Discount applied:", subtotalPrice, discountData.discount.percentage, discountAmount);
 
       setDiscountAmount(discountValue);
     } catch (error) {
