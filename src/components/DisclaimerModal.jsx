@@ -9,35 +9,37 @@ const DisclaimerModal = ({
             opacity-100 visible `}
     >
       <div className="flex flex-col relative px-8 -mt-10 items-center text-start w-full bg-base-100 p-2 rounded-2xl max-w-[500px] lg:max-w-[50vw] xl:max-w-[40vw]">
-        <h2 className="text-base-content my-4 font-bold text-xl uppercase">
+        <h2 className="text-base-content my-4 font-bold text-xl uppercase ">
           Important
         </h2>
-        <p className="text-base-content font-normal">
-          <strong>
-            MIAOutlet is a project by Giada Bellan, currently in development for
-            testing purposes and intended for invited users only:{" "}
+        <div className="max-h-[400px] md:max-h-[600px] overflow-y-auto">
+          <p className="text-base-content font-normal">
+            <strong>
+              MIAOutlet is a project by Giada Bellan, currently in development
+              for testing purposes and intended for invited users only:{" "}
+            </strong>
+            please avoid entering personal data, as I am still working toward
+            full GDPR (DSGVO) compliance. The platform is hosted on Neon.com and
+            does not use analytics tools to track user data.
+          </p>
+          <strong className="mt-4">
+            FakeStoreAPI is used for product data, and it is not connected to
+            any real inventory or stock management. Its images appear to support
+            limited calls a day, so if you start seeing the no image available
+            error handling you know you may have hit the limit.
           </strong>
-          please avoid entering personal data, as I am still working toward full
-          GDPR (DSGVO) compliance. The platform is hosted on Neon.com and does
-          not use analytics tools to track user data.
-        </p>
-        <strong className="mt-4">
-          FakeStoreAPI is used for product data, and it is not connected to any
-          real inventory or stock management. Its images appear to support
-          limited calls a day, so if you start seeing the no image available
-          error handling you know you may have hit the limit.
-        </strong>
-        <strong className="mt-4">
-          Stripe is implemented for payment processing, and it is set to test
-          mode. Please use Stripe's card numbers (a link to the list will be
-          provided) to make mock purchases.
-        </strong>
-        <p className="text-base-content font-normal bg-error rounded-2xl p-2 mt-4">
-          Neon's free tier goes to sleep after 5 minutes of inactivity, so you
-          may experience hiccups in server response when not interacting over
-          that time. I am working on retry and ping calls to mitigate this, but
-          please be patient if you encounter any issues.
-        </p>
+          <strong className="mt-4">
+            Stripe is implemented for payment processing, and it is set to test
+            mode. Please use Stripe's card numbers (a link to the list will be
+            provided) to make mock purchases.
+          </strong>
+          <p className="text-base-content font-normal bg-error rounded-2xl p-2 mt-4">
+            Neon's free tier goes to sleep after 5 minutes of inactivity, so you
+            may experience hiccups in server response when not interacting over
+            that time. I am working on retry and ping calls to mitigate this,
+            but please be patient if you encounter any issues.
+          </p>
+        </div>
         <form className="flex flex-col justify-center mt-4">
           <label className="flex justify-center items-center space-x-4">
             <input
