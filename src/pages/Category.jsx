@@ -8,7 +8,7 @@ import { useFilteredProducts } from "../hooks/useFilteredProducts";
 
 const Category = () => {
   const { productCategory } = useParams();
-  console.log(` Category: ${productCategory}`);
+  //console.log(` Category: ${productCategory}`);
 
   const { addProduct } = useCart();
   const { products, loading, error } = useProducts();
@@ -28,8 +28,8 @@ const Category = () => {
   if (loading || !filters) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
-  console.log("category:", category);
-  console.log("availableOptions:", availableOptions);
+  //console.log("category:", category);
+  //console.log("availableOptions:", availableOptions);
 
   return (
     <>

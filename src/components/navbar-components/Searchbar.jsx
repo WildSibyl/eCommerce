@@ -13,8 +13,8 @@ const Searchbar = ({ onSearch }) => {
   };
 
   const handleSearch = () => {
-    console.log("Button clicked!");
-    console.log(query);
+    //console.log("Button clicked!");
+    //console.log(query);
     onSearch(query); // Pass the query up to the parent component
     navigate("/search");
   };

@@ -26,7 +26,7 @@ export const checkoutPayment = async (formData) => {
   });
 
   const data = await res.json();
-  console.log("Payment intent response:", data);
+  //console.log("Payment intent response:", data);
 
   if (!res.ok) {
     throw new Error(data.error || "An error occurred while processing payment");

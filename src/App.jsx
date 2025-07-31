@@ -20,7 +20,7 @@ import { ping } from "./data/ping.js";
 const App = () => {
   useEffect(() => {
     ping()
-      .then(() => console.log("DB is reachable"))
+      .then(() => //console.log("DB is reachable"))
       .catch((error) => console.error("DB is not reachable:", error));
   }, []);
 

@@ -16,7 +16,7 @@ export const me = async () => {
 
   if (!res.ok) {
     const errorData = await res.json();
-    console.log("Error fetching user data:", errorData);
+    //console.log("Error fetching user data:", errorData);
     throw new Error(errorData.error || "An error occurred while signing in");
   }
 

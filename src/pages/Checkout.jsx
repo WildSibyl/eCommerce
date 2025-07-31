@@ -160,7 +160,7 @@ const Checkout = () => {
     }
   };
 
-  console.log("Stripe ready?", !!stripePromise, "Client Secret:", clientSecret);
+  //console.log("Stripe ready?", !!stripePromise, "Client Secret:", clientSecret);
 
   // Check if cart is empty
   if (cart.length === 0) {

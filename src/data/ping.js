@@ -14,5 +14,5 @@ export const ping = async () => {
   }
 
   const data = await res.text();
-  return console.log(data);
+  return; //console.log(data);
 };
